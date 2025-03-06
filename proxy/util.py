@@ -41,3 +41,14 @@ def save_config(config):
         json.dump(config, f, ensure_ascii=False, indent=4)
 
     return path
+
+
+def arrange_links(links: list) -> list:
+    links=list(links)
+    print('总链接数：', len(links))
+    print('\n'.join(links))
+
+    unique_links = list(set(links))
+    print('去重后链接数：', len(unique_links))
+    print('\n'.join(unique_links))
+    return unique_links
