@@ -32,11 +32,11 @@ def get_all_links():
         # print(config)
         if config is None:
             continue
-        share_link = gen_hysteria_share_link(json.loads(config))
-        print(share_link)
+        link = gen_hysteria_share_link(json.loads(config))
+        print(link)
 
-        yield share_link
+        yield link
 
 
 if __name__ == "__main__":
-    arrang_links(get_all_links())
+    arrange_links(get_all_links())

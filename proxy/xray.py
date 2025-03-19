@@ -1,16 +1,10 @@
 import base64
 import json
-import os
-import re
-import subprocess
-from datetime import datetime
-from pprint import pprint
+
 from typing import Iterator
 from urllib.parse import quote_plus
 
-import requests
-import urllib3
-from util import get_config, today, arrange_links
+from util import arrange_links, get_config, today
 
 
 def gen_vless_share_link(config):
@@ -37,7 +31,6 @@ def gen_vless_share_link(config):
 
     # 传输协议 type: ws / tcp
     network = streamSettings['network']
-
     query += f"&type={network}"
 
     if network == "ws":
@@ -60,7 +53,7 @@ def gen_vless_share_link(config):
 
         query += f"&host={host}&path={path}"
 
-    # 传输层安全:  tls reality
+    # 传输层安全:  security : tls reality
     security = streamSettings['security']
     query += f"&security={security}"
 

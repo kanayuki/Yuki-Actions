@@ -11,74 +11,73 @@ def gen_vless_share_link(config) -> str:
     # vless://ebfdccb6-7416-4b6e-860d-98587344d500@yh1.dtku41.xyz:443?
     # encryption=none&security=tls&sni=lg1.freessr2.xyz&fp=chrome&
     # type=ws&host=lg1.freessr2.xyz&path=%2Fxyakws#20240407
-    protocol = config['protocol']
-    settings = config['settings']
-    vnext = settings['vnext'][0]
 
-    address = vnext['address']
-    port = vnext['port']
-    user = vnext['users'][0]
-    user_id = user['id']
+    name = config['name']
+    protocol = config['type']
+    server = config['server']
+    port = config['port']
+    uuid = config['uuid']
+    udp = config['udp']
 
-    encryption = f"encryption={user['encryption']}"
-    flow = f"flow={user.get('flow', '')}"
+    flow = config['flow']
+
     # query paramaters of shared link
-    query = f"{encryption}&{flow}"
+    query = f"flow={flow}"
 
-    # streamSettings
-    streamSettings = config['streamSettings']
-
-    # 传输协议 type: ws / tcp
-    network = streamSettings['network']
-
+    # encryption=none&flow=xtls-rprx-vision
+    # &type=tcp&headerType=none
+    # 传输协议 (network)type: ws / tcp
+    network = config['network']
     query += f"&type={network}"
 
-    if network == "ws":
-        # network = ws (type)
-        wsSettings = streamSettings['wsSettings']
-        path = wsSettings['path']
-        host = wsSettings['headers']['Host']
+    if network == "tcp":
+        pass
 
-        query += f"&host={host}&path={path}"
+    elif network == "ws":
+        # network = ws (type)
+        # wsSettings = streamSettings['wsSettings']
+        # path = wsSettings['path']
+        # host = wsSettings['headers']['Host']
+
+        # query += f"&host={host}&path={path}"
+        pass
 
     elif network == "tcp":
         pass
 
     elif network == "splithttp":
-        splithttpSettings = streamSettings['splithttpSettings']
-        path = splithttpSettings['path']
-        host = splithttpSettings['host']
-        # maxUploadSize = splithttpSettings['maxUploadSize']
-        # maxConcurrentUploads = splithttpSettings['maxConcurrentUploads']
+        # splithttpSettings = streamSettings['splithttpSettings']
+        # path = splithttpSettings['path']
+        # host = splithttpSettings['host']
+        # # maxUploadSize = splithttpSettings['maxUploadSize']
+        # # maxConcurrentUploads = splithttpSettings['maxConcurrentUploads']
 
-        query += f"&host={host}&path={path}"
+        # query += f"&host={host}&path={path}"
+        pass
+
+    # &security=reality&sni=www.yahoo.com&fp=chrome
+    # &pbk=U5hsLybYWhJrWAqqsTa052k-VeKt8bDFPxBh3CQk51M&sid=0b4badde
 
     # 传输层安全:  tls reality
-    security = streamSettings['security']
-    query += f"&security={security}"
+    # if tls := config['tls']:
 
-    if security == "reality":
-        # encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.yahoo.com&fp=chrome&pbk=U5hsLybYWhJrWAqqsTa052k-VeKt8bDFPxBh3CQk51M&sid=0b4badde&type=tcp&headerType=none
-        realitySettings = streamSettings['realitySettings']
-        serverName = realitySettings['serverName']
-        fingerprint = realitySettings['fingerprint']
-        # show=realitySettings['show']
-        publicKey = realitySettings['publicKey']
-        shortId = realitySettings['shortId']
-        # spiderX=realitySettings['spiderX']
-
-        query += f"&sni={serverName}&fp={fingerprint}&pbk={publicKey}&sid={shortId}"
-
-    elif security == "tls":
-        tlsSettings = streamSettings['tlsSettings']
-        serverName = tlsSettings['serverName']
-        fingerprint = tlsSettings.get('fingerprint', 'chrome')
+    #     query += f"&security={tls}"
         # allowInsecure = tlsSettings['allowInsecure']
+        # alpn = tlsSettings['alpn']
 
-        query += f"&sni={serverName}&fp={fingerprint}"
+    # reality
+    if reality_opts := config['reality-opts']:
+        query += f"&security=reality"
+        public_key = reality_opts['public-key']
+        short_id = reality_opts['short-id']
+        query += f'&pbk={public_key}&sid={short_id}'
 
-    remark = f"{protocol}_{today()}"
-    url = f"{protocol}://{user_id}@{address}:{port}?{query}#{remark}"
+    servername = config['servername']
+    fingerprint = config['client-fingerprint']
+    query += f"&sni={servername}&fp={fingerprint}"
+
+    remark = f"{name}"
+    url = f"{protocol}://{uuid}@{server}:{port}?{query}#{remark}"
     return url
 
 
@@ -286,9 +285,16 @@ def gen_share_link(config: dict) -> str:
 def get_all_links() -> Iterator[str]:
     """ 获取所有可能的配置文件的分享链接 """
 
-    for i in range(1, 7):
+    urls = []
+    for i in range(1, 6+1):
         url = f"https://www.gitlabip.xyz/Alvin9999/PAC/master/backup/img/1/2/ipp/clash.meta2/{i}/config.yaml"
+        urls.append(url)
 
+    for i in range(1, 4+1):
+        url = f"https://www.gitlabip.xyz/Alvin9999/PAC/master/backup/img/1/2/ip/quick/{i}/config.yaml"
+        urls.append(url)
+
+    for url in urls:
         print('####################')
 
         config = get_config(url)
@@ -305,6 +311,15 @@ def get_all_links() -> Iterator[str]:
         yield link
 
 
+def test_vless():
+    config = get_config(
+        'https://www.gitlabip.xyz/Alvin9999/PAC/master/backup/img/1/2/ip/quick/4/config.yaml')
+    config = yaml.safe_load(config)
+    print(config)
+    link = gen_share_link(config)
+    print(link)
+
+
 if __name__ == "__main__":
     # url='https://www.githubip.xyz/Alvin9999/pac2/master/xray/2/config.json'
     # config = get_xray_config()
@@ -317,9 +332,7 @@ if __name__ == "__main__":
 
     arrange_links(get_all_links())
 
-    # 保存到文件
-    # with open(r'D:\Code\Python\practice\v2ray_links.txt', 'w', encoding='utf-8') as f:
-    #     f.write('\n'.join(unique_links))
+    # test_vless()
 
     # url = 'https://www.githubip.xyz/Alvin9999/pac2/master/xray/config.json'
     # resp = requests.get(url, verify=False)
