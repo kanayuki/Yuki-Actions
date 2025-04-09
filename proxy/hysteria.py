@@ -27,14 +27,17 @@ def gen_hysteria_share_link(config: dict) -> str:
 
 def get_all_links():
     for i in range(1, 5):
+        print("")
         url = f'https://www.gitlabip.xyz/Alvin9999/PAC/master/backup/img/1/2/ipp/hysteria2/{i}/config.json'
         config = get_config(url)
         # print(config)
         if config is None:
             continue
+        
         link = gen_hysteria_share_link(json.loads(config))
-        print(link)
+        print(f"hysteria2 分享链接：{link}")
 
+        print("")
         yield link
 
 

@@ -15,16 +15,19 @@ def main():
     links = get_all_links()
     print('总链接数：', len(links))
     print('\n'.join(links))
+    print('')
 
     unique_links = list(set(links))
     print('去重后链接数：', len(unique_links))
-    print('\n'.join(unique_links))
+    unique_links_text = '\n'.join(unique_links)
+    print(unique_links_text)
 
     # 保存到文件
-    with open(r'share_links.txt', 'w', encoding='utf-8') as f:
-        f.write('\n'.join(unique_links))
-        
-    print('分享链接已保存到 share_links.txt')
+    file = r'share_links.txt'
+    with open(file, 'w', encoding='utf-8') as f:
+        f.write(unique_links_text)
+
+    print(f"{len(unique_links)}条分享链接已保存到: {file}")
 
 
 if __name__ == "__main__":

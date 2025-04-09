@@ -217,7 +217,7 @@ def gen_tuic_share_link(proxy) -> str:
     tuic_link = f"tuic://{uuid}:{password}@{server}:{port}{param_str}#{name}"
 
     # 输出结果
-    print("TUIC 分享链接:", tuic_link)
+    # print("TUIC 分享链接:", tuic_link)
     return tuic_link
 
 
@@ -250,11 +250,11 @@ def gen_hysteria_share_link(proxy) -> str:
     hysteria_link = f"hysteria2://{auth_str}@{server}:{port}{param_str}#{urllib.parse.quote(name)}"
 
     # 输出结果
-    print("Hysteria2 分享链接:", hysteria_link)
+    # print("Hysteria2 分享链接:", hysteria_link)
     return hysteria_link
 
 
-def gen_share_link(config: dict) -> str:
+def gen_share_link(config: dict) -> str|None:
     ''' 生成分享链接 vless, vmess, shadowsocks, trojan, hysteria, tuic '''
 
     protocol_map = {
@@ -275,6 +275,7 @@ def gen_share_link(config: dict) -> str:
 
     if protocol in protocol_map:
         url = protocol_map[protocol](proxy)
+        print(f"{protocol} 分享链接: {url}")
         return url
     else:
         print(f"Unsupported protocol: {proxy}")
@@ -284,6 +285,7 @@ def gen_share_link(config: dict) -> str:
 
 def get_all_links() -> Iterator[str]:
     """ 获取所有可能的配置文件的分享链接 """
+    print("获取所有clash配置的分享链接")
 
     urls = []
     for i in range(1, 6+1):
@@ -295,7 +297,7 @@ def get_all_links() -> Iterator[str]:
         urls.append(url)
 
     for url in urls:
-        print('####################')
+        print('')
 
         config = get_config(url)
         # print(config)
@@ -305,8 +307,11 @@ def get_all_links() -> Iterator[str]:
 
         link = gen_share_link(yaml.safe_load(config))
         # print(link)
+        if link is None:
+            print('生成分享链接失败')
+            continue
 
-        print('####################')
+        print('')
 
         yield link
 

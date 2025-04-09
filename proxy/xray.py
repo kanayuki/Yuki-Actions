@@ -181,7 +181,7 @@ def gen_shadowsocks_share_link(config):
     return url
 
 
-def gen_share_link(config: dict) -> str:
+def gen_share_link(config: dict) -> str|None:
     ''' 生成分享链接 vless, vmess, shadowsocks,  '''
     outbounds: list = config['outbounds']
     proxy: dict = [item for item in outbounds if item['tag'] == 'proxy'][0]
@@ -197,6 +197,7 @@ def gen_share_link(config: dict) -> str:
 
     if protocol in protocol_map:
         url = protocol_map[protocol](proxy)
+        print(f"{protocol} 分享链接: {url}")
         return url
     else:
         print(f"Unsupported protocol: {proxy}")
@@ -206,6 +207,7 @@ def gen_share_link(config: dict) -> str:
 
 def get_all_links() -> Iterator[str]:
     """ 获取所有可能的配置文件的分享链接 """
+    print("获取所有xray配置的分享链接")
 
     path = f"./proxy/xray_config_links.txt"
     with open(path, "r") as f:
@@ -214,16 +216,20 @@ def get_all_links() -> Iterator[str]:
     urls = [url for url in urls if url.strip() != '']
 
     for url in urls:
-        print('####################')
+        print('')
 
         config = json.loads(get_config(url))
         # print(config)
         if config is None:
+            print(f"Failed to get config from {url}")
             continue
 
         link = gen_share_link(config)
-        print(link)
-        print('####################')
+        if link is None:
+            print(f"Failed to get share link from {url}")
+            continue
+        
+        print('')
         yield link
 
 
