@@ -1,10 +1,11 @@
 import base64
+import functools
 import json
 
 from typing import Iterator
 from urllib.parse import quote_plus
 
-from util import arrange_links, get_config, today
+from util import arrange_links, get_config, load_all_config, today
 
 
 def gen_vless_share_link(config):
@@ -181,7 +182,7 @@ def gen_shadowsocks_share_link(config):
     return url
 
 
-def gen_share_link(config: dict) -> str|None:
+def gen_share_link(config: dict) -> str | None:
     ''' 生成分享链接 vless, vmess, shadowsocks,  '''
     outbounds: list = config['outbounds']
     proxy: dict = [item for item in outbounds if item['tag'] == 'proxy'][0]
@@ -205,43 +206,20 @@ def gen_share_link(config: dict) -> str|None:
     return None
 
 
-def get_all_links() -> Iterator[str]:
+@load_all_config("./proxy/xray_config_links.txt")
+def get_all_links(config) -> Iterator[str]:
     """ 获取所有可能的配置文件的分享链接 """
-    print("获取所有xray配置的分享链接")
-
-    path = f"./proxy/xray_config_links.txt"
-    with open(path, "r") as f:
-        urls = f.read().splitlines()
-
-    urls = [url for url in urls if url.strip() != '']
-
-    for url in urls:
-        print('')
-
-        config = json.loads(get_config(url))
-        # print(config)
-        if config is None:
-            print(f"Failed to get config from {url}")
-            continue
-
-        link = gen_share_link(config)
-        if link is None:
-            print(f"Failed to get share link from {url}")
-            continue
-        
-        print('')
-        yield link
+ 
+    link = gen_share_link(json.loads(config))
+    return link
 
 
 if __name__ == "__main__":
-    # url='https://www.githubip.xyz/Alvin9999/pac2/master/xray/2/config.json'
+    # url = 'https://www.githubip.xyz/Alvin9999/pac2/master/xray/2/config.json'
+    # url = 'https://www.githubip.xyz/Alvin9999/pac2/master/xray/config.json'
     # config = get_xray_config()
     # save_config(config)
 
-    # config = read_config("config_shadowsocks.json")
-    # config = read_config("config_vless.json")
-    # url = get_share_link(config)
-    # print(url)
 
     arrange_links(get_all_links())
 
@@ -249,17 +227,3 @@ if __name__ == "__main__":
     # with open(r'D:\Code\Python\practice\v2ray_links.txt', 'w', encoding='utf-8') as f:
     #     f.write('\n'.join(unique_links))
 
-    # url = 'https://www.githubip.xyz/Alvin9999/pac2/master/xray/config.json'
-    # resp = requests.get(url, verify=False)
-    # print(resp.text)
-    # print(resp.status_code)
-    # print(resp.reason)
-
-    # url = 'https://gitlab.com/free9999/ipupdate/-/raw/master/v2rayN/guiNConfig.json'
-    # url = 'https://gitlab.com/free9999/ipupdate/-/raw/master/v2rayN/2/guiNConfig.json'
-    # url = 'https://www.githubip.xyz/Alvin9999/PAC/master/guiNConfig.json'
-    # url = 'https://www.githubip.xyz/Alvin9999/PAC/master/1/guiNConfig.json'
-    # url = 'https://www.githubip.xyz/Alvin9999/PAC/master/2/guiNConfig.json'
-    # url = 'https://www.githubip.xyz/Alvin9999/PAC/master/3/guiNConfig.json'
-    # url = 'https://fastly.jsdelivr.net/gh/Alvin9999/PAC@latest/guiNConfig.json'
-    # url = 'https://fastly.jsdelivr.net/gh/Alvin9999/PAC@latest/2/guiNConfig.json'

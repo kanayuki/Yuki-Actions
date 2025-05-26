@@ -1,5 +1,6 @@
 
 from datetime import datetime
+import functools
 import json
 
 import requests
@@ -32,6 +33,35 @@ def get_config(url: str) -> str | None:
         print('获取配置文件失败', e)
 
 
+def load_all_config(file: str) -> dict:
+    """ 加载配置文件装饰器 """
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            with open(file, "r") as f:
+                urls = f.read().splitlines()
+
+            urls = [url.strip() for url in urls if url.strip() != '']
+
+            links = []
+            for url in urls:
+                print('')
+                config = get_config(url)
+                # print(config)
+                if config is None:
+                    print(f"Failed to get config from {url}")
+                    continue
+                link = func(config, *args, **kwargs)
+                if link is None:
+                    print(f"Failed to get share link from {url}")
+                    continue
+                links.append(link)
+            return links
+
+        return wrapper
+    return decorator
+
+
 def save_config(config):
 
     # print("xray_config:", config)
@@ -47,6 +77,7 @@ def arrange_links(links: list) -> list:
     links = list(links)
     print('总链接数：', len(links))
     print('\n'.join(links))
+    print('')
 
     unique_links = list(set(links))
     print('去重后链接数：', len(unique_links))

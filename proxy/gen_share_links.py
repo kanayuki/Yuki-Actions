@@ -27,7 +27,7 @@ def main():
     with open(file, 'w', encoding='utf-8') as f:
         f.write(unique_links_text)
 
-    print(f"{len(unique_links)}条分享链接已保存到: {file}")
+    print(f"\n保存{len(unique_links)}条分享链接到: {file}")
 
 
 if __name__ == "__main__":

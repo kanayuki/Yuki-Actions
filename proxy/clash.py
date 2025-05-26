@@ -2,7 +2,7 @@ import base64
 import json
 from typing import Iterator
 import yaml
-from util import get_config, today, arrange_links
+from util import get_config, load_all_config, today, arrange_links
 import urllib
 
 
@@ -254,7 +254,7 @@ def gen_hysteria_share_link(proxy) -> str:
     return hysteria_link
 
 
-def gen_share_link(config: dict) -> str|None:
+def gen_share_link(config: dict) -> str | None:
     ''' 生成分享链接 vless, vmess, shadowsocks, trojan, hysteria, tuic '''
 
     protocol_map = {
@@ -283,37 +283,14 @@ def gen_share_link(config: dict) -> str|None:
     return None
 
 
-def get_all_links() -> Iterator[str]:
+@load_all_config("./proxy/clash_config_links.txt")
+def get_all_links(config) -> str:
     """ 获取所有可能的配置文件的分享链接 """
-    print("获取所有clash配置的分享链接")
+    # print("获取所有clash配置的分享链接")
 
-    urls = []
-    for i in range(1, 6+1):
-        url = f"https://www.gitlabip.xyz/Alvin9999/PAC/master/backup/img/1/2/ipp/clash.meta2/{i}/config.yaml"
-        urls.append(url)
-
-    for i in range(1, 4+1):
-        url = f"https://www.gitlabip.xyz/Alvin9999/PAC/master/backup/img/1/2/ip/quick/{i}/config.yaml"
-        urls.append(url)
-
-    for url in urls:
-        print('')
-
-        config = get_config(url)
-        # print(config)
-        if config is None:
-            print('获取配置文件失败')
-            continue
-
-        link = gen_share_link(yaml.safe_load(config))
-        # print(link)
-        if link is None:
-            print('生成分享链接失败')
-            continue
-
-        print('')
-
-        yield link
+    link = gen_share_link(yaml.safe_load(config))
+    # print(f"clash 分享链接：{link}")
+    return link
 
 
 def test_vless():
@@ -326,30 +303,7 @@ def test_vless():
 
 
 if __name__ == "__main__":
-    # url='https://www.githubip.xyz/Alvin9999/pac2/master/xray/2/config.json'
-    # config = get_xray_config()
-    # save_config(config)
-
-    # config = read_config("config_shadowsocks.json")
-    # config = read_config("config_vless.json")
-    # url = get_share_link(config)
-    # print(url)
 
     arrange_links(get_all_links())
 
     # test_vless()
-
-    # url = 'https://www.githubip.xyz/Alvin9999/pac2/master/xray/config.json'
-    # resp = requests.get(url, verify=False)
-    # print(resp.text)
-    # print(resp.status_code)
-    # print(resp.reason)
-
-    # url = 'https://gitlab.com/free9999/ipupdate/-/raw/master/v2rayN/guiNConfig.json'
-    # url = 'https://gitlab.com/free9999/ipupdate/-/raw/master/v2rayN/2/guiNConfig.json'
-    # url = 'https://www.githubip.xyz/Alvin9999/PAC/master/guiNConfig.json'
-    # url = 'https://www.githubip.xyz/Alvin9999/PAC/master/1/guiNConfig.json'
-    # url = 'https://www.githubip.xyz/Alvin9999/PAC/master/2/guiNConfig.json'
-    # url = 'https://www.githubip.xyz/Alvin9999/PAC/master/3/guiNConfig.json'
-    # url = 'https://fastly.jsdelivr.net/gh/Alvin9999/PAC@latest/guiNConfig.json'
-    # url = 'https://fastly.jsdelivr.net/gh/Alvin9999/PAC@latest/2/guiNConfig.json'
