@@ -1,11 +1,37 @@
 import base64
 import json
-from util import load_all_config, today, get_config, arrange_links
+from util import get_country_code, load_all_config, today, get_config, arrange_links
 
 
 def gen_hysteria_share_link(config: dict) -> str:
     # hysteria2://dongtaiwang.com@195.154.33.70:42259/?sni=www.bing.com&insecure=1#hysteria2_20250123
     # 提取配置信息
+    # {
+    #   "server": "51.159.111.32:31180",
+    #   "auth": "dongtaiwang.com",
+    #   "bandwidth": {
+    #     "up": "11 mbps",
+    #     "down": "55 mbps"
+    #   },
+    #   "tls": {
+    #     "sni": "apple.com",
+    #     "insecure": true
+    #   },
+    #   "quic": {
+    #     "initStreamReceiveWindow": 16777216,
+    #     "maxStreamReceiveWindow": 16777216,
+    #     "initConnReceiveWindow": 33554432,
+    #     "maxConnReceiveWindow": 33554432
+    #   },
+    #   "socks5": {
+    #     "listen": "127.0.0.1:1080"
+    #   },
+    #   "transport": {
+    #     "udp": {
+    #       "hopInterval": "30s"
+    #     }
+    #   }
+    # }
     protocol = 'hysteria2'
 
     address = config.get('server')
@@ -19,7 +45,7 @@ def gen_hysteria_share_link(config: dict) -> str:
         insecure = tls.get('insecure', True)
         insecure = '1' if insecure else '0'
 
-    remark = f'hysteria2_{today()}'
+    remark = f'{get_country_code(server)}_{today()}'
     share_link = f"{protocol}://{auth}@{server}:{port}/?sni={sni}&insecure={insecure}#{remark}"
 
     return share_link

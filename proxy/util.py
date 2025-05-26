@@ -1,10 +1,12 @@
-
-from datetime import datetime
 import functools
 import json
+import shutil
+from datetime import datetime
+from pathlib import Path
 
 import requests
 import urllib3
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -72,6 +74,7 @@ def save_config(config):
 
     return path
 
+
 @functools.lru_cache(maxsize=128)
 def get_country_code(ip=''):
     ''' 
@@ -97,6 +100,24 @@ def arrange_links(links: list) -> list:
     print('去重后链接数：', len(unique_links))
     print('\n'.join(unique_links))
     return unique_links
+
+
+def backup(file: Path, backup_dir: Path):
+    '''
+    备份文件
+    '''
+
+    # 获取当前日期和时间
+    now = datetime.now()
+    timestamp = now.strftime('%Y%m%d_%H%M%S')
+
+    # 构建备份文件的名称
+    backup_file = backup_dir / f'{file.stem}_{timestamp}{file.suffix}'
+
+    # 执行备份操作
+    shutil.copy(file, backup_file)
+
+    print(f"备份文件已保存到: {backup_file}")
 
 
 if __name__ == "__main__":
