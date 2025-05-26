@@ -72,6 +72,20 @@ def save_config(config):
 
     return path
 
+@functools.lru_cache(maxsize=128)
+def get_country_code(ip=''):
+    ''' 
+    The API base path is http://ip-api.com/json/{query}
+    {query} can be a single IPv4/IPv6 address or a domain name. 
+    If you don't supply a query the current IP address will be used.
+    '''
+    url = f"http://ip-api.com/json/{ip}"
+    # url = f'https://api.ip.sb/geoip/{ip}'
+    response = requests.get(url)
+    data = response.json()
+    # print(data)
+    return data.get("countryCode", '')
+
 
 def arrange_links(links: list) -> list:
     links = list(links)
@@ -83,3 +97,7 @@ def arrange_links(links: list) -> list:
     print('去重后链接数：', len(unique_links))
     print('\n'.join(unique_links))
     return unique_links
+
+
+if __name__ == "__main__":
+    get_country_code('198.40.52.26')

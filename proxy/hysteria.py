@@ -1,6 +1,6 @@
 import base64
 import json
-from util import load_all_config, today, get_config,arrange_links
+from util import load_all_config, today, get_config, arrange_links
 
 
 def gen_hysteria_share_link(config: dict) -> str:
@@ -24,9 +24,10 @@ def gen_hysteria_share_link(config: dict) -> str:
 
     return share_link
 
+
 @load_all_config("./proxy/hysteria_config_links.txt")
-def get_all_links(config):
-    
+def get_all_links(config: str) -> str:
+
     link = gen_hysteria_share_link(json.loads(config))
     print(f"hysteria2 分享链接：{link}")
 

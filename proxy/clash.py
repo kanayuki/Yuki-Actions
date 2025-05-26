@@ -2,7 +2,7 @@ import base64
 import json
 from typing import Iterator
 import yaml
-from util import get_config, load_all_config, today, arrange_links
+from util import get_config, get_country_code, load_all_config, today, arrange_links
 import urllib
 
 
@@ -76,7 +76,7 @@ def gen_vless_share_link(config) -> str:
     fingerprint = config['client-fingerprint']
     query += f"&sni={servername}&fp={fingerprint}"
 
-    remark = f"{name}"
+    remark = f"{get_country_code(server)}_{today()}"
     url = f"{protocol}://{uuid}@{server}:{port}?{query}#{remark}"
     return url
 
@@ -107,9 +107,11 @@ def gen_vmess_share_link(config) -> str:
     user = vnext['users'][0]
     streamSettings = config['streamSettings']
 
+    remark = f"{get_country_code(vnext['address'])}_{today()}"
+
     vmess_dict = {
         "v": "2",
-        "ps": f"{protocol}_{today()}",
+        "ps": remark,
         'add': vnext['address'],
         'port': vnext['port'],
         'id': user['id'],
@@ -175,7 +177,7 @@ def gen_shadowsocks_share_link(config) -> str:
 
     text = f"{method}:{password}"
     id = base64.urlsafe_b64encode(text.encode()).decode()
-    remark = f"{protocol}_{today()}"
+    remark = f"{get_country_code(address)}_{today()}"
     url = f"{protocol}://{id}@{address}:{port}#{remark}"
     return url
 
@@ -194,7 +196,8 @@ def gen_tuic_share_link(proxy) -> str:
     password = proxy['password']
     server = proxy['server']
     port = proxy['port']
-    name = proxy['name']
+    # name = proxy['name']
+    name = f'{get_country_code(server)}_{today()}'
 
     # 可选参数
     params = []
@@ -227,7 +230,8 @@ def gen_hysteria_share_link(proxy) -> str:
     server = proxy['server']
     port = proxy['port']
     auth_str = proxy['auth-str']
-    name = proxy['name']
+    # name = proxy['name']
+    name = f'{get_country_code(server)}_{today()}'
 
     # 可选参数
     params = []
@@ -284,7 +288,7 @@ def gen_share_link(config: dict) -> str | None:
 
 
 @load_all_config("./proxy/clash_config_links.txt")
-def get_all_links(config) -> str:
+def get_all_links(config: str) -> str:
     """ 获取所有可能的配置文件的分享链接 """
     # print("获取所有clash配置的分享链接")
 

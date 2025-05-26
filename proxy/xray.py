@@ -5,7 +5,7 @@ import json
 from typing import Iterator
 from urllib.parse import quote_plus
 
-from util import arrange_links, get_config, load_all_config, today
+from util import arrange_links, get_config, get_country_code, load_all_config, today
 
 
 def gen_vless_share_link(config):
@@ -78,7 +78,7 @@ def gen_vless_share_link(config):
 
         query += f"&sni={serverName}&fp={fingerprint}"
 
-    remark = f"{protocol}_{today()}"
+    remark = f"{get_country_code(address)}_{today()}"
     url = f"{protocol}://{user_id}@{address}:{port}?{query}#{remark}"
     return url
 
@@ -109,9 +109,11 @@ def gen_vmess_share_link(config):
     user = vnext['users'][0]
     streamSettings = config['streamSettings']
 
+    remark = f"{get_country_code(vnext['address'])}_{today()}"
+
     vmess_dict = {
         "v": "2",
-        "ps": f"{protocol}_{today()}",
+        "ps": remark,
         'add': vnext['address'],
         'port': vnext['port'],
         'id': user['id'],
@@ -177,7 +179,7 @@ def gen_shadowsocks_share_link(config):
 
     text = f"{method}:{password}"
     id = base64.urlsafe_b64encode(text.encode()).decode()
-    remark = f"{protocol}_{today()}"
+    remark = f"{get_country_code(address)}_{today()}"
     url = f"{protocol}://{id}@{address}:{port}#{remark}"
     return url
 
@@ -207,9 +209,9 @@ def gen_share_link(config: dict) -> str | None:
 
 
 @load_all_config("./proxy/xray_config_links.txt")
-def get_all_links(config) -> Iterator[str]:
+def get_all_links(config: str) -> str:
     """ 获取所有可能的配置文件的分享链接 """
- 
+
     link = gen_share_link(json.loads(config))
     return link
 
@@ -220,10 +222,8 @@ if __name__ == "__main__":
     # config = get_xray_config()
     # save_config(config)
 
-
     arrange_links(get_all_links())
 
     # 保存到文件
     # with open(r'D:\Code\Python\practice\v2ray_links.txt', 'w', encoding='utf-8') as f:
     #     f.write('\n'.join(unique_links))
-
