@@ -127,7 +127,7 @@ def gen_vmess_share_link(config):
     if streamSettings['network'] == "ws":
         ws_info = {
             "net": "ws",
-            "host": streamSettings['wsSettings']['headers']['Host'],
+            "host": streamSettings['wsSettings']['headers'].get('Host', ''),
             "path": streamSettings['wsSettings']['path'],
         }
         vmess_dict.update(ws_info)
