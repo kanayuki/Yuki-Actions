@@ -1,6 +1,9 @@
-import base64
 import json
-from util import get_country_code, load_all_config, today, get_config, arrange_links
+
+from util import arrange_links, gen_remark, load_all_config
+
+
+postfix = "hysteria"
 
 
 def gen_hysteria_share_link(config: dict) -> str:
@@ -32,21 +35,23 @@ def gen_hysteria_share_link(config: dict) -> str:
     #     }
     #   }
     # }
-    protocol = 'hysteria2'
+    protocol = "hysteria2"
 
-    address = config.get('server')
-    server = address.split(':')[0]
-    port = address.split(':')[1].split(',')[0]
+    address = config.get("server")
+    server = address.split(":")[0]
+    port = address.split(":")[1].split(",")[0]
 
-    auth = config.get('auth', '')
+    auth = config.get("auth", "")
 
-    if tls := config.get('tls'):
-        sni = tls.get('sni', '')
-        insecure = tls.get('insecure', True)
-        insecure = '1' if insecure else '0'
+    if tls := config.get("tls"):
+        sni = tls.get("sni", "")
+        insecure = tls.get("insecure", True)
+        insecure = "1" if insecure else "0"
 
-    remark = f'{get_country_code(server)}_{today()}'
-    share_link = f"{protocol}://{auth}@{server}:{port}/?sni={sni}&insecure={insecure}#{remark}"
+    remark = gen_remark(server, postfix)
+    share_link = (
+        f"{protocol}://{auth}@{server}:{port}/?sni={sni}&insecure={insecure}#{remark}"
+    )
 
     return share_link
 

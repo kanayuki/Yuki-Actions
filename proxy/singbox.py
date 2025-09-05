@@ -1,13 +1,14 @@
-import base64
 import json
-from typing import Iterator
+
 import yaml
-from util import get_config, get_country_code, load_all_config, today, arrange_links
-import urllib
+from util import arrange_links, gen_remark, get_config, load_all_config
+
+
+postfix = "singbox"
 
 
 def gen_hysteria_share_link(proxy: str) -> str:
-    """ 生成hysteria分享链接 """
+    """生成hysteria分享链接"""
     # {
     #   "type": "hysteria",
     #   "tag": "dongtaiwang.com",
@@ -27,28 +28,28 @@ def gen_hysteria_share_link(proxy: str) -> str:
     # }
 
     # 提取必要字段
-    type = proxy['type'].lower()
-    tag = proxy['tag']
-    server = proxy['server']
-    port = proxy['server_port']
-    auth_str = proxy['auth_str']
+    type = proxy["type"].lower()
+    tag = proxy["tag"]
+    server = proxy["server"]
+    port = proxy["server_port"]
+    auth_str = proxy["auth_str"]
 
     # 可选参数
     params = []
-    if tls := proxy.get('tls'):
-        sni = tls.get('server_name', '')
+    if tls := proxy.get("tls"):
+        sni = tls.get("server_name", "")
         params.append(f"sni={sni}")
-        insecure = tls.get('insecure', True)
+        insecure = tls.get("insecure", True)
         params.append(f"insecure={'1' if insecure else '0'}")
 
-        alpn = proxy.get('alpn', [])  # 将数组转为逗号分隔的字符串
+        alpn = proxy.get("alpn", [])  # 将数组转为逗号分隔的字符串
         params.append(f"alpn={','.join(alpn)}")
 
     # 构建参数部分
-    param_str = '&'.join(params)
-    param_str = f"?{param_str}" if param_str else ''
+    param_str = "&".join(params)
+    param_str = f"?{param_str}" if param_str else ""
 
-    remark = f'{get_country_code(server)}_{today()}'
+    remark = gen_remark(server, postfix)
 
     # 生成 Hysteria 分享链接
     hysteria_link = f"hysteria2://{auth_str}@{server}:{port}{param_str}#{remark}"
@@ -59,19 +60,17 @@ def gen_hysteria_share_link(proxy: str) -> str:
 
 
 def gen_share_link(config: dict) -> str | None:
-    ''' 生成分享链接 vless, vmess, shadowsocks, trojan, hysteria, tuic '''
+    """生成分享链接 vless, vmess, shadowsocks, trojan, hysteria, tuic"""
 
     protocol_map = {
-
-        'hysteria': gen_hysteria_share_link,
-
+        "hysteria": gen_hysteria_share_link,
     }
 
     # 提取第一个 proxy
     proxy = config["outbounds"][0]
 
     # 检查协议类型
-    protocol = proxy['type'].lower()
+    protocol = proxy["type"].lower()
 
     if protocol in protocol_map:
         url = protocol_map[protocol](proxy)
@@ -85,7 +84,7 @@ def gen_share_link(config: dict) -> str | None:
 
 @load_all_config("./proxy/singbox_config_links.txt")
 def get_all_links(config: str) -> str:
-    """ 获取所有可能的配置文件的分享链接 """
+    """获取所有可能的配置文件的分享链接"""
     # print("获取所有clash配置的分享链接")
 
     link = gen_share_link(json.loads(config))
@@ -95,7 +94,8 @@ def get_all_links(config: str) -> str:
 
 def test_vless():
     config = get_config(
-        'https://www.gitlabip.xyz/Alvin9999/PAC/master/backup/img/1/2/ip/quick/4/config.yaml')
+        "https://www.gitlabip.xyz/Alvin9999/PAC/master/backup/img/1/2/ip/quick/4/config.yaml"
+    )
     config = yaml.safe_load(config)
     print(config)
     link = gen_share_link(config)
