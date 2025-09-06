@@ -37,9 +37,15 @@ def gen_hysteria_share_link(config: dict) -> str:
     # }
     protocol = "hysteria2"
 
-    address = config.get("server")
-    server = address.split(":")[0]
-    port = address.split(":")[1].split(",")[0]
+    address: str = config.get("server")
+
+    index = address.rfind(":")
+    if index == -1:
+        print(f"Invalid address: {address}")
+        return ""
+
+    server = address[:index]
+    port = address[index + 1 :].split(",")[0]
 
     auth = config.get("auth", "")
 
