@@ -272,6 +272,49 @@ def gen_hysteria_share_link(proxy) -> str:
     return hysteria_link
 
 
+def gen_anytls_share_link(proxy: dict) -> str | None:
+    """生成anytls分享链接"""
+    # anytls://dongtaiwang.com@fan2.856098.xyz:8443?security=tls&alpn=h2%2Chttp%2F1.1&fp=chrome&allowInsecure=1&type=tcp#333333333333
+
+    # 提取必要字段
+    server = proxy["server"]
+    port = proxy["port"]
+    password = proxy["password"]
+    # name = proxy['name']
+    name = gen_remark(server, postfix)
+
+    # 可选参数
+    params = []
+    # if proxy.get("protocol"):
+    #     params.append(f"protocol={proxy['protocol']}")
+
+    # if proxy.get("sni"):
+    #     params.append(f"sni={proxy['sni']}")
+    if fp := proxy.get("client-fingerprint"):
+        params.append(f"fp={fp}")
+        
+    if alpn := proxy.get("alpn"):
+        # 将数组转为逗号分隔的字符串
+        params.append(f"alpn={','.join(alpn)}")
+
+    if cv := proxy.get("skip-cert-verify"):
+        params.append(f"allowInsecure={1 if cv else 0}")
+
+    # 构建参数部分
+    param_str = "&".join(params)
+    param_str = f"?{param_str}" if param_str else ""
+
+    # 如果 server 是 IPv6 地址，则需要加上中括号
+    server = f"[{server}]" if ":" in server else server
+
+    # 生成 anytls 分享链接
+    anytls_link = f"anytls://{password}@{server}:{port}{param_str}#{name}"
+
+    # 输出结果
+    # print("anytls 分享链接:", anytls_link)
+    return anytls_link
+
+
 def gen_share_link(config: dict) -> str | None:
     """生成分享链接 vless, vmess, shadowsocks, trojan, hysteria, tuic"""
 
@@ -282,6 +325,7 @@ def gen_share_link(config: dict) -> str | None:
         "trojan": gen_trojan_share_link,
         "hysteria": gen_hysteria_share_link,
         "tuic": gen_tuic_share_link,
+        "anytls": gen_anytls_share_link,
     }
 
     # 提取第一个 proxy
