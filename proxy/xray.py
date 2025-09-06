@@ -42,6 +42,12 @@ def gen_vless_share_link(config):
 
         query += f"&host={host}&path={path}"
 
+    elif network == "grpc":
+        grpcSettings = streamSettings["grpcSettings"]
+        serviceName = grpcSettings["serviceName"]
+        # multiMode = grpcSettings['multiMode']
+        query += f"&serviceName={serviceName}"
+
     elif network == "tcp":
         pass
 
@@ -52,6 +58,12 @@ def gen_vless_share_link(config):
         # maxUploadSize = splithttpSettings['maxUploadSize']
         # maxConcurrentUploads = splithttpSettings['maxConcurrentUploads']
 
+        query += f"&host={host}&path={path}"
+
+    elif network == "xhttp":
+        xhttpSettings = streamSettings["xhttpSettings"]
+        path = xhttpSettings.get("path", "/")
+        host = xhttpSettings.get("host", "")
         query += f"&host={host}&path={path}"
 
     # 传输层安全:  security : tls reality
@@ -79,6 +91,9 @@ def gen_vless_share_link(config):
         query += f"&sni={serverName}&fp={fingerprint}"
 
     remark = gen_remark(address, postfix)
+    address = (
+        f"[{address}]" if ":" in address and not address.startswith("[") else address
+    )
     url = f"{protocol}://{user_id}@{address}:{port}?{query}#{remark}"
     return url
 

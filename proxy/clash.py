@@ -1,15 +1,9 @@
 import base64
 import json
-import yaml
-from util import (
-    gen_remark,
-    get_config,
-    get_country_code,
-    load_all_config,
-    today,
-    arrange_links,
-)
 import urllib
+
+import yaml
+from util import arrange_links, gen_remark, get_config, load_all_config
 
 
 postfix = "clash"
@@ -237,7 +231,7 @@ def gen_hysteria_share_link(proxy) -> str:
     port = proxy["port"]
     auth_str = proxy["auth-str"]
     # name = proxy['name']
-    name = f"{get_country_code(server)}_{today()}"
+    name = gen_remark(server, postfix)
 
     # 可选参数
     params = []
