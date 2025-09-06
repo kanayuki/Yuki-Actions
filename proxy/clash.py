@@ -58,6 +58,12 @@ def gen_vless_share_link(config) -> str:
         # query += f"&host={host}&path={path}"
         pass
 
+    elif network == "grpc":
+        grpc_opts = config["grpc-opts"]
+        serviceName = grpc_opts["grpc-service-name"]
+        # multiMode = grpcSettings['multiMode']
+        query += f"&serviceName={serviceName}"
+        pass
     # &security=reality&sni=www.yahoo.com&fp=chrome
     # &pbk=U5hsLybYWhJrWAqqsTa052k-VeKt8bDFPxBh3CQk51M&sid=0b4badde
 
@@ -80,6 +86,8 @@ def gen_vless_share_link(config) -> str:
     query += f"&sni={servername}&fp={fingerprint}"
 
     remark = gen_remark(server, postfix)
+    # 如果 server 是 IPv6 地址，则需要加上中括号
+    server = f"[{server}]" if ":" in server else server
     url = f"{protocol}://{uuid}@{server}:{port}?{query}#{remark}"
     return url
 
@@ -216,6 +224,9 @@ def gen_tuic_share_link(proxy) -> str:
     param_str = "&".join(params) if params else ""
     param_str = f"?{param_str}" if param_str else ""
 
+    # 如果 server 是 IPv6 地址，则需要加上中括号
+    server = f"[{server}]" if ":" in server else server
+
     # 生成 TUIC 分享链接
     tuic_link = f"tuic://{uuid}:{password}@{server}:{port}{param_str}#{name}"
 
@@ -250,10 +261,11 @@ def gen_hysteria_share_link(proxy) -> str:
     param_str = "&".join(params)
     param_str = f"?{param_str}" if param_str else ""
 
+    # 如果 server 是 IPv6 地址，则需要加上中括号
+    server = f"[{server}]" if ":" in server else server
+
     # 生成 Hysteria 分享链接
-    hysteria_link = (
-        f"hysteria2://{auth_str}@{server}:{port}{param_str}#{urllib.parse.quote(name)}"
-    )
+    hysteria_link = f"hysteria2://{auth_str}@{server}:{port}{param_str}#{name}"
 
     # 输出结果
     # print("Hysteria2 分享链接:", hysteria_link)
