@@ -35,3 +35,4 @@ vless://8b66e552-e89d-4c4f-bb5a-e3d37bf151b8@fan3.394615.xyz:34500?encryption=no
 hysteria2://dongtaiwang.com@[2604:6600::5cb]:22222/?sni=www.bing.com&insecure=1#_20251017_hysteria
 hysteria2://dongtaiwang.com@163.172.21.105:5355/?sni=www.bing.com&insecure=1#FR_20251017_hysteria
 hysteria2://dongtaiwang.com@163.172.21.105:23880?protocol=udp&sni=bing.com&alpn=h3&insecure=1#FR_20251017_clash
+hysteria2://dongtaiwang.com@62.210.10.186:35511?sni=apple.com&insecure=1&alpn=#FR_20251105_singbox
