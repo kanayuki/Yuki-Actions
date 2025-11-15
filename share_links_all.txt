@@ -36,3 +36,5 @@ hysteria2://dongtaiwang.com@[2604:6600::5cb]:22222/?sni=www.bing.com&insecure=1#
 hysteria2://dongtaiwang.com@163.172.21.105:5355/?sni=www.bing.com&insecure=1#FR_20251017_hysteria
 hysteria2://dongtaiwang.com@163.172.21.105:23880?protocol=udp&sni=bing.com&alpn=h3&insecure=1#FR_20251017_clash
 hysteria2://dongtaiwang.com@62.210.10.186:35511?sni=apple.com&insecure=1&alpn=#FR_20251105_singbox
+anytls://dongtaiwang.com@62.210.10.140:8443?fp=chrome&alpn=h2,http/1.1&allowInsecure=1#FR_20251115_clash
+tuic://79529c4a-4028-4701-a6d6-4e94b78b50fd:dongtaiwang.com@51.159.107.20:10088?sni=bing.com&alpn=h3&allowInsecure=1&congestion_control=bbr#FR_20251115_clash
