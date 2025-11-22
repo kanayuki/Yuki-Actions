@@ -40,3 +40,4 @@ anytls://dongtaiwang.com@62.210.10.140:8443?fp=chrome&alpn=h2,http/1.1&allowInse
 tuic://79529c4a-4028-4701-a6d6-4e94b78b50fd:dongtaiwang.com@51.159.107.20:10088?sni=bing.com&alpn=h3&allowInsecure=1&congestion_control=bbr#FR_20251115_clash
 hysteria2://dongtaiwang.com@[2001:bc8:1203:106::16]:23880?protocol=udp&sni=bing.com&alpn=h3&insecure=1#FR_20251116_clash
 tuic://79529c4a-4028-4701-a6d6-4e94b78b50fd:dongtaiwang.com@51.159.107.20:55255?sni=bing.com&alpn=h3&allowInsecure=1&congestion_control=bbr#FR_20251116_clash
+tuic://93959440-4f83-4352-b939-906b1fd3fa59:dongtaiwang.com@89.144.35.230:50088?sni=bing.com&alpn=h3&allowInsecure=1&congestion_control=bbr#RO_20251122_clash
