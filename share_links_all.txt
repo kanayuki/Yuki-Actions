@@ -50,3 +50,5 @@ anytls://dongtaiwang.com@45.221.98.14:59901?fp=chrome&alpn=h2,http/1.1&allowInse
 vless://add14a5b-f648-4423-8a1f-8b8f54c0daef@195.154.200.131:17401?flow=None&type=tcp&security=reality&pbk=IXcXrT_Y0ATTZlGOhPnSmKo-cuGr4yMKV9Rz4-nA3yU&sid=8ef4455ba637425b&sni=itunes.apple.com&fp=chrome#FR_20251205_clash
 hysteria2://dongtaiwang.com@51.158.194.63:50066/?sni=www.bing.com&insecure=1#NL_20251205_hysteria
 tuic://95844688-9279-43ff-9f85-20e62b2cbcd4:dongtaiwang.com@51.158.194.63:55880?sni=apple.com&alpn=h3&allowInsecure=1&congestion_control=bbr#NL_20251205_clash
+hysteria2://dongtaiwang.com@51.158.194.63:32952/?sni=www.microsoft.com&insecure=1#NL_20251208_hysteria
+tuic://b7dd1167-c5d9-45b9-ab75-83cd9e635537:dongtaiwang.com@51.158.194.63:29522?sni=www.microsoft.com&alpn=h3&allowInsecure=1&congestion_control=bbr#NL_20251208_clash
