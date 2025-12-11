@@ -53,3 +53,4 @@ tuic://95844688-9279-43ff-9f85-20e62b2cbcd4:dongtaiwang.com@51.158.194.63:55880?
 hysteria2://dongtaiwang.com@51.158.194.63:32952/?sni=www.microsoft.com&insecure=1#NL_20251208_hysteria
 tuic://b7dd1167-c5d9-45b9-ab75-83cd9e635537:dongtaiwang.com@51.158.194.63:29522?sni=www.microsoft.com&alpn=h3&allowInsecure=1&congestion_control=bbr#NL_20251208_clash
 vless://523da2a8-fad1-4c56-97f6-61d6efa22e12@5.83.129.248:23567?encryption=none&flow=&type=xhttp&host=&path=/github.com/Alvin9999&security=reality&sni=www.sky.com&fp=chrome&pbk=Yys8umOJa_XoD5k4RTDnRAjl-QbTbOemhHSRCSFQEmE&sid=4293cb617260c123#DE_20251210_xray
+hysteria2://dongtaiwang.com@[2001:bc8:32d7:14f::4]:23880?protocol=udp&sni=bing.com&alpn=h3&insecure=1#FR_20251211_clash
