@@ -4,6 +4,7 @@ from pathlib import Path
 
 import clash
 import hysteria
+import mieru
 import singbox
 import xray
 from util import backup
@@ -21,6 +22,7 @@ def get_all_links() -> list:
     links.extend(xray.get_all_links())
     links.extend(clash.get_all_links())
     links.extend(hysteria.get_all_links())
+    links.extend(mieru.get_all_links())
     links.extend(singbox.get_all_links())
     return links
 
