@@ -51,7 +51,7 @@ Yuki-Actions/
 
 ```bash
 # 克隆仓库
-git clone https://github.com/Yuki-Project/Yuki-Actions.git
+git clone https://github.com/kanayuki/Yuki-Actions.git
 cd Yuki-Actions
 
 # 安装依赖
@@ -69,7 +69,7 @@ python proxy/main.py
 
 ## 🔗 相关链接
 
-- [项目仓库](https://github.com/Yuki-Project/Yuki-Actions)
+- [项目仓库](https://github.com/kanayuki/Yuki-Actions)
 
 ## 📄 许可证
 
