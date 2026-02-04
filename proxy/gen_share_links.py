@@ -19,10 +19,10 @@ if not backup_dir.exists():
 
 def get_all_links() -> dict:
     links = []
-    # links.extend(xray.get_all_links())
-    # links.extend(clash.get_all_links())
-    # links.extend(hysteria.get_all_links())
-    # links.extend(mieru.get_all_links())
+    links.extend(xray.get_all_links())
+    links.extend(clash.get_all_links())
+    links.extend(hysteria.get_all_links())
+    links.extend(mieru.get_all_links())
     links.extend(singbox.get_all_links())
     return {k: link for k, link in links}
 
@@ -46,9 +46,12 @@ def update():
     # 保存new_links到文件
     with open(link_file, "a", encoding="utf-8") as f:
         f.write("\n".join(new_links))
+        f.write("\n")
+
     # 保存new_keys到文件
     with open(keyfile, "a", encoding="utf-8") as f:
         f.write("\n".join(key_set))
+        f.write("\n")
 
 
 def main():

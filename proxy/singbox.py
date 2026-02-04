@@ -7,7 +7,7 @@ from util import arrange_links, gen_remark, get_config, load_all_config, get_has
 postfix = "singbox"
 
 
-def gen_hysteria_share_link(proxy: str) -> str:
+def gen_hysteria_share_link(proxy: str) -> tuple:
     """生成hysteria分享链接"""
     # {
     #   "type": "hysteria",
@@ -52,14 +52,16 @@ def gen_hysteria_share_link(proxy: str) -> str:
     remark = gen_remark(server, postfix)
 
     # 生成 Hysteria 分享链接
-    hysteria_link = f"hysteria2://{auth_str}@{server}:{port}{param_str}#{remark}"
-
+    hysteria_link = f"hysteria2://{auth_str}@{server}:{port}{param_str}"
+    key = get_hash(hysteria_link)
+    hysteria_link = f"{hysteria_link}#{remark}"
+    
     # 输出结果
     # print("Hysteria2 分享链接:", hysteria_link)
-    return hysteria_link
+    return key, hysteria_link
 
 
-def gen_vless_share_link(proxy: str) -> str:
+def gen_vless_share_link(proxy: str) -> tuple:
     """生成vless分享链接"""
     # vless://ebfdccb6-7416-4b6e-860d-98587344d500@yh1.dtku41.xyz:443?
     # encryption=none&security=tls&sni=lg1.freessr2.xyz&fp=chrome&

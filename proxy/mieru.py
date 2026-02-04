@@ -40,7 +40,9 @@ def gen_mieru_share_link(config):
     # mierus_link = f"mierus://{link}"
     encoded_link = base64.b64encode(link.encode("utf-8")).decode("utf-8")
     mieru_link = f"mieru://{encoded_link}"
-    return mieru_link
+
+    key = get_hash(f"{name}:{password}@{ipAddress}") 
+    return key, mieru_link
 
 
 @load_all_config("./proxy/mieru_config_links.txt")

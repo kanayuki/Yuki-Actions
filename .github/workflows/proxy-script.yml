@@ -1,4 +1,4 @@
-name: Run Python Script
+name: Update Proxy Share Links
 
 # 定时触发器，每天凌晨0点运行 (UTC时间)
 on:

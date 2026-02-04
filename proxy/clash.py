@@ -3,7 +3,7 @@ import json
 import urllib
 
 import yaml
-from util import arrange_links, gen_remark, get_config, load_all_config
+from util import arrange_links, gen_remark, get_config, load_all_config, get_hash
 
 
 postfix = "clash"
@@ -166,7 +166,7 @@ def gen_vmess_share_link(config) -> str:
     id = base64.urlsafe_b64encode(text.encode()).decode()
 
     url = f"{protocol}://{id}"
-    key = get_hash(f"{protocol}:{address}:{port}:{user["id"]}")
+    key = get_hash(f"{protocol}:{address}:{port}:{user['id']}")
     return key, url
 
 

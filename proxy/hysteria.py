@@ -1,6 +1,6 @@
 import json
 
-from util import arrange_links, gen_remark, load_all_config
+from util import arrange_links, gen_remark, load_all_config, get_hash
 
 
 postfix = "hysteria"
@@ -55,11 +55,10 @@ def gen_hysteria_share_link(config: dict) -> str:
         insecure = "1" if insecure else "0"
 
     remark = gen_remark(server, postfix)
-    share_link = (
-        f"{protocol}://{auth}@{server}:{port}/?sni={sni}&insecure={insecure}#{remark}"
-    )
-
-    return share_link
+    url = f"{protocol}://{auth}@{server}:{port}/?sni={sni}&insecure={insecure} "
+    key = get_hash(url)
+    url = f"{url}#{remark}"
+    return key, url
 
 
 @load_all_config("./proxy/hysteria_config_links.txt")

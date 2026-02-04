@@ -2,13 +2,13 @@ import base64
 import json
 
 
-from util import arrange_links, gen_remark, load_all_config
+from util import arrange_links, gen_remark, load_all_config, get_hash
 
 
 postfix = "xray"
 
 
-def gen_vless_share_link(config):
+def gen_vless_share_link(config) -> tuple:
     """生成vless分享链接"""
     # vless://ebfdccb6-7416-4b6e-860d-98587344d500@yh1.dtku41.xyz:443?
     # encryption=none&security=tls&sni=lg1.freessr2.xyz&fp=chrome&
@@ -94,11 +94,13 @@ def gen_vless_share_link(config):
     address = (
         f"[{address}]" if ":" in address and not address.startswith("[") else address
     )
-    url = f"{protocol}://{user_id}@{address}:{port}?{query}#{remark}"
-    return url
+    url = f"{protocol}://{user_id}@{address}:{port}?{query}"
+    key = get_hash(url)
+    url = f"{url}#{remark}"
+    return key, url
 
 
-def gen_vmess_share_link(config):
+def gen_vmess_share_link(config) -> tuple:
     """生成vmess分享链接"""
     #     {
     #   "v": "2",
@@ -121,16 +123,18 @@ def gen_vmess_share_link(config):
     protocol = config["protocol"]
     settings = config["settings"]
     vnext = settings["vnext"][0]
+    address = vnext["address"]
+    port = vnext["port"]
     user = vnext["users"][0]
     streamSettings = config["streamSettings"]
 
-    remark = gen_remark(vnext["address"], postfix)
+    remark = gen_remark(address, postfix)
 
     vmess_dict = {
         "v": "2",
         "ps": remark,
-        "add": vnext["address"],
-        "port": vnext["port"],
+        "add": address,
+        "port": port,
         "id": user["id"],
         "aid": user["alterId"],
         "scy": user["security"],
@@ -167,10 +171,12 @@ def gen_vmess_share_link(config):
     id = base64.urlsafe_b64encode(text.encode()).decode()
 
     url = f"{protocol}://{id}"
-    return url
+    key = get_hash(f"{protocol}:{address}:{port}:{user['id']}")
+
+    return key, url
 
 
-def gen_shadowsocks_share_link(config):
+def gen_shadowsocks_share_link(config) -> tuple:
     """生成shadowsocks分享链接"""
     # ss://MjAyMi1ibGFrZTMtYWVzLTI1Ni1nY206b2F0cys3dmRhU09iNE5zeFd3Q0JRbGw0cVR3UHUvZGhwZWdpSUducWQ5Yz0=
     # @www.dtku44.xyz:22335#shadowsocks_20240409
@@ -193,27 +199,30 @@ def gen_shadowsocks_share_link(config):
     text = f"{method}:{password}"
     id = base64.urlsafe_b64encode(text.encode()).decode()
     remark = gen_remark(address, postfix)
-    url = f"{protocol}://{id}@{address}:{port}#{remark}"
-    return url
+    url = f"{protocol}://{id}@{address}:{port}"
+    key = get_hash(url)
+    url = f"{url}#{remark}"
+    return key, url
 
 
-def gen_share_link(config: dict) -> str | None:
+protocol_map = {
+    "vless": gen_vless_share_link,
+    "vmess": gen_vmess_share_link,
+    "shadowsocks": gen_shadowsocks_share_link,
+}
+
+
+def gen_share_link(config: dict) -> tuple | None:
     """生成分享链接 vless, vmess, shadowsocks,"""
     outbounds: list = config["outbounds"]
     proxy: dict = [item for item in outbounds if item["tag"] == "proxy"][0]
 
     protocol = proxy["protocol"]
 
-    protocol_map = {
-        "vless": gen_vless_share_link,
-        "vmess": gen_vmess_share_link,
-        "shadowsocks": gen_shadowsocks_share_link,
-    }
-
     if protocol in protocol_map:
-        url = protocol_map[protocol](proxy)
+        key, url = protocol_map[protocol](proxy)
         print(f"{protocol} 分享链接: {url}")
-        return url
+        return key, url
     else:
         print(f"Unsupported protocol: {proxy}")
 
@@ -224,8 +233,8 @@ def gen_share_link(config: dict) -> str | None:
 def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
 
-    link = gen_share_link(json.loads(config))
-    return link
+    key, link = gen_share_link(json.loads(config))
+    return key, link
 
 
 if __name__ == "__main__":
