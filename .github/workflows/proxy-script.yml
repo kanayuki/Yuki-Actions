@@ -39,6 +39,7 @@ jobs:
         git config --local user.email "kanayuki@163.com"
         git config --local user.name "kanayuki"
         git add share_links.txt share_links_all.txt 
-        git add proxy/backup/ proxy/merge/
-        git commit -m "Backup and Update [share_links.txt,share_links_all.txt] with latest results" || echo "No changes to commit"
+        git add proxy/backup/ 
+        git add proxy/merge/
+        git commit -m "Backup and Update proxy data" || echo "No changes to commit"
         git push
