@@ -31,7 +31,7 @@ jobs:
         
     # 运行 Python 脚本
     - name: Run script
-      run: python proxy/gen_share_links.py
+      run: python proxy/main.py
       
     # 提交结果文件
     - name: Commit results
