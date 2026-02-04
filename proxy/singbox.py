@@ -1,7 +1,7 @@
 import json
 
 import yaml
-from util import arrange_links, gen_remark, get_config, load_all_config
+from util import arrange_links, gen_remark, get_config, load_all_config, get_hash
 
 
 postfix = "singbox"
@@ -59,12 +59,70 @@ def gen_hysteria_share_link(proxy: str) -> str:
     return hysteria_link
 
 
+def gen_vless_share_link(proxy: str) -> str:
+    """生成vless分享链接"""
+    # vless://ebfdccb6-7416-4b6e-860d-98587344d500@yh1.dtku41.xyz:443?
+    # encryption=none&security=tls&sni=lg1.freessr2.xyz&fp=chrome&
+    # type=ws&host=lg1.freessr2.xyz&path=%2Fxyakws#20240407
+
+    {
+        "type": "vless",
+        "tag": "https://github.com/Alvin9999-newpac/fanqiang/wiki",
+        "uuid": "d0b3e27d-bbfc-4a3b-8e60-6973de8fcefa",
+        "packet_encoding": "xudp",
+        "server": "157.254.223.44",
+        "server_port": 18959,
+        "flow": "",
+        "tls": {
+            "enabled": True,
+            "server_name": "itunes.apple.com",
+            "utls": {"enabled": True, "fingerprint": "chrome"},
+            "reality": {
+                "enabled": True,
+                "public_key": "-hwVEdgFkvjku8ESuDoAA7id5yGGv_zXBvBW_RdhmHA",
+                "short_id": "d557c6895d014075",
+            },
+        },
+    }
+
+    uuid = proxy["uuid"]
+    server = proxy["server"]
+    port = proxy["server_port"]
+
+    params = []
+    if tls := proxy.get("tls"):
+        params.append("security=tls")
+        sni = tls.get("server_name", "")
+        params.append(f"sni={sni}")
+        utls = tls.get("utls", {})
+        fingerprint = utls.get("fingerprint", "chrome")
+        params.append(f"fp={fingerprint}")
+        reality = tls.get("reality", {})
+        if reality.get("enabled", False):
+            params.append("security=reality")
+            public_key = reality.get("public_key", "")
+            params.append(f"pbk={public_key}")
+            short_id = reality.get("short_id", "")
+            params.append(f"sid={short_id}")
+
+    param_str = "&".join(params)
+    param_str = f"?{param_str}" or ""
+
+    remark = gen_remark(server, postfix)
+    url = f"vless://{uuid}@{server}:{port}{param_str}"
+    key = get_hash(url)
+    url += f"#{remark}"
+    return key, url
+
+
+protocol_map = {
+    "hysteria": gen_hysteria_share_link,
+    "vless": gen_vless_share_link,
+}
+
+
 def gen_share_link(config: dict) -> str | None:
     """生成分享链接 vless, vmess, shadowsocks, trojan, hysteria, tuic"""
-
-    protocol_map = {
-        "hysteria": gen_hysteria_share_link,
-    }
 
     # 提取第一个 proxy
     proxy = config["outbounds"][0]

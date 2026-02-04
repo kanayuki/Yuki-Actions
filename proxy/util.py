@@ -3,6 +3,7 @@ import json
 import shutil
 from datetime import datetime
 from pathlib import Path
+import hashlib
 
 import requests
 import urllib3
@@ -86,22 +87,25 @@ def get_country_code(ip=""):
     """
     url = f"http://ip-api.com/json/{ip}"
     # url = f'https://api.ip.sb/geoip/{ip}'
-    response = requests.get(url)
-    data = response.json()
-    # print(data)
-    return data.get("countryCode", "")
+    try:
+        response = requests.get(url)
+        data = response.json()
+        # print(data)
+        return data.get("countryCode", "")
+    except Exception as e:
+        print("获取国家码失败", e)
+        return "Failed"
 
 
-def arrange_links(links: list) -> list:
+def arrange_links(links: list[tuple[str, str]]) -> list:
     links = list(links)
     print("总链接数：", len(links))
-    print("\n".join(links))
+    print("\n".join([f"{k}. {link}" for k, link in links]))
     print("")
 
-    unique_links = list(set(links))
-    print("去重后链接数：", len(unique_links))
-    print("\n".join(unique_links))
-    return unique_links
+    link_dict = {k: link for k, link in links}
+    print("去重后链接数：", len(link_dict))
+   
 
 
 def backup(file: Path, backup_dir: Path):
@@ -127,6 +131,12 @@ def gen_remark(address: str, postfix: str = "") -> str:
     country_code = get_country_code(address)
     remark = f"{country_code}_{today()}_{postfix}"
     return remark
+
+
+def get_hash(string: str) -> str:
+    """计算字符串的哈希值"""
+
+    return hashlib.sha256(string.encode()).hexdigest()
 
 
 if __name__ == "__main__":
