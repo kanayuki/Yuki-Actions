@@ -2,6 +2,9 @@ import json
 
 from util import arrange_links, console, gen_remark, load_all_config, get_hash
 
+from pathlib import Path
+
+CONFIG_FILE = Path(".") / "proxy" / "pac" / "hysteria_config_links.txt"
 
 postfix = "hysteria"
 
@@ -61,7 +64,7 @@ def gen_hysteria_share_link(config: dict) -> str:
     return key, url
 
 
-@load_all_config("./proxy/hysteria_config_links.txt")
+@load_all_config(CONFIG_FILE)
 def get_all_links(config: str) -> str:
 
     link = gen_hysteria_share_link(json.loads(config))

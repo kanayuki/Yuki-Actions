@@ -5,11 +5,12 @@ from rich.panel import Panel
 from rich.rule import Rule
 from rich.table import Table
 
-import clash
-import hysteria
-import mieru
-import singbox
-import xray
+from . import clash
+from . import hysteria
+from . import mieru
+from . import singbox
+from . import xray
+
 from util import console, get_hash
 from verify import parse_link, verify_links
 

@@ -1,9 +1,11 @@
 import base64
 import json
-
+from pathlib import Path
 
 from util import arrange_links, console, gen_remark, load_all_config, get_hash
 
+
+CONFIG_FILE = Path(".") / "proxy" / "pac" / "xray_config_links.txt"
 
 postfix = "xray"
 
@@ -229,7 +231,7 @@ def gen_share_link(config: dict) -> tuple | None:
     return None
 
 
-@load_all_config("./proxy/xray_config_links.txt")
+@load_all_config(CONFIG_FILE)
 def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
 

@@ -5,6 +5,10 @@ import urllib
 import yaml
 from util import arrange_links, console, gen_remark, get_config, load_all_config, get_hash
 
+from pathlib import Path
+
+CONFIG_FILE = Path(".") / "proxy" / "pac" / "clash_config_links.txt"
+
 
 postfix = "clash"
 
@@ -360,7 +364,7 @@ def gen_share_link(config: dict) -> tuple | None:
     return None
 
 
-@load_all_config("./proxy/clash_config_links.txt")
+@load_all_config(CONFIG_FILE)
 def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
     # print("获取所有clash配置的分享链接")

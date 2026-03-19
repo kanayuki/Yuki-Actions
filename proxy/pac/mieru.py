@@ -2,6 +2,9 @@ import json
 import base64
 
 from util import gen_remark, load_all_config, get_hash
+from pathlib import Path
+
+CONFIG_FILE = Path(".") / "proxy" / "pac" / "mieru_config_links.txt"
 
 postfix = "mieru"
 
@@ -45,7 +48,7 @@ def gen_mieru_share_link(config):
     return key, mieru_link
 
 
-@load_all_config("./proxy/mieru_config_links.txt")
+@load_all_config(CONFIG_FILE)   
 def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
     try:
