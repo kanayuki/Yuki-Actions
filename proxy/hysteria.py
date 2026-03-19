@@ -1,6 +1,6 @@
 import json
 
-from util import arrange_links, gen_remark, load_all_config, get_hash
+from util import arrange_links, console, gen_remark, load_all_config, get_hash
 
 
 postfix = "hysteria"
@@ -65,7 +65,7 @@ def gen_hysteria_share_link(config: dict) -> str:
 def get_all_links(config: str) -> str:
 
     link = gen_hysteria_share_link(json.loads(config))
-    print(f"hysteria2 分享链接：{link}")
+    console.print(f"  [cyan]hysteria2[/cyan]  {link}")
 
     return link
 

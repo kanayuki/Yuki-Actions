@@ -3,9 +3,10 @@ import sys
 import requests
 import base64
 from pathlib import Path
-import logging
 
-logger = logging.getLogger(__name__)
+from rich.panel import Panel
+from rich.rule import Rule
+from rich.table import Table
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -14,6 +15,7 @@ _PROXY_DIR = BASE_DIR.parent
 if str(_PROXY_DIR) not in sys.path:
     sys.path.insert(0, str(_PROXY_DIR))
 
+from util import console  # noqa: E402
 from verify import filter_valid_links  # noqa: E402
 
 
@@ -22,23 +24,21 @@ def fetch_v2ray_links(sub_url: str) -> list[str]:
     try:
         resp = requests.get(sub_url, timeout=15)
         resp.raise_for_status()
-
         text = resp.text.strip()
-        # Detect base64-encoded content
         if re.match(r"^[a-zA-Z0-9+/=\n]+$", text):
             try:
                 text = base64.b64decode(text).decode("utf-8")
             except Exception:
                 pass
-
-        return [line.strip() for line in text.splitlines() if line.strip()]
-
+        links = [line.strip() for line in text.splitlines() if line.strip()]
+        console.print(f"  [dim]{sub_url}[/dim]  →  [bold]{len(links)}[/bold] 条")
+        return links
     except Exception as e:
-        logger.warning("获取订阅失败 %s: %s", sub_url, e)
+        console.print(f"  [red]✗[/red] [dim]{sub_url}[/dim]  {e}")
         return []
 
 
-def main():
+def main() -> None:
     subscribe_file = BASE_DIR / "subscribe_links.txt"
     if not subscribe_file.exists():
         subscribe_file.touch()
@@ -47,43 +47,51 @@ def main():
     if not merge_file.exists():
         merge_file.touch()
 
-    # Fetch links from all subscription URLs
-    v2ray_links: list[str] = []
-    for line in subscribe_file.read_text(encoding="utf-8").splitlines():
-        line = line.strip()
-        if not line or line.startswith("#"):
-            continue
-        v2ray_links.extend(fetch_v2ray_links(line))
+    # ── 获取订阅 ──────────────────────────────────────────
+    console.print(Rule("[bold cyan]合并订阅链接[/bold cyan]"))
 
-    # Merge with existing cached links and deduplicate
+    sub_urls = [
+        l.strip()
+        for l in subscribe_file.read_text(encoding="utf-8").splitlines()
+        if l.strip() and not l.startswith("#")
+    ]
+
+    v2ray_links: list[str] = []
+    for url in sub_urls:
+        v2ray_links.extend(fetch_v2ray_links(url))
+
     existing = [
         l for l in merge_file.read_text(encoding="utf-8").splitlines() if l.strip()
     ]
-    all_links = list(dict.fromkeys(v2ray_links + existing))  # preserve order, deduplicate
-    logger.info("去重后共 %d 条链接，开始验证…", len(all_links))
-    print(f"去重后共 {len(all_links)} 条链接，开始验证连接…")
+    all_links = list(dict.fromkeys(v2ray_links + existing))
+    console.print(f"  合并去重后：[bold]{len(all_links)}[/bold] 条")
 
-    # Verify real connectivity
+    # ── 验证连通性 ─────────────────────────────────────────
+    console.print(Rule("[bold cyan]验证连通性[/bold cyan]"))
     valid_links, results = filter_valid_links(all_links, timeout=5.0, concurrency=64)
 
     failed_count = len(all_links) - len(valid_links)
-    print(f"验证完成：有效 {len(valid_links)} 条，失败/超时 {failed_count} 条")
-    logger.info("验证完成：有效 %d 条，失败/超时 %d 条", len(valid_links), failed_count)
 
-    # Save valid links sorted by latency
+    # 保存（按延迟排序）
     valid_results = sorted(
         [r for r in results if r.valid],
         key=lambda r: r.latency_ms or float("inf"),
     )
-
     with open(merge_file, "w", encoding="utf-8") as f:
         for r in valid_results:
             f.write(r.link + "\n")
 
-    logger.info("已保存 %d 条可用链接到 %s", len(valid_links), merge_file)
-    print(f"已保存 {len(valid_links)} 条可用链接到 {merge_file}")
+    # ── 摘要 ──────────────────────────────────────────────
+    grid = Table.grid(padding=(0, 2))
+    grid.add_column(min_width=14)
+    grid.add_column(justify="right", min_width=4)
+    grid.add_column(style="dim")
+    grid.add_row("[green]✓  有效[/green]",    str(len(valid_links)), "条")
+    grid.add_row("[red]✗  失败/超时[/red]",   str(failed_count),     "条")
+    grid.add_row("[bold]   已保存[/bold]",     str(len(valid_links)), f"条  →  {merge_file.name}")
+
+    console.print(Panel(grid, title="[bold]验证结果[/bold]", border_style="blue", padding=(1, 2)))
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     main()

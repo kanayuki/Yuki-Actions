@@ -1,45 +1,71 @@
 name: Update Proxy Share Links
 
-# 定时触发器，每天凌晨0点运行 (UTC时间)
 on:
   schedule:
     - cron: '0 0,12 * * *'
-  # 允许手动触发
   workflow_dispatch:
 
 jobs:
-  run-python:
+  update-proxy-data:
     runs-on: ubuntu-latest
-    
+
     steps:
-    # 检出代码
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      
-    # 设置 Python 环境
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - name: Checkout main
+      uses: actions/checkout@v4
       with:
-        python-version: '3.11'
-        
-    # 安装依赖（如果有）
-    - name: Install dependencies
+        fetch-depth: 0        # full clone — needed for branch operations
+
+    - name: Load previous data from data branch
       run: |
-        python -m pip install --upgrade pip requests pyyaml
-        # 如果有 requirements.txt，可以添加：
-        # pip install -r requirements.txt
-        
-    # 运行 Python 脚本
+        # Read files from data branch directly (no branch switch required)
+        if git ls-remote --exit-code origin data &>/dev/null; then
+          git fetch origin data
+          mkdir -p proxy/merge
+          git show origin/data:share_links.txt                          > share_links.txt                          2>/dev/null || true
+          git show origin/data:share_link_keys.txt                      > share_link_keys.txt                      2>/dev/null || true
+          git show origin/data:proxy/share_link_health.json             > proxy/share_link_health.json             2>/dev/null || true
+          git show origin/data:proxy/merge/merge_share_links_filter.txt > proxy/merge/merge_share_links_filter.txt 2>/dev/null || true
+        fi
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      run: pip install requests pyyaml rich
+
     - name: Run script
       run: python proxy/main.py
-      
-    # 提交结果文件
-    - name: Commit results
+
+    - name: Publish data to data branch
       run: |
-        git config --local user.email "kanayuki@163.com"
-        git config --local user.name "kanayuki"
-        git add share_links.txt share_link_keys.txt 
-        git add proxy/backup/ 
-        git add proxy/merge/
-        git commit -m "Update proxy data" || echo "No changes to commit"
-        git push
+        git config user.email "kanayuki@163.com"
+        git config user.name "kanayuki"
+
+        # Stage generated files in /tmp before any branch operations
+        mkdir -p /tmp/proxy-data/proxy/merge
+        cp share_links.txt share_link_keys.txt /tmp/proxy-data/
+        [ -f proxy/share_link_health.json ]                  && cp proxy/share_link_health.json                  /tmp/proxy-data/proxy/
+        [ -f proxy/merge/merge_share_links_filter.txt ]      && cp proxy/merge/merge_share_links_filter.txt      /tmp/proxy-data/proxy/merge/
+
+        # Create a worktree for the data branch (isolated from main working tree)
+        if git show-ref --quiet refs/remotes/origin/data; then
+          git worktree add /tmp/data-wt origin/data
+        else
+          # First run: create orphan data branch with no parent commits
+          git worktree add --orphan -b data /tmp/data-wt
+        fi
+
+        # Copy data files into the worktree
+        cd /tmp/data-wt
+        cp /tmp/proxy-data/share_links.txt .
+        cp /tmp/proxy-data/share_link_keys.txt .
+        mkdir -p proxy/merge
+        [ -f /tmp/proxy-data/proxy/share_link_health.json ]             && cp /tmp/proxy-data/proxy/share_link_health.json             proxy/
+        [ -f /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt ] && cp /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt proxy/merge/
+
+        git add -A
+        git diff --cached --quiet && echo "No changes to commit" && exit 0
+        git commit -m "data: $(date -u +'%Y-%m-%d %H:%M UTC')"
+        git push origin HEAD:data

@@ -1,7 +1,7 @@
 import json
 
 import yaml
-from util import arrange_links, gen_remark, get_config, load_all_config, get_hash
+from util import arrange_links, console, gen_remark, get_config, load_all_config, get_hash
 
 
 postfix = "singbox"
@@ -134,7 +134,7 @@ def gen_share_link(config: dict) -> str | None:
 
     if protocol in protocol_map:
         url = protocol_map[protocol](proxy)
-        print(f"{protocol} 分享链接: {url}")
+        console.print(f"  [cyan]{protocol}[/cyan]  {url}")
         return url
     else:
         print(f"Unsupported protocol: {proxy}")

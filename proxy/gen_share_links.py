@@ -1,13 +1,17 @@
 import json
 from pathlib import Path
 
+from rich.panel import Panel
+from rich.rule import Rule
+from rich.table import Table
+
 import clash
 import hysteria
 import mieru
 import singbox
 import xray
-from util import get_hash
-from verify import filter_valid_links, parse_link, verify_links
+from util import console, get_hash
+from verify import parse_link, verify_links
 
 path = Path(".")
 keyfile = path / "share_link_keys.txt"
@@ -16,8 +20,7 @@ health_file = path / "proxy" / "share_link_health.json"
 
 
 def _health_key(link: str) -> str:
-    """Stable identity across remark/date changes: sha256(protocol:host:port).
-    Falls back to sha256(url_without_fragment) for unparseable links."""
+    """Stable identity across remark/date changes: sha256(protocol:host:port)."""
     proxy = parse_link(link)
     if proxy:
         return get_hash(f"{proxy.protocol}:{proxy.host}:{proxy.port}")
@@ -48,37 +51,37 @@ def get_all_links() -> dict[str, str]:
 
 
 def update() -> None:
-    # 1. 从上游获取最新链接（含今日 remark）
+    # ── 获取配置 ──────────────────────────────────────────
+    console.print(Rule("[bold cyan]获取代理配置[/bold cyan]"))
     new_link_dict = get_all_links()
-    print(f"从配置源获取：{len(new_link_dict)} 条")
+    console.print(f"  配置源链接：[bold]{len(new_link_dict)}[/bold] 条")
 
-    # 2. 读取现有链接
     existing_links = (
         [l for l in link_file.read_text(encoding="utf-8").splitlines() if l.strip()]
         if link_file.exists()
         else []
     )
-    print(f"现有链接：{len(existing_links)} 条")
+    console.print(f"  现有链接：  [bold]{len(existing_links)}[/bold] 条")
 
-    # 3. 合并去重：以 health_key(protocol:host:port) 为单位
-    #    新链接覆盖旧链接（刷新 remark），上游没有的继续保留
+    # 合并去重：以 health_key(protocol:host:port) 为单位，新链接覆盖旧（刷新 remark）
     merged: dict[str, str] = {}
     for link in existing_links:
         merged[_health_key(link)] = link
     for url in new_link_dict.values():
-        merged[_health_key(url)] = url  # 新版本覆盖（更新 remark）
+        merged[_health_key(url)] = url
 
     all_links = list(merged.values())
-    print(f"合并去重后：{len(all_links)} 条，开始全量验证…")
+    console.print(f"  合并去重后：[bold]{len(all_links)}[/bold] 条")
 
-    # 4. 全量验证真实连通性
+    # ── 全量验证 ───────────────────────────────────────────
+    console.print(Rule("[bold cyan]全量验证[/bold cyan]"))
     results = verify_links(all_links, timeout=5.0, concurrency=64)
     result_map = {r.link: r for r in results}
 
-    # 5. 更新连续失败计数，决定取舍
+    # 更新连续失败计数
     health = _load_health()
-    kept_valid: list = []    # 本次验证通过，按延迟排序
-    kept_pending: list[str] = []  # 失败但未满 3 次，暂时保留
+    kept_valid = []
+    kept_pending: list[str] = []
     removed_count = 0
 
     for result in results:
@@ -93,34 +96,37 @@ def update() -> None:
                 kept_pending.append(result.link)
             else:
                 removed_count += 1
-                health.pop(hk, None)  # 清除已移除节点的记录
+                health.pop(hk, None)
 
     kept_valid.sort(key=lambda r: r.latency_ms or float("inf"))
+    kept_all = [r.link for r in kept_valid] + kept_pending
 
-    print(
-        f"有效：{len(kept_valid)} 条  "
-        f"等待确认（失败未满3次）：{len(kept_pending)} 条  "
-        f"移除（连续失败≥3次）：{removed_count} 条"
-    )
-
-    # 6. 覆写 share_links.txt：有效链接（按延迟）在前，待观察链接在后
+    # 覆写 share_links.txt：有效（按延迟）在前，待观察在后
     with open(link_file, "w", encoding="utf-8") as f:
         for r in kept_valid:
             f.write(r.link + "\n")
         for link in kept_pending:
             f.write(link + "\n")
 
-    # 7. 同步重写 keyfile，只保留存活链接的 key
-    #    上游链接用原始 key，纯旧链接用 health_key 代替
+    # 同步重写 keyfile
     new_url_to_key = {url: k for k, url in new_link_dict.items()}
-    kept_all = [r.link for r in kept_valid] + kept_pending
     surviving_keys = [new_url_to_key.get(link, _health_key(link)) for link in kept_all]
     with open(keyfile, "w", encoding="utf-8") as f:
         f.write("\n".join(surviving_keys) + "\n")
 
-    # 8. 持久化 health 数据
     _save_health(health)
-    print(f"共保留 {len(kept_all)} 条链接")
+
+    # ── 摘要 ──────────────────────────────────────────────
+    grid = Table.grid(padding=(0, 2))
+    grid.add_column(min_width=16)
+    grid.add_column(justify="right", min_width=4)
+    grid.add_column(style="dim")
+    grid.add_row("[green]✓  有效[/green]",      str(len(kept_valid)),  "条")
+    grid.add_row("[yellow]⏳ 等待确认[/yellow]", str(len(kept_pending)), "条  (失败未满3次，暂保留)")
+    grid.add_row("[red]✗  移除[/red]",           str(removed_count),    "条  (连续失败≥3次)")
+    grid.add_row("[bold]   共保留[/bold]",        str(len(kept_all)),    "条")
+
+    console.print(Panel(grid, title="[bold]验证结果[/bold]", border_style="blue", padding=(1, 2)))
 
 
 def main() -> None:
