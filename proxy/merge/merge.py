@@ -1,106 +1,89 @@
 import re
+import sys
 import requests
-import subprocess
+import base64
 from pathlib import Path
 import logging
-import base64
-
 
 logger = logging.getLogger(__name__)
 
-
-
 BASE_DIR = Path(__file__).resolve().parent
 
+# Allow importing from proxy/ (parent directory)
+_PROXY_DIR = BASE_DIR.parent
+if str(_PROXY_DIR) not in sys.path:
+    sys.path.insert(0, str(_PROXY_DIR))
 
-def fetch_v2ray_links(sub_url: str) -> list:
-    """根据订阅URL获取v2ray分享链接"""
+from verify import filter_valid_links  # noqa: E402
+
+
+def fetch_v2ray_links(sub_url: str) -> list[str]:
+    """Fetch share links from a subscription URL (plain-text or base64)."""
     try:
         resp = requests.get(sub_url, timeout=15)
         resp.raise_for_status()
 
-        text = resp.text
-        # 判断是否是base64编码
-        if re.match(r"^[a-zA-Z0-9+/=]+$", text):
-            text = base64.b64decode(text).decode("utf-8")
+        text = resp.text.strip()
+        # Detect base64-encoded content
+        if re.match(r"^[a-zA-Z0-9+/=\n]+$", text):
+            try:
+                text = base64.b64decode(text).decode("utf-8")
+            except Exception:
+                pass
 
         return [line.strip() for line in text.splitlines() if line.strip()]
 
     except Exception as e:
-        logger.warning(f"获取订阅失败 {sub_url}: {e}")
+        logger.warning("获取订阅失败 %s: %s", sub_url, e)
         return []
 
 
-def test_delay(link: str) -> float:
-    """使用真连接测试延迟，返回毫秒，失败返回None"""
-    # 简单示例：解析出地址端口，用tcping测试
-    try:
-        # 解析vmess/vless等链接，提取地址端口
-        if link.startswith("vmess://"):
-            raw = base64.b64decode(link[8:]).decode("utf-8")
-            cfg = json.loads(raw)
-            addr, port = cfg["add"], int(cfg["port"])
-        elif link.startswith("vless://"):
-            # vless://uuid@host:port?...
-            part = link.split("@")[1].split("?")[0]
-            addr, port = part.split(":")
-            port = int(port)
-        else:
-            return None
-        # 调用系统ping或tcping
-        cmd = ["ping", "-c", "1", "-W", "1", addr]
-        completed = subprocess.run(
-            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=3
-        )
-        if completed.returncode == 0:
-            # 解析ping输出，提取延迟
-            stdout = completed.stdout.decode("utf-8")
-            m = re.search(r"time[=<](\d+(?:\.\d+)?)\s*ms", stdout)
-            if m:
-                return float(m.group(1))
-    except Exception:
-        pass
-    return None
-
-
 def main():
-    # 订阅链接文件
     subscribe_file = BASE_DIR / "subscribe_links.txt"
     if not subscribe_file.exists():
         subscribe_file.touch()
 
-    # 合并文件
     merge_file = BASE_DIR / "merge_share_links_filter.txt"
     if not merge_file.exists():
         merge_file.touch()
 
-    # 读取订阅URL, 获取所有v2ray链接
-    v2ray_links = []
-    for line in subscribe_file.read_text().splitlines():
+    # Fetch links from all subscription URLs
+    v2ray_links: list[str] = []
+    for line in subscribe_file.read_text(encoding="utf-8").splitlines():
         line = line.strip()
-        if line.startswith("#") or line == "":
+        if not line or line.startswith("#"):
             continue
-
         v2ray_links.extend(fetch_v2ray_links(line))
 
-    # 读取已有链接并合并去重
-    v2ray_links.extend(merge_file.read_text().splitlines())
+    # Merge with existing cached links and deduplicate
+    existing = [
+        l for l in merge_file.read_text(encoding="utf-8").splitlines() if l.strip()
+    ]
+    all_links = list(dict.fromkeys(v2ray_links + existing))  # preserve order, deduplicate
+    logger.info("去重后共 %d 条链接，开始验证…", len(all_links))
+    print(f"去重后共 {len(all_links)} 条链接，开始验证连接…")
 
-    all_links = list[str](set[str](v2ray_links))
+    # Verify real connectivity
+    valid_links, results = filter_valid_links(all_links, timeout=5.0, concurrency=64)
 
-    # 4. 检测延迟并过滤（阈值300ms）
-    # filtered = []
-    # for link in all_links:
-    #     delay = test_delay(link)
-    #     if delay is not None and delay <= 300:
-    #         filtered.append(link)
-    # 保存
+    failed_count = len(all_links) - len(valid_links)
+    print(f"验证完成：有效 {len(valid_links)} 条，失败/超时 {failed_count} 条")
+    logger.info("验证完成：有效 %d 条，失败/超时 %d 条", len(valid_links), failed_count)
+
+    # Save valid links sorted by latency
+    valid_results = sorted(
+        [r for r in results if r.valid],
+        key=lambda r: r.latency_ms or float("inf"),
+    )
+
     with open(merge_file, "w", encoding="utf-8") as f:
-        for link in all_links:
-            f.write(link + "\n")
+        for r in valid_results:
+            f.write(r.link + "\n")
 
-    logger.info(f"合并后共{len(all_links)}条可用链接已保存到 {merge_file}")
+    logger.info("已保存 %d 条可用链接到 %s", len(valid_links), merge_file)
+    print(f"已保存 {len(valid_links)} 条可用链接到 {merge_file}")
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
     main()
