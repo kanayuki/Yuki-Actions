@@ -1,7 +1,7 @@
 import json
 import base64
 
-from util import gen_remark, load_all_config
+from util import gen_remark, load_all_config, get_hash
 
 postfix = "mieru"
 

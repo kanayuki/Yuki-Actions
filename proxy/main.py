@@ -1,5 +1,5 @@
 from merge import merge
-import gen_share_links
+from pac import gen_share_links
 
 
 def main():

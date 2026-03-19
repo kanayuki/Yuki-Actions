@@ -13,10 +13,10 @@ import xray
 from util import console, get_hash
 from verify import parse_link, verify_links
 
-path = Path(".")
+path = Path(".") / "proxy"
 keyfile = path / "share_link_keys.txt"
 link_file = path / "share_links.txt"
-health_file = path / "proxy" / "share_link_health.json"
+health_file = path / "share_link_health.json"
 
 
 def _health_key(link: str) -> str:

@@ -21,10 +21,11 @@ jobs:
         if git ls-remote --exit-code origin data &>/dev/null; then
           git fetch origin data
           mkdir -p proxy/merge
-          git show origin/data:share_links.txt                          > share_links.txt                          2>/dev/null || true
-          git show origin/data:share_link_keys.txt                      > share_link_keys.txt                      2>/dev/null || true
-          git show origin/data:proxy/share_link_health.json             > proxy/share_link_health.json             2>/dev/null || true
-          git show origin/data:proxy/merge/merge_share_links_filter.txt > proxy/merge/merge_share_links_filter.txt 2>/dev/null || true
+          git show origin/data:proxy/share_links.txt                          > proxy/share_links.txt                          2>/dev/null || true
+          git show origin/data:proxy/share_link_keys.txt                      > proxy/share_link_keys.txt                      2>/dev/null || true
+          git show origin/data:proxy/share_link_health.json                   > proxy/share_link_health.json                   2>/dev/null || true
+          git show origin/data:proxy/merge/merge_share_links_filter.txt       > proxy/merge/merge_share_links_filter.txt       2>/dev/null || true
+          git show origin/data:proxy/best.txt                                 > proxy/best.txt                                 2>/dev/null || true
         fi
 
     - name: Set up Python
@@ -33,10 +34,15 @@ jobs:
         python-version: '3.12'
 
     - name: Install dependencies
-      run: pip install requests pyyaml rich
+      run: pip install -r requirements.txt
 
-    - name: Run script
+    - name: Run main pipeline
       run: python proxy/main.py
+
+    - name: Run best nodes search
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: python proxy/best/best.py
 
     - name: Publish data to data branch
       run: |
@@ -45,9 +51,11 @@ jobs:
 
         # Stage generated files in /tmp before any branch operations
         mkdir -p /tmp/proxy-data/proxy/merge
-        cp share_links.txt share_link_keys.txt /tmp/proxy-data/
-        [ -f proxy/share_link_health.json ]                  && cp proxy/share_link_health.json                  /tmp/proxy-data/proxy/
-        [ -f proxy/merge/merge_share_links_filter.txt ]      && cp proxy/merge/merge_share_links_filter.txt      /tmp/proxy-data/proxy/merge/
+        [ -f proxy/share_links.txt ]                          && cp proxy/share_links.txt                          /tmp/proxy-data/proxy/
+        [ -f proxy/share_link_keys.txt ]                      && cp proxy/share_link_keys.txt                      /tmp/proxy-data/proxy/
+        [ -f proxy/share_link_health.json ]                   && cp proxy/share_link_health.json                   /tmp/proxy-data/proxy/
+        [ -f proxy/merge/merge_share_links_filter.txt ]       && cp proxy/merge/merge_share_links_filter.txt       /tmp/proxy-data/proxy/merge/
+        [ -f proxy/best.txt ]                                 && cp proxy/best.txt                                 /tmp/proxy-data/proxy/
 
         # Create a worktree for the data branch (isolated from main working tree)
         if git show-ref --quiet refs/remotes/origin/data; then
@@ -59,11 +67,12 @@ jobs:
 
         # Copy data files into the worktree
         cd /tmp/data-wt
-        cp /tmp/proxy-data/share_links.txt .
-        cp /tmp/proxy-data/share_link_keys.txt .
         mkdir -p proxy/merge
-        [ -f /tmp/proxy-data/proxy/share_link_health.json ]             && cp /tmp/proxy-data/proxy/share_link_health.json             proxy/
-        [ -f /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt ] && cp /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt proxy/merge/
+        [ -f /tmp/proxy-data/proxy/share_links.txt ]                          && cp /tmp/proxy-data/proxy/share_links.txt                          proxy/
+        [ -f /tmp/proxy-data/proxy/share_link_keys.txt ]                      && cp /tmp/proxy-data/proxy/share_link_keys.txt                      proxy/
+        [ -f /tmp/proxy-data/proxy/share_link_health.json ]                   && cp /tmp/proxy-data/proxy/share_link_health.json                   proxy/
+        [ -f /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt ]       && cp /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt       proxy/merge/
+        [ -f /tmp/proxy-data/proxy/best.txt ]                                 && cp /tmp/proxy-data/proxy/best.txt                                 proxy/
 
         git add -A
         git diff --cached --quiet && echo "No changes to commit" && exit 0
