@@ -1,0 +1,36 @@
+# ── 仓库来源 ──
+user_repos: []
+#  - owner/repo-name
+
+search_queries:
+  - "v2ray free nodes subscribe"
+  - "free vmess vless subscription stars:>50"
+  - "clash free proxy nodes stars:>20"
+  - "v2ray free subscribe pushed:>{recent_7d}"
+
+max_search_repos: 20
+
+# ── 验证 ──
+test_engine: auto   # auto | xray | singbox | mihomo | tcp
+test_timeout_ms: 6000
+test_concurrency: 50
+test_url: "http://www.gstatic.com/generate_204"
+batch_size: 500
+
+# ── 健康管理 ──
+max_consecutive_failures: 3
+health_recheck_interval_min: 60
+
+# ── 仓库质量 ──
+repo_min_valid_ratio: 0.05
+repo_blacklist_after: 3
+
+# ── 输出 ──
+top_n: 100
+country_pool_max: 100
+min_country_size: 10
+
+# ── 二进制路径 (留空则自动检测 PATH / 自动下载) ──
+# xray_bin: ""
+# singbox_bin: ""
+# mihomo_bin: ""

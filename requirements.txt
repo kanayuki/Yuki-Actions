@@ -1,3 +1,5 @@
 requests
+requests[socks]
 pyyaml
 rich
+pydantic>=2.0
