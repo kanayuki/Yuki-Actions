@@ -25,14 +25,7 @@ from rich.panel import Panel
 from rich.rule import Rule
 from rich.table import Table
 
-from .config import BEST_DIR, LOGS_DIR, Config, load_config
-
-# Ensure proxy/ is in sys.path for bare imports (verify, util, converter)
-_PROXY_DIR = BEST_DIR.parent
-if str(_PROXY_DIR) not in sys.path:
-    sys.path.insert(0, str(_PROXY_DIR))
-if str(BEST_DIR) not in sys.path:
-    sys.path.insert(0, str(BEST_DIR))
+from .config import LOGS_DIR, Config, load_config
 
 
 try:

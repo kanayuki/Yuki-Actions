@@ -86,11 +86,11 @@ def _xray_asset_name() -> str:
     sys = _system()
     arch = _arch()
     if sys == "windows":
-        return f"Xray-windows-64.zip" if arch == "amd64" else f"Xray-windows-arm64-v8a.zip"
+        return "Xray-windows-64.zip" if arch == "amd64" else "Xray-windows-arm64-v8a.zip"
     if sys == "linux":
-        return f"Xray-linux-64.zip" if arch == "amd64" else f"Xray-linux-arm64-v8a.zip"
+        return "Xray-linux-64.zip" if arch == "amd64" else "Xray-linux-arm64-v8a.zip"
     if sys == "darwin":
-        return f"Xray-macos-64.zip" if arch == "amd64" else f"Xray-macos-arm64-v8a.zip"
+        return "Xray-macos-64.zip" if arch == "amd64" else "Xray-macos-arm64-v8a.zip"
     return ""
 
 

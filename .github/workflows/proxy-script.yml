@@ -20,18 +20,30 @@ jobs:
         # Read files from data branch directly (no branch switch required)
         if git ls-remote --exit-code origin data &>/dev/null; then
           git fetch origin data
-          mkdir -p proxy/merge
+          mkdir -p proxy/merge proxy/best/data proxy/country
+          # Pipeline 1 state
           git show origin/data:proxy/share_links.txt                          > proxy/share_links.txt                          2>/dev/null || true
           git show origin/data:proxy/share_link_keys.txt                      > proxy/share_link_keys.txt                      2>/dev/null || true
           git show origin/data:proxy/share_link_health.json                   > proxy/share_link_health.json                   2>/dev/null || true
           git show origin/data:proxy/merge/merge_share_links_filter.txt       > proxy/merge/merge_share_links_filter.txt       2>/dev/null || true
+          # Best module state
           git show origin/data:proxy/best.txt                                 > proxy/best.txt                                 2>/dev/null || true
+          git show origin/data:proxy/available.txt                            > proxy/available.txt                            2>/dev/null || true
+          git show origin/data:proxy/collections.txt                          > proxy/collections.txt                          2>/dev/null || true
+          git show origin/data:proxy/repositories.txt                         > proxy/repositories.txt                         2>/dev/null || true
+          git show origin/data:proxy/best/data/link_health.json               > proxy/best/data/link_health.json               2>/dev/null || true
+          git show origin/data:proxy/best/data/repo_scores.json               > proxy/best/data/repo_scores.json               2>/dev/null || true
+          git show origin/data:proxy/best/data/verify_queue.json              > proxy/best/data/verify_queue.json              2>/dev/null || true
+          # Country files
+          for f in $(git ls-tree --name-only origin/data -- proxy/country/ 2>/dev/null); do
+            git show "origin/data:$f" > "$f" 2>/dev/null || true
+          done
         fi
 
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.12'
+        python-version: '3.13'
 
     - name: Install dependencies
       run: pip install -r requirements.txt
@@ -42,7 +54,7 @@ jobs:
     - name: Run best nodes search
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python proxy/best/best.py
+      run: cd proxy && python -m best run
 
     - name: Publish data to data branch
       run: |
@@ -50,12 +62,19 @@ jobs:
         git config user.name "kanayuki"
 
         # Stage generated files in /tmp before any branch operations
-        mkdir -p /tmp/proxy-data/proxy/merge
+        mkdir -p /tmp/proxy-data/proxy/merge /tmp/proxy-data/proxy/best/data /tmp/proxy-data/proxy/country
         [ -f proxy/share_links.txt ]                          && cp proxy/share_links.txt                          /tmp/proxy-data/proxy/
         [ -f proxy/share_link_keys.txt ]                      && cp proxy/share_link_keys.txt                      /tmp/proxy-data/proxy/
         [ -f proxy/share_link_health.json ]                   && cp proxy/share_link_health.json                   /tmp/proxy-data/proxy/
         [ -f proxy/merge/merge_share_links_filter.txt ]       && cp proxy/merge/merge_share_links_filter.txt       /tmp/proxy-data/proxy/merge/
         [ -f proxy/best.txt ]                                 && cp proxy/best.txt                                 /tmp/proxy-data/proxy/
+        [ -f proxy/available.txt ]                            && cp proxy/available.txt                            /tmp/proxy-data/proxy/
+        [ -f proxy/collections.txt ]                          && cp proxy/collections.txt                          /tmp/proxy-data/proxy/
+        [ -f proxy/repositories.txt ]                         && cp proxy/repositories.txt                         /tmp/proxy-data/proxy/
+        [ -f proxy/best/data/link_health.json ]               && cp proxy/best/data/link_health.json               /tmp/proxy-data/proxy/best/data/
+        [ -f proxy/best/data/repo_scores.json ]               && cp proxy/best/data/repo_scores.json               /tmp/proxy-data/proxy/best/data/
+        [ -f proxy/best/data/verify_queue.json ]              && cp proxy/best/data/verify_queue.json              /tmp/proxy-data/proxy/best/data/
+        cp proxy/country/*.txt /tmp/proxy-data/proxy/country/ 2>/dev/null || true
 
         # Create a worktree for the data branch (isolated from main working tree)
         if git show-ref --quiet refs/remotes/origin/data; then
@@ -67,12 +86,19 @@ jobs:
 
         # Copy data files into the worktree
         cd /tmp/data-wt
-        mkdir -p proxy/merge
+        mkdir -p proxy/merge proxy/best/data proxy/country
         [ -f /tmp/proxy-data/proxy/share_links.txt ]                          && cp /tmp/proxy-data/proxy/share_links.txt                          proxy/
         [ -f /tmp/proxy-data/proxy/share_link_keys.txt ]                      && cp /tmp/proxy-data/proxy/share_link_keys.txt                      proxy/
         [ -f /tmp/proxy-data/proxy/share_link_health.json ]                   && cp /tmp/proxy-data/proxy/share_link_health.json                   proxy/
         [ -f /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt ]       && cp /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt       proxy/merge/
         [ -f /tmp/proxy-data/proxy/best.txt ]                                 && cp /tmp/proxy-data/proxy/best.txt                                 proxy/
+        [ -f /tmp/proxy-data/proxy/available.txt ]                            && cp /tmp/proxy-data/proxy/available.txt                            proxy/
+        [ -f /tmp/proxy-data/proxy/collections.txt ]                          && cp /tmp/proxy-data/proxy/collections.txt                          proxy/
+        [ -f /tmp/proxy-data/proxy/repositories.txt ]                         && cp /tmp/proxy-data/proxy/repositories.txt                         proxy/
+        [ -f /tmp/proxy-data/proxy/best/data/link_health.json ]               && cp /tmp/proxy-data/proxy/best/data/link_health.json               proxy/best/data/
+        [ -f /tmp/proxy-data/proxy/best/data/repo_scores.json ]               && cp /tmp/proxy-data/proxy/best/data/repo_scores.json               proxy/best/data/
+        [ -f /tmp/proxy-data/proxy/best/data/verify_queue.json ]              && cp /tmp/proxy-data/proxy/best/data/verify_queue.json              proxy/best/data/
+        cp /tmp/proxy-data/proxy/country/*.txt proxy/country/ 2>/dev/null || true
 
         git add -A
         git diff --cached --quiet && echo "No changes to commit" && exit 0
