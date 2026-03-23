@@ -2,7 +2,7 @@
   "zengfr/free-vpn-subscribe": {
     "source": "search",
     "stars": 30,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -12,7 +12,7 @@
   "wenxig/free-nodes-sub": {
     "source": "search",
     "stars": 27,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -21,8 +21,8 @@
   },
   "Pawdroid/Free-servers": {
     "source": "search",
-    "stars": 16724,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "stars": 16727,
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [
       0.444,
       0.556,
@@ -31,17 +31,18 @@
       0.4,
       0.5,
       0.538,
-      0.818
+      0.818,
+      0.0
     ],
-    "low_quality_streak": 0,
+    "low_quality_streak": 1,
     "blacklisted": false,
     "total_links_contributed": 11,
-    "total_valid_contributed": 9
+    "total_valid_contributed": 0
   },
   "crossxx-labs/free-proxy": {
     "source": "search",
-    "stars": 1294,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "stars": 1293,
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -51,7 +52,7 @@
   "mermeroo/V2RAY-CLASH-BASE64-Subscription.Links": {
     "source": "search",
     "stars": 488,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -61,7 +62,7 @@
   "F0rc3Run/F0rc3Run": {
     "source": "search",
     "stars": 195,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -71,7 +72,7 @@
   "Surfboardv2ray/v2ray-worker-sub": {
     "source": "search",
     "stars": 144,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -81,7 +82,7 @@
   "Everyday-VPN/Everyday-VPN": {
     "source": "search",
     "stars": 125,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -90,8 +91,8 @@
   },
   "Barabama/FreeNodes": {
     "source": "search",
-    "stars": 2448,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "stars": 2453,
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -101,7 +102,7 @@
   "snakem982/proxypool": {
     "source": "search",
     "stars": 1655,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -111,7 +112,7 @@
   "mfuu/v2ray": {
     "source": "search",
     "stars": 846,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [
       0.156,
       0.141,
@@ -120,17 +121,18 @@
       0.068,
       0.268,
       0.328,
-      0.379
+      0.379,
+      0.025
     ],
-    "low_quality_streak": 0,
+    "low_quality_streak": 1,
     "blacklisted": false,
-    "total_links_contributed": 66,
-    "total_valid_contributed": 25
+    "total_links_contributed": 79,
+    "total_valid_contributed": 2
   },
   "xyfqzy/free-nodes": {
     "source": "search",
     "stars": 96,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -140,7 +142,7 @@
   "junjun266/FreeProxyGo": {
     "source": "search",
     "stars": 63,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -150,7 +152,17 @@
   "longlon/v2ray-config": {
     "source": "search",
     "stars": 35,
-    "last_seen": "2026-03-23T02:29:03+00:00",
+    "last_seen": "2026-03-23T13:12:07+00:00",
+    "valid_ratio_history": [],
+    "low_quality_streak": 0,
+    "blacklisted": false,
+    "total_links_contributed": 0,
+    "total_valid_contributed": 0
+  },
+  "awesome-vpn/awesome-vpn": {
+    "source": "search",
+    "stars": 4934,
+    "last_seen": "2026-03-23T13:12:07+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
