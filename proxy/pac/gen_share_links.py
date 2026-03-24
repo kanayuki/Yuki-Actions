@@ -12,7 +12,9 @@ from . import singbox
 from . import xray
 
 from util import console, get_hash
-from verify import parse_link, verify_links
+from core.parse import parse_link
+from core.verify import filter_valid_links, verify_links
+
 
 path = Path(".") / "proxy"
 keyfile = path / "share_link_keys.txt"

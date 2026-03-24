@@ -22,7 +22,7 @@ _ALL_PROTOCOLS = {
 
 def _parse_host_port(link: str) -> tuple[str, int, str] | None:
     """Quick parse: return (host, port, protocol) or None."""
-    from verify import parse_link
+    from core.parse import parse_link
     proxy = parse_link(link)
     if proxy is None:
         return None

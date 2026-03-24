@@ -16,7 +16,7 @@ if str(_PROXY_DIR) not in sys.path:
     sys.path.insert(0, str(_PROXY_DIR))
 
 from util import console  # noqa: E402
-from verify import filter_valid_links  # noqa: E402
+from core.verify import filter_valid_links  # noqa: E402
 
 
 def fetch_v2ray_links(sub_url: str) -> list[str]:

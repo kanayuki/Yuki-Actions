@@ -1,7 +1,12 @@
-"""GeoIP batch resolver with persistent cache.
+"""GeoIP batch resolver.
 
-Uses ip-api.com/batch (free, up to 100 per request, 15 req/min).
-Falls back to single-query ip-api.com/json/{ip} (45/min).
+Uses ip-api.com/batch (free, up to 100 per request, ~15 req/min).
+Falls back to ip-api.com/json/{host} for single queries (~45/min).
+
+Public API
+----------
+resolve_batch(hosts, known=None) -> dict[str, str]
+    Returns {host: country_code}. Skips hosts already in *known*.
 """
 
 from __future__ import annotations
@@ -19,11 +24,10 @@ _BATCH_SIZE = 100
 
 
 def resolve_batch(hosts: list[str], known: dict[str, str] | None = None) -> dict[str, str]:
-    """Resolve country codes for a list of hosts.
+    """Resolve country codes for a list of hosts/IPs.
 
-    *known* is a ``{host: country_code}`` cache — already-resolved hosts are
-    skipped.  Returns ``{host: country_code}`` for all *hosts* (merged with
-    *known*).
+    *known* is a ``{host: country_code}`` cache; already-resolved hosts are
+    skipped. Returns a merged ``{host: country_code}`` for all *hosts*.
     """
     known = dict(known or {})
     result: dict[str, str] = {}
@@ -40,9 +44,8 @@ def resolve_batch(hosts: list[str], known: dict[str, str] | None = None) -> dict
 
     to_resolve = list(dict.fromkeys(to_resolve))  # deduplicate, preserve order
 
-    # Batch API
     for i in range(0, len(to_resolve), _BATCH_SIZE):
-        chunk = to_resolve[i : i + _BATCH_SIZE]
+        chunk = to_resolve[i: i + _BATCH_SIZE]
         try:
             resp = requests.post(
                 _BATCH_URL,
@@ -55,18 +58,17 @@ def resolve_batch(hosts: list[str], known: dict[str, str] | None = None) -> dict
                     cc = item.get("countryCode", "XX") if item.get("status") == "success" else "XX"
                     result[host] = cc
             else:
-                logger.warning("ip-api batch HTTP %d, falling back to single", resp.status_code)
+                logger.warning("ip-api batch HTTP %d — falling back to single", resp.status_code)
                 for h in chunk:
                     result[h] = _single_query(h)
         except Exception as e:
-            logger.warning("ip-api batch error: %s, falling back to single", e)
+            logger.warning("ip-api batch error: %s — falling back to single", e)
             for h in chunk:
                 result[h] = _single_query(h)
 
         if i + _BATCH_SIZE < len(to_resolve):
-            time.sleep(4)  # rate limit: ~15 req/min for batch
+            time.sleep(4)  # ~15 batch req/min rate limit
 
-    # Fill missing
     for h in to_resolve:
         if h not in result:
             result[h] = "XX"

@@ -23,7 +23,7 @@ from rich.progress import (
 )
 
 from .config import AVAILABLE_FILE, Config, load_config
-from .engine import TestResult, get_engine_chain, test_with_chain
+from ..engine import TestResult, get_engine_chain, test_with_chain
 from .state import LinkHealth, QueueItem, StateManager, _now
 
 logger = logging.getLogger(__name__)

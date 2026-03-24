@@ -16,7 +16,7 @@ from rich.panel import Panel
 from rich.table import Table
 
 from .config import AVAILABLE_FILE, BEST_FILE, COUNTRY_DIR, Config, load_config
-from .geo import resolve_batch
+from core.geo import resolve_batch
 from .state import LinkHealth, StateManager
 
 logger = logging.getLogger(__name__)

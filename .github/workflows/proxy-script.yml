@@ -20,7 +20,7 @@ jobs:
         # Read files from data branch directly (no branch switch required)
         if git ls-remote --exit-code origin data &>/dev/null; then
           git fetch origin data
-          mkdir -p proxy/merge proxy/best/data proxy/country
+          mkdir -p proxy/merge proxy/best/data proxy/country proxy/bin
           # Pipeline 1 state
           git show origin/data:proxy/share_links.txt                          > proxy/share_links.txt                          2>/dev/null || true
           git show origin/data:proxy/share_link_keys.txt                      > proxy/share_link_keys.txt                      2>/dev/null || true
@@ -37,6 +37,11 @@ jobs:
           # Country files
           for f in $(git ls-tree --name-only origin/data -- proxy/country/ 2>/dev/null); do
             git show "origin/data:$f" > "$f" 2>/dev/null || true
+          done
+          # Restore binaries
+          for f in $(git ls-tree --name-only origin/data -- proxy/bin/ 2>/dev/null); do
+            git show "origin/data:$f" > "$f" 2>/dev/null || true
+            chmod +x "$f" 2>/dev/null || true
           done
         fi
 
@@ -62,7 +67,7 @@ jobs:
         git config user.name "kanayuki"
 
         # Stage generated files in /tmp before any branch operations
-        mkdir -p /tmp/proxy-data/proxy/merge /tmp/proxy-data/proxy/best/data /tmp/proxy-data/proxy/country
+        mkdir -p /tmp/proxy-data/proxy/merge /tmp/proxy-data/proxy/best/data /tmp/proxy-data/proxy/country /tmp/proxy-data/proxy/bin
         [ -f proxy/share_links.txt ]                          && cp proxy/share_links.txt                          /tmp/proxy-data/proxy/
         [ -f proxy/share_link_keys.txt ]                      && cp proxy/share_link_keys.txt                      /tmp/proxy-data/proxy/
         [ -f proxy/share_link_health.json ]                   && cp proxy/share_link_health.json                   /tmp/proxy-data/proxy/
@@ -75,6 +80,10 @@ jobs:
         [ -f proxy/best/data/repo_scores.json ]               && cp proxy/best/data/repo_scores.json               /tmp/proxy-data/proxy/best/data/
         [ -f proxy/best/data/verify_queue.json ]              && cp proxy/best/data/verify_queue.json              /tmp/proxy-data/proxy/best/data/
         cp proxy/country/*.txt /tmp/proxy-data/proxy/country/ 2>/dev/null || true
+        [ -f proxy/bin/versions.json ] && cp proxy/bin/versions.json /tmp/proxy-data/proxy/bin/
+        for f in proxy/bin/xray proxy/bin/xray.exe proxy/bin/sing-box proxy/bin/sing-box.exe proxy/bin/mihomo proxy/bin/mihomo.exe; do
+          [ -f "$f" ] && cp "$f" /tmp/proxy-data/proxy/bin/
+        done
 
         # Create a worktree for the data branch (isolated from main working tree)
         if git show-ref --quiet refs/remotes/origin/data; then
@@ -86,7 +95,7 @@ jobs:
 
         # Copy data files into the worktree
         cd /tmp/data-wt
-        mkdir -p proxy/merge proxy/best/data proxy/country
+        mkdir -p proxy/merge proxy/best/data proxy/country proxy/bin
         [ -f /tmp/proxy-data/proxy/share_links.txt ]                          && cp /tmp/proxy-data/proxy/share_links.txt                          proxy/
         [ -f /tmp/proxy-data/proxy/share_link_keys.txt ]                      && cp /tmp/proxy-data/proxy/share_link_keys.txt                      proxy/
         [ -f /tmp/proxy-data/proxy/share_link_health.json ]                   && cp /tmp/proxy-data/proxy/share_link_health.json                   proxy/
@@ -99,6 +108,10 @@ jobs:
         [ -f /tmp/proxy-data/proxy/best/data/repo_scores.json ]               && cp /tmp/proxy-data/proxy/best/data/repo_scores.json               proxy/best/data/
         [ -f /tmp/proxy-data/proxy/best/data/verify_queue.json ]              && cp /tmp/proxy-data/proxy/best/data/verify_queue.json              proxy/best/data/
         cp /tmp/proxy-data/proxy/country/*.txt proxy/country/ 2>/dev/null || true
+        [ -f /tmp/proxy-data/proxy/bin/versions.json ] && cp /tmp/proxy-data/proxy/bin/versions.json proxy/bin/
+        for f in xray xray.exe sing-box sing-box.exe mihomo mihomo.exe; do
+          [ -f "/tmp/proxy-data/proxy/bin/$f" ] && cp "/tmp/proxy-data/proxy/bin/$f" proxy/bin/
+        done
 
         git add -A
         git diff --cached --quiet && echo "No changes to commit" && exit 0

@@ -1,5 +1,10 @@
 # ── 仓库来源 ──
-user_repos: []
+user_repos: 
+  - "Barabama/FreeNodes"
+  - "Pawdroid/Free-servers"
+
+
+
 #  - owner/repo-name
 
 search_queries:

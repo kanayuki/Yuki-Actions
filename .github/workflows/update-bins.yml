@@ -1,0 +1,70 @@
+name: Update Proxy Binaries
+
+on:
+  schedule:
+    - cron: '0 0 */3 * *'   # Every 3 days at UTC 00:00
+  workflow_dispatch:
+
+jobs:
+  update-bins:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Restore binaries from data branch
+        run: |
+          if git ls-remote --exit-code origin data &>/dev/null; then
+            git fetch origin data
+            mkdir -p proxy/bin
+            for f in $(git ls-tree --name-only origin/data -- proxy/bin/ 2>/dev/null); do
+              git show "origin/data:$f" > "$f" 2>/dev/null || true
+              chmod +x "$f" 2>/dev/null || true
+            done
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Check and update binaries
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd proxy
+          python core/binary.py --update
+
+      - name: Publish updated bins to data branch
+        run: |
+          git config user.email "kanayuki@163.com"
+          git config user.name "kanayuki"
+
+          # Stage bin/ contents
+          mkdir -p /tmp/proxy-data/proxy/bin
+          [ -f proxy/bin/versions.json ] && cp proxy/bin/versions.json /tmp/proxy-data/proxy/bin/
+          for f in proxy/bin/xray proxy/bin/xray.exe proxy/bin/sing-box proxy/bin/sing-box.exe proxy/bin/mihomo proxy/bin/mihomo.exe; do
+            [ -f "$f" ] && cp "$f" /tmp/proxy-data/proxy/bin/
+          done
+
+          # Write to data branch via worktree
+          if git show-ref --quiet refs/remotes/origin/data; then
+            git worktree add /tmp/data-wt origin/data
+          else
+            git worktree add --orphan -b data /tmp/data-wt
+          fi
+
+          cd /tmp/data-wt
+          mkdir -p proxy/bin
+          cp -r /tmp/proxy-data/proxy/bin/. proxy/bin/
+
+          git add -A
+          git diff --cached --quiet && echo "No binary changes" && exit 0
+          git commit -m "bins: $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push origin HEAD:data

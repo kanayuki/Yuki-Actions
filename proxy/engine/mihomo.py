@@ -20,7 +20,6 @@ import requests
 import yaml
 
 from . import TestEngine, TestResult
-from .binary import ensure_binary
 
 logger = logging.getLogger(__name__)
 
@@ -33,13 +32,8 @@ _SUPPORTED = {"vmess", "vless", "ss", "trojan", "hysteria2", "tuic"}
 
 
 def _link_to_clash(link: str, name: str) -> dict | None:
-    """Convert a share link to Clash proxy dict. Inline to avoid circular deps."""
-    import importlib
-    try:
-        conv = importlib.import_module("converter")  # proxy/best/converter.py
-        return conv.link_to_clash(link, name)
-    except Exception:
-        return None
+    from core.parse import link_to_clash
+    return link_to_clash(link, name)
 
 
 class _MihomoProcess:
@@ -127,13 +121,11 @@ class MihomoEngine(TestEngine):
 
     @classmethod
     def is_available(cls) -> bool:
-        from ..config import load_config
-        cfg = load_config()
-        path = ensure_binary("mihomo", cfg.mihomo_bin)
+        from core.binary import ensure_binary
+        path = ensure_binary("mihomo")
         if path:
             cls._bin_path = path
-            return True
-        return False
+        return cls._bin_path is not None
 
     def test_batch(
         self,
