@@ -226,17 +226,20 @@ def gen_share_link(config: dict) -> tuple | None:
         console.print(f"  [cyan]{protocol}[/cyan]  {url}")
         return key, url
     else:
-        print(f"Unsupported protocol: {proxy}")
+        raise ValueError(f"Unsupported protocol: {proxy}")
 
-    return None
 
 
 @load_all_config(CONFIG_FILE)
 def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
 
-    key, link = gen_share_link(json.loads(config))
-    return key, link
+    try:
+        key, link = gen_share_link(json.loads(config))
+        return key, link
+    except ValueError as e:
+        console.print(f"[red]✗ {e}[/red]")
+        return None
 
 
 if __name__ == "__main__":

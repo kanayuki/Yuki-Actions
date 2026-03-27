@@ -23,7 +23,7 @@ from rich.progress import (
 )
 
 from .config import AVAILABLE_FILE, Config, load_config
-from ..engine import TestResult, get_engine_chain, test_with_chain
+from engine import TestResult, get_engine_chain, test_with_chain
 from .state import LinkHealth, QueueItem, StateManager, _now
 
 logger = logging.getLogger(__name__)
@@ -37,7 +37,7 @@ except ImportError:
 
 
 def _health_key_from_link(link: str) -> str:
-    from verify import parse_link
+    from core.parse import parse_link
 
     proxy = parse_link(link)
     if proxy is None:
@@ -47,7 +47,7 @@ def _health_key_from_link(link: str) -> str:
 
 def _parse_link_info(link: str) -> tuple[str, str, int]:
     """Return (protocol, host, port) from a share link."""
-    from verify import parse_link
+    from core.parse import parse_link
 
     proxy = parse_link(link)
     if proxy:
