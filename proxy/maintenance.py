@@ -1,76 +1,56 @@
-"""Stage 5: Maintain -- dormant recheck, repo quality evaluation, health pruning.
+"""Maintenance tasks — dormant recheck, repo quality evaluation, health pruning.
 
-Links that fail max_consecutive_failures times are marked dormant (not deleted).
-Dormant links are rechecked after dormant_recheck_days.
-Health entries are pruned when exceeding health_max_entries.
-
-Usage: python -m best maintain
+Absorbs: best/maintain.py
 """
 
 from __future__ import annotations
 
 import logging
 from collections import defaultdict
-from datetime import datetime, timezone
+from typing import TYPE_CHECKING
 
 from rich.panel import Panel
 from rich.table import Table
 
-from .config import Config, load_config
-from .state import LinkHealth, StateManager, _now
+from .pool import LinkHealth
+
+if TYPE_CHECKING:
+    from .config import Config
+    from .pool import PoolManager
 
 logger = logging.getLogger(__name__)
 
-try:
-    from util import console
-except ImportError:
-    from rich.console import Console
 
-    console = Console(highlight=False)
-
-
-def _recheck_dormant(
-    cfg: Config,
-    health: dict[str, LinkHealth],
-) -> tuple[int, int]:
-    """Recheck dormant links that are due for re-verification.
+def _recheck_dormant(pool: PoolManager, cfg: Config) -> tuple[int, int]:
+    """Recheck dormant links due for re-verification.
 
     Returns (rechecked_count, revived_count).
     """
+    from core.parse import health_key
     from core.verify import verify_links
 
-    now_dt = datetime.now(tz=timezone.utc)
-
-    # Find dormant links due for recheck
-    due: dict[str, LinkHealth] = {}
-    for hk, entry in health.items():
-        if not entry.dormant or not entry.link:
-            continue
-        if not entry.dormant_since:
-            due[hk] = entry
-            continue
-        try:
-            ds = datetime.fromisoformat(entry.dormant_since)
-            if ds.tzinfo is None:
-                ds = ds.replace(tzinfo=timezone.utc)
-            age_days = (now_dt - ds).total_seconds() / 86400
-            if age_days >= cfg.dormant_recheck_days:
-                due[hk] = entry
-        except Exception:
-            due[hk] = entry
-
+    due = pool.dormant_due_for_recheck(cfg.verify.dormant_recheck_days)
     if not due:
         return 0, 0
 
-    links = [e.link for e in due.values()]
-    link_hk = {e.link: hk for hk, e in due.items()}
+    links = [e.link for e in due]
+    link_hk: dict[str, str] = {}
+    for e in due:
+        hk = health_key(e.link)
+        if hk:
+            link_hk[e.link] = hk
 
     logger.info("Rechecking %d dormant links", len(links))
     results = verify_links(
-        links, timeout=cfg.alive_timeout_s, concurrency=cfg.alive_concurrency
+        links,
+        timeout=cfg.verify.alive_timeout_s,
+        concurrency=cfg.verify.alive_concurrency,
     )
 
+    from .pool import _now
+
     now = _now()
+    health = pool.health
     revived = 0
 
     for r in results:
@@ -86,60 +66,31 @@ def _recheck_dormant(
             entry.fail_count = 0
             entry.last_ok = now
             entry.latency_ms = r.latency_ms
-            entry.latency_history = (entry.latency_history + [r.latency_ms])[
-                -5:
-            ]
+            entry.latency_history = (entry.latency_history + [r.latency_ms])[-5:]
             revived += 1
 
     return len(results), revived
 
 
-def _prune_health(
-    health: dict[str, LinkHealth], max_entries: int
-) -> int:
-    """Prune oldest never-connected dormant entries if over max_entries.
+def _evaluate_repos(pool: PoolManager, cfg: Config) -> int:
+    """Evaluate repository quality and blacklist low-quality repos.
 
-    Returns number of pruned entries.
+    Returns count of newly blacklisted repos.
     """
-    if len(health) <= max_entries:
-        return 0
+    health = pool.health
+    scores = pool.load_repo_scores()
 
-    # Candidates: dormant entries that never successfully connected
-    candidates = [
-        (hk, entry)
-        for hk, entry in health.items()
-        if entry.dormant and not entry.last_ok
-    ]
-    # Sort by first_seen ascending (oldest first)
-    candidates.sort(key=lambda x: x[1].first_seen or "")
-
-    to_remove = len(health) - max_entries
-    pruned = 0
-    for hk, _ in candidates[:to_remove]:
-        health.pop(hk)
-        pruned += 1
-
-    return pruned
-
-
-def maintain(
-    cfg: Config | None = None, state: StateManager | None = None
-) -> None:
-    """Run Stage 5: dormant recheck, repo evaluation, health pruning."""
-    cfg = cfg or load_config()
-    state = state or StateManager()
-    health = state.load_health()
-    scores = state.load_repo_scores()
-
-    # 1. Recheck dormant links
-    rechecked, revived = _recheck_dormant(cfg, health)
-
-    # 2. Evaluate repo quality
     repo_stats: dict[str, dict[str, int]] = defaultdict(
         lambda: {"total": 0, "valid": 0}
     )
     for entry in health.values():
-        repo = entry.source_repo
+        source = entry.effective_source
+        # Extract repo name from source_tag if github-sourced
+        repo = ""
+        if source.startswith("github:"):
+            repo = source.removeprefix("github:")
+        elif source and ":" not in source:
+            repo = source  # Legacy source_repo field
         if repo:
             repo_stats[repo]["total"] += 1
             if entry.fail_count == 0 and entry.last_ok and not entry.dormant:
@@ -160,13 +111,13 @@ def maintain(
             if len(score.valid_ratio_history) > 10:
                 score.valid_ratio_history = score.valid_ratio_history[-10:]
 
-            if ratio < cfg.repo_min_valid_ratio:
+            if ratio < cfg.repo_quality.repo_min_valid_ratio:
                 score.low_quality_streak += 1
             else:
                 score.low_quality_streak = 0
 
             if (
-                score.low_quality_streak >= cfg.repo_blacklist_after
+                score.low_quality_streak >= cfg.repo_quality.repo_blacklist_after
                 and score.source != "user"
                 and not score.blacklisted
             ):
@@ -178,14 +129,33 @@ def maintain(
                     score.low_quality_streak,
                 )
 
-    state.save_repo_scores(scores)
+    pool.save_repo_scores(scores)
+    return blacklisted_count
+
+
+def maintain(pool: PoolManager, cfg: Config) -> None:
+    """Run all maintenance tasks: dormant recheck, repo eval, prune."""
+    try:
+        from util import console
+    except ImportError:
+        from rich.console import Console
+
+        console = Console(highlight=False)
+
+    health = pool.health
+
+    # 1. Recheck dormant links
+    rechecked, revived = _recheck_dormant(pool, cfg)
+
+    # 2. Evaluate repo quality
+    blacklisted_count = _evaluate_repos(pool, cfg)
 
     # 3. Prune health if over limit
-    pruned = _prune_health(health, cfg.health_max_entries)
+    pruned = pool.prune(cfg.pool.health_max_entries)
 
-    state.save_health(health)
+    pool.save_health()
 
-    # 4. Count stats
+    # 4. Stats
     dormant_count = sum(1 for e in health.values() if e.dormant)
     active_count = sum(
         1 for e in health.values() if not e.dormant and e.fail_count == 0
@@ -207,7 +177,6 @@ def maintain(
     grid.add_row("[green]  Active[/green]", str(active_count))
     grid.add_row("[yellow]  Failing[/yellow]", str(failing_count))
     grid.add_row("[dim]  Dormant[/dim]", str(dormant_count))
-    grid.add_row("[dim]Repos tracked[/dim]", str(len(scores)))
 
     console.print(
         Panel(

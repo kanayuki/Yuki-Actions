@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout main
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0
 
@@ -20,12 +20,7 @@ jobs:
         if git ls-remote --exit-code origin data &>/dev/null; then
           git fetch origin data
           mkdir -p proxy/merge proxy/dataset/raw proxy/country proxy/bin
-          # Pipeline 1 (pac + merge) state
-          git show origin/data:proxy/share_links.txt                          > proxy/share_links.txt                          2>/dev/null || true
-          git show origin/data:proxy/share_link_keys.txt                      > proxy/share_link_keys.txt                      2>/dev/null || true
-          git show origin/data:proxy/share_link_health.json                   > proxy/share_link_health.json                   2>/dev/null || true
-          git show origin/data:proxy/merge/merge_share_links_filter.txt       > proxy/merge/merge_share_links_filter.txt       2>/dev/null || true
-          # Dataset crawler state
+          # Dataset state
           git show origin/data:proxy/dataset/health.json                      > proxy/dataset/health.json                      2>/dev/null || true
           git show origin/data:proxy/dataset/repo_scores.json                 > proxy/dataset/repo_scores.json                 2>/dev/null || true
           git show origin/data:proxy/dataset/alive.txt                        > proxy/dataset/alive.txt                        2>/dev/null || true
@@ -39,6 +34,12 @@ jobs:
           for f in $(git ls-tree --name-only origin/data -- proxy/country/ 2>/dev/null); do
             git show "origin/data:$f" > "$f" 2>/dev/null || true
           done
+          # Merge output
+          git show origin/data:proxy/merge/merge.txt                          > proxy/merge/merge.txt                          2>/dev/null || true
+          # PAC state (independent pipeline)
+          git show origin/data:proxy/share_links.txt                          > proxy/share_links.txt                          2>/dev/null || true
+          git show origin/data:proxy/share_link_keys.txt                      > proxy/share_link_keys.txt                      2>/dev/null || true
+          git show origin/data:proxy/share_link_health.json                   > proxy/share_link_health.json                   2>/dev/null || true
           # Binaries
           for f in $(git ls-tree --name-only origin/data -- proxy/bin/ 2>/dev/null); do
             git show "origin/data:$f" > "$f" 2>/dev/null || true
@@ -47,64 +48,72 @@ jobs:
         fi
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '3.13'
 
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    # ── Dataset crawler stages (each independent, failures don't block others) ──
+    # ── Sources: collect from all enabled sources ──
 
-    - name: 'Dataset: discover'
+    - name: 'Collect: all sources'
       continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: cd proxy && python -m best discover
+      run: python -m proxy collect
 
-    - name: 'Dataset: collect'
-      continue-on-error: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: cd proxy && python -m best collect
+    # ── Verify: alive check (every 12h) ──
 
-    - name: 'Dataset: alive check (every 12h)'
+    - name: 'Verify: alive (every 12h)'
       continue-on-error: true
       run: |
         HOUR=$(date -u +%H)
         if [ "$HOUR" = "00" ] || [ "$HOUR" = "12" ]; then
-          cd proxy && python -m best alive
+          python -m proxy verify alive
         else
           echo "Skipped (not 00/12 UTC)"
         fi
 
-    - name: 'Dataset: best-remote'
-      continue-on-error: true
-      run: cd proxy && python -m best best-remote
+    # ── Verify: best-remote ──
 
-    - name: 'Dataset: rank'
+    - name: 'Verify: best-remote'
       continue-on-error: true
-      run: cd proxy && python -m best rank
+      run: python -m proxy verify best-remote
 
-    - name: 'Dataset: maintain (weekly Sunday)'
+    # ── Output: country ──
+
+    - name: 'Output: country'
+      continue-on-error: true
+      run: python -m proxy output country
+
+    # ── Output: merge ──
+
+    - name: 'Output: merge'
+      continue-on-error: true
+      run: python -m proxy output merge
+
+    # ── Maintenance (weekly Sunday 00 UTC) ──
+
+    - name: 'Maintenance (weekly Sunday)'
       continue-on-error: true
       run: |
         HOUR=$(date -u +%H)
         DAY=$(date -u +%u)
         if [ "$HOUR" = "00" ] && [ "$DAY" = "7" ]; then
-          cd proxy && python -m best maintain
+          python -m proxy maintain
         else
           echo "Skipped (not Sunday 00 UTC)"
         fi
 
-    # ── Pipeline 1: pac + merge (every 12h, independent of dataset crawler) ──
+    # ── PAC pipeline (independent, every 12h) ──
 
-    - name: 'Pipeline 1: pac + merge (every 12h)'
+    - name: 'PAC pipeline (every 12h)'
       continue-on-error: true
       run: |
         HOUR=$(date -u +%H)
         if [ "$HOUR" = "00" ] || [ "$HOUR" = "12" ]; then
-          cd proxy && python main.py
+          python -m proxy pac
         else
           echo "Skipped (not 00/12 UTC)"
         fi
@@ -120,12 +129,6 @@ jobs:
         # Stage all generated files to a temp dir
         mkdir -p /tmp/pd/proxy/merge /tmp/pd/proxy/dataset/raw /tmp/pd/proxy/country /tmp/pd/proxy/bin
 
-        # Pipeline 1 state
-        [ -f proxy/share_links.txt ]                    && cp proxy/share_links.txt                    /tmp/pd/proxy/
-        [ -f proxy/share_link_keys.txt ]                && cp proxy/share_link_keys.txt                /tmp/pd/proxy/
-        [ -f proxy/share_link_health.json ]             && cp proxy/share_link_health.json             /tmp/pd/proxy/
-        [ -f proxy/merge/merge_share_links_filter.txt ] && cp proxy/merge/merge_share_links_filter.txt /tmp/pd/proxy/merge/
-
         # Dataset state
         [ -f proxy/dataset/health.json ]       && cp proxy/dataset/health.json       /tmp/pd/proxy/dataset/
         [ -f proxy/dataset/repo_scores.json ]  && cp proxy/dataset/repo_scores.json  /tmp/pd/proxy/dataset/
@@ -133,9 +136,15 @@ jobs:
         [ -f proxy/dataset/best_remote.txt ]   && cp proxy/dataset/best_remote.txt   /tmp/pd/proxy/dataset/
         cp proxy/dataset/raw/*.txt /tmp/pd/proxy/dataset/raw/ 2>/dev/null || true
 
-        # Other
-        [ -f proxy/repositories.txt ] && cp proxy/repositories.txt /tmp/pd/proxy/
+        # Other outputs
+        [ -f proxy/repositories.txt ]          && cp proxy/repositories.txt          /tmp/pd/proxy/
         cp proxy/country/*.txt /tmp/pd/proxy/country/ 2>/dev/null || true
+        [ -f proxy/merge/merge.txt ]           && cp proxy/merge/merge.txt           /tmp/pd/proxy/merge/
+
+        # PAC state (independent)
+        [ -f proxy/share_links.txt ]           && cp proxy/share_links.txt           /tmp/pd/proxy/
+        [ -f proxy/share_link_keys.txt ]       && cp proxy/share_link_keys.txt       /tmp/pd/proxy/
+        [ -f proxy/share_link_health.json ]    && cp proxy/share_link_health.json    /tmp/pd/proxy/
 
         # Binaries
         [ -f proxy/bin/versions.json ] && cp proxy/bin/versions.json /tmp/pd/proxy/bin/

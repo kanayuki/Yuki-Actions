@@ -1,0 +1,53 @@
+# ── GitHub 仓库爬虫 ──
+github_crawler:
+  user_repos:
+    - "Barabama/FreeNodes"
+    - "Pawdroid/Free-servers"
+  search_queries:
+    - "v2ray free nodes subscribe"
+    - "free vmess vless subscription stars:>50"
+    - "clash free proxy nodes stars:>20"
+    - "v2ray free subscribe pushed:>{recent_7d}"
+  max_search_repos: 20
+
+# ── 订阅源 ──
+subscribe:
+  enabled: true
+  subscribe_file: "merge/subscribe_links.txt"
+
+# ── 全局代理池 ──
+# pool:
+#   raw_shard_max: 10000
+#   health_max_entries: 50000
+
+# ── TCP/DNS 存活验证 ──
+# verify:
+#   alive_timeout_s: 5.0
+#   alive_concurrency: 64
+#   alive_max: 10000
+#   max_consecutive_failures: 3
+#   dormant_recheck_days: 7
+
+# ── 引擎链真连接测试 ──
+engine:
+  test_engine: auto  # auto | xray | singbox | mihomo | tcp
+  test_timeout_ms: 6000
+  test_concurrency: 50
+  test_url: "http://www.gstatic.com/generate_204"
+  # best_remote_top: 100
+  # best_remote_batch: 500
+
+# ── 仓库质量 ──
+repo_quality:
+  repo_min_valid_ratio: 0.05
+  repo_blacklist_after: 3
+
+# ── 输出 ──
+output:
+  country_pool_max: 100
+  min_country_size: 10
+
+# ── 二进制路径 (留空则自动检测 PATH / 自动下载) ──
+# xray_bin: ""
+# singbox_bin: ""
+# mihomo_bin: ""
