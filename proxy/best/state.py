@@ -1,6 +1,9 @@
-"""Persistent state management for the best proxy pipeline.
+"""Persistent state management for the proxy dataset crawler.
 
-All state is stored as JSON files in proxy/best/data/.
+State files live in proxy/dataset/:
+  - health.json       — per-link health tracking
+  - repo_scores.json  — per-repo quality metrics
+  - raw/*.txt         — monthly sharded raw link pool
 """
 
 from __future__ import annotations
@@ -12,13 +15,33 @@ from pathlib import Path
 
 from pydantic import BaseModel, Field
 
-from .config import DATA_DIR
+from .config import DATASET_DIR, HEALTH_FILE, RAW_DIR, REPO_SCORES_FILE
 
 logger = logging.getLogger(__name__)
 
 
 def _now() -> str:
     return datetime.now(tz=timezone.utc).isoformat(timespec="seconds")
+
+
+def _count_lines(path: Path) -> int:
+    """Count non-empty lines in a text file."""
+    if not path.exists():
+        return 0
+    with open(path, encoding="utf-8") as f:
+        return sum(1 for line in f if line.strip())
+
+
+def _current_shard() -> Path:
+    """Return the shard file path for the current UTC month."""
+    month = datetime.now(tz=timezone.utc).strftime("%Y%m")
+    return RAW_DIR / f"raw_{month}.txt"
+
+
+def _overflow_shard(base: Path, seq: int) -> Path:
+    """Generate overflow shard name: raw_202603_2.txt, raw_202603_3.txt, ..."""
+    stem = base.stem  # raw_202603
+    return base.with_name(f"{stem}_{seq}{base.suffix}")
 
 
 # ---------------------------------------------------------------------------
@@ -50,14 +73,8 @@ class LinkHealth(BaseModel):
     latency_ms: float = 0.0
     latency_history: list[float] = Field(default_factory=list)
     first_seen: str = ""
-
-
-class QueueItem(BaseModel):
-    link: str
-    health_key: str
-    source_repo: str = ""
-    enqueued_at: str = Field(default_factory=_now)
-    priority: int = 1  # 1=new, 2=recheck
+    dormant: bool = False
+    dormant_since: str = ""
 
 
 # ---------------------------------------------------------------------------
@@ -66,73 +83,119 @@ class QueueItem(BaseModel):
 
 
 class StateManager:
-    """Read/write JSON state files in DATA_DIR."""
+    """Read/write JSON state files and raw pool shards."""
 
-    def __init__(self, data_dir: Path = DATA_DIR) -> None:
-        self.data_dir = data_dir
-        self.data_dir.mkdir(parents=True, exist_ok=True)
+    def __init__(self) -> None:
+        DATASET_DIR.mkdir(parents=True, exist_ok=True)
+        RAW_DIR.mkdir(parents=True, exist_ok=True)
 
-    # -- helpers --
+    # ── helpers ──
 
-    def _path(self, name: str) -> Path:
-        return self.data_dir / name
-
-    def _load_json(self, name: str) -> dict | list:
-        p = self._path(name)
-        if not p.exists():
+    @staticmethod
+    def _load_json(path: Path) -> dict | list:
+        if not path.exists():
             return {}
         try:
-            return json.loads(p.read_text(encoding="utf-8"))
+            return json.loads(path.read_text(encoding="utf-8"))
         except Exception as e:
-            logger.warning("Failed to load %s: %s", p, e)
+            logger.warning("Failed to load %s: %s", path, e)
             return {}
 
-    def _save_json(self, name: str, data: dict | list) -> None:
-        p = self._path(name)
-        p.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    @staticmethod
+    def _save_json(path: Path, data: dict | list) -> None:
+        path.write_text(
+            json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
 
-    # -- repo scores --
+    # ── health ──
+
+    def load_health(self) -> dict[str, LinkHealth]:
+        raw = self._load_json(HEALTH_FILE)
+        if not isinstance(raw, dict):
+            return {}
+        return {k: LinkHealth.model_validate(v) for k, v in raw.items()}
+
+    def save_health(self, health: dict[str, LinkHealth]) -> None:
+        self._save_json(
+            HEALTH_FILE, {k: v.model_dump() for k, v in health.items()}
+        )
+
+    # ── repo scores ──
 
     def load_repo_scores(self) -> dict[str, RepoScore]:
-        raw = self._load_json("repo_scores.json")
+        raw = self._load_json(REPO_SCORES_FILE)
         if not isinstance(raw, dict):
             return {}
         return {k: RepoScore.model_validate(v) for k, v in raw.items()}
 
     def save_repo_scores(self, scores: dict[str, RepoScore]) -> None:
         self._save_json(
-            "repo_scores.json",
-            {k: v.model_dump() for k, v in scores.items()},
+            REPO_SCORES_FILE, {k: v.model_dump() for k, v in scores.items()}
         )
 
-    # -- link health --
+    # ── raw pool ──
 
-    def load_link_health(self) -> dict[str, LinkHealth]:
-        raw = self._load_json("link_health.json")
-        if not isinstance(raw, dict):
-            return {}
-        return {k: LinkHealth.model_validate(v) for k, v in raw.items()}
+    def append_to_raw(
+        self,
+        links: list[str],
+        health: dict[str, LinkHealth],
+        max_per_shard: int,
+    ) -> int:
+        """Deduplicate and append new links to the current monthly shard.
 
-    def save_link_health(self, health: dict[str, LinkHealth]) -> None:
-        self._save_json(
-            "link_health.json",
-            {k: v.model_dump() for k, v in health.items()},
-        )
+        Creates LinkHealth entries for newly added links.
+        Returns the number of newly added links.
+        """
+        from core.parse import health_key, parse_link
 
-    # -- verify queue --
+        existing_keys = set(health.keys())
+        new_items: list[tuple[str, str]] = []  # (health_key, link)
 
-    def load_queue(self) -> list[QueueItem]:
-        raw = self._load_json("verify_queue.json")
-        if isinstance(raw, dict):
-            items = raw.get("queue", [])
-        elif isinstance(raw, list):
-            items = raw
-        else:
-            return []
-        return [QueueItem.model_validate(item) for item in items]
+        for link in links:
+            hk = health_key(link)
+            if not hk or hk in existing_keys:
+                continue
+            existing_keys.add(hk)
+            new_items.append((hk, link))
 
-    def save_queue(self, queue: list[QueueItem]) -> None:
-        self._save_json(
-            "verify_queue.json",
-            {"queue": [item.model_dump() for item in queue]},
-        )
+        if not new_items:
+            return 0
+
+        shard = _current_shard()
+        current_count = _count_lines(shard)
+        overflow_seq = 2
+        written = 0
+
+        f = open(shard, "a", encoding="utf-8")
+        try:
+            for hk, link in new_items:
+                if current_count >= max_per_shard:
+                    f.close()
+                    shard = _overflow_shard(_current_shard(), overflow_seq)
+                    overflow_seq += 1
+                    f = open(shard, "a", encoding="utf-8")
+                    current_count = 0
+
+                f.write(link + "\n")
+                current_count += 1
+                written += 1
+
+                parsed = parse_link(link)
+                health[hk] = LinkHealth(
+                    link=link,
+                    protocol=parsed.protocol if parsed else "",
+                    host=parsed.host if parsed else "",
+                    port=parsed.port if parsed else 0,
+                    first_seen=_now(),
+                )
+        finally:
+            f.close()
+
+        return written
+
+    def raw_stats(self) -> dict[str, int]:
+        """Return {filename: line_count} for all raw shards."""
+        stats: dict[str, int] = {}
+        for p in sorted(RAW_DIR.glob("raw_*.txt")):
+            stats[p.name] = _count_lines(p)
+        return stats

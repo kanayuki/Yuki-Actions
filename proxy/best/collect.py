@@ -1,8 +1,7 @@
-"""Stage 2: Collect — fetch subscription links from discovered repos.
+"""Stage 2: Collect -- fetch subscription links from discovered repos.
 
 Reads repositories.txt, fetches subscription files from each repo, extracts
-proxy share links, saves to collections.txt, and enqueues new links for
-verification.
+proxy share links, and appends new links to the raw pool (monthly shards).
 
 Usage: python -m best collect
 """
@@ -10,19 +9,18 @@ Usage: python -m best collect
 from __future__ import annotations
 
 import base64
-import hashlib
 import logging
 import os
 import re
-import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-from .config import COLLECTIONS_FILE, REPOSITORIES_FILE, Config, load_config
-from .state import LinkHealth, QueueItem, StateManager, _now
+from .config import REPOSITORIES_FILE, Config, load_config
+from .state import StateManager
 
 logger = logging.getLogger(__name__)
 
@@ -30,8 +28,15 @@ _API = "https://api.github.com"
 _RAW = "https://raw.githubusercontent.com"
 
 _KNOWN_SCHEMES = (
-    "vmess://", "vless://", "ss://", "trojan://",
-    "hysteria://", "hysteria2://", "tuic://", "anytls://", "mieru://",
+    "vmess://",
+    "vless://",
+    "ss://",
+    "trojan://",
+    "hysteria://",
+    "hysteria2://",
+    "tuic://",
+    "anytls://",
+    "mieru://",
 )
 
 _B64_RE = re.compile(r"^[A-Za-z0-9+/=\r\n]+$")
@@ -41,30 +46,45 @@ _SUB_NAME_RE = re.compile(
     re.IGNORECASE,
 )
 _SUB_EXTS = {".txt", ".yaml", ".yml", ""}
-_SCAN_DIRS = ["", "sub", "node", "subscribe", "data", "release"]
+
+_COMMON_RAW_PATHS = [
+    "sub",
+    "sub.txt",
+    "subscribe",
+    "subscribe.txt",
+    "node",
+    "node.txt",
+    "nodes",
+    "nodes.txt",
+    "base64",
+    "base64.txt",
+    "v2ray",
+    "v2ray.txt",
+    "vmess",
+    "vmess.txt",
+    "vless.txt",
+    "proxy",
+    "proxy.txt",
+    "proxies.txt",
+    "clash.yaml",
+    "clash.txt",
+    "share/all.txt",
+    "sub/sub",
+    "sub/sub.txt",
+    "sub/base64",
+    "merge/merge.txt",
+    "subscription/v2ray",
+]
 
 
 def _headers() -> dict[str, str]:
-    h = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+    h = {
+        "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
     if token := os.environ.get("GITHUB_TOKEN"):
         h["Authorization"] = f"Bearer {token}"
     return h
-
-
-def _is_sub_file(name: str) -> bool:
-    stem, ext = os.path.splitext(name)
-    if ext.lower() not in _SUB_EXTS:
-        return False
-    return bool(_SUB_NAME_RE.search(stem or name))
-
-
-def _health_key(link: str) -> str:
-    """Compute stable identity: sha256(protocol:host:port)."""
-    from verify import parse_link
-    proxy = parse_link(link)
-    if proxy is None:
-        return hashlib.sha256(link.encode()).hexdigest()
-    return hashlib.sha256(f"{proxy.protocol}:{proxy.host}:{proxy.port}".encode()).hexdigest()
 
 
 def _decode_content(text: str) -> str:
@@ -91,9 +111,8 @@ def _extract_links(text: str) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
-# Fetch from repos
+# Fetch helpers
 # ---------------------------------------------------------------------------
-
 
 _session: requests.Session | None = None
 
@@ -102,9 +121,12 @@ def _get_session() -> requests.Session:
     global _session
     if _session is None:
         from requests.adapters import HTTPAdapter
+
         _session = requests.Session()
         _session.verify = False
-        _session.headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/129.0.0.0"
+        _session.headers["User-Agent"] = (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/129.0.0.0"
+        )
         adapter = HTTPAdapter(pool_connections=20, pool_maxsize=20)
         _session.mount("https://", adapter)
         _session.mount("http://", adapter)
@@ -121,32 +143,6 @@ def _fetch_url(url: str, timeout: float = 8) -> str | None:
     return None
 
 
-def _list_repo_dir(owner: str, repo: str, path: str = "") -> list[dict]:
-    url = f"{_API}/repos/{owner}/{repo}/contents/{path}"
-    data = requests.get(url, headers=_headers(), timeout=15)
-    if data.ok and isinstance(data.json(), list):
-        return data.json()
-    return []
-
-
-# Top-priority subscription file paths to probe
-_COMMON_RAW_PATHS = [
-    # Direct subscription files
-    "sub", "sub.txt", "subscribe", "subscribe.txt",
-    "node", "node.txt", "nodes", "nodes.txt",
-    "base64", "base64.txt",
-    "v2ray", "v2ray.txt",
-    "vmess", "vmess.txt", "vless.txt",
-    "proxy", "proxy.txt", "proxies.txt",
-    "clash.yaml", "clash.txt",
-    "share/all.txt",
-    # Common sub-directories
-    "sub/sub", "sub/sub.txt", "sub/base64",
-    "merge/merge.txt",
-    "subscription/v2ray",
-]
-
-
 def _check_raw_url(url: str, full_name: str) -> tuple[str, str] | None:
     """Check a single raw URL for proxy links."""
     text = _fetch_url(url, timeout=4)
@@ -159,13 +155,10 @@ def _check_raw_url(url: str, full_name: str) -> tuple[str, str] | None:
 
 
 def _scan_all_repos(repos: list[str]) -> dict[str, list[tuple[str, str]]]:
-    """Scan ALL repos in parallel. Returns {repo: [(url, repo)]}.
+    """Scan ALL repos in parallel for subscription files.
 
-    Probes common raw URLs directly — no GitHub API needed.
+    Probes common raw URLs directly -- tries main branch, then master.
     """
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-
-    # Build all (url, repo) pairs to probe — try main branch only first
     tasks: list[tuple[str, str]] = []
     for repo_name in repos:
         parts = repo_name.split("/", 1)
@@ -179,8 +172,7 @@ def _scan_all_repos(repos: list[str]) -> dict[str, list[tuple[str, str]]]:
 
     with ThreadPoolExecutor(max_workers=20) as pool:
         futures = {
-            pool.submit(_check_raw_url, url, rn): (url, rn)
-            for url, rn in tasks
+            pool.submit(_check_raw_url, url, rn): (url, rn) for url, rn in tasks
         }
         for f in as_completed(futures):
             r = f.result()
@@ -189,7 +181,7 @@ def _scan_all_repos(repos: list[str]) -> dict[str, list[tuple[str, str]]]:
                 results[full_name].append(r)
                 logger.info("  Found: %s", url)
 
-    # For repos with 0 hits, try master branch
+    # Retry empty repos with master branch
     empty_repos = [r for r in repos if not results.get(r)]
     if empty_repos:
         retry_tasks: list[tuple[str, str]] = []
@@ -199,7 +191,9 @@ def _scan_all_repos(repos: list[str]) -> dict[str, list[tuple[str, str]]]:
                 continue
             owner, name = parts
             for path in _COMMON_RAW_PATHS:
-                retry_tasks.append((f"{_RAW}/{owner}/{name}/master/{path}", repo_name))
+                retry_tasks.append(
+                    (f"{_RAW}/{owner}/{name}/master/{path}", repo_name)
+                )
 
         with ThreadPoolExecutor(max_workers=20) as pool:
             futures = {
@@ -221,15 +215,18 @@ def _scan_all_repos(repos: list[str]) -> dict[str, list[tuple[str, str]]]:
 # ---------------------------------------------------------------------------
 
 
-def collect(cfg: Config | None = None, state: StateManager | None = None) -> list[str]:
-    """Run Stage 2: fetch links from repos and update queue.
+def collect(
+    cfg: Config | None = None, state: StateManager | None = None
+) -> list[str]:
+    """Run Stage 2: fetch links from repos and append to raw pool.
 
-    Returns list of all collected share links (deduplicated).
+    Returns list of all collected share links (deduplicated within this run).
     """
+    from core.parse import health_key
+
     cfg = cfg or load_config()
     state = state or StateManager()
-    health = state.load_link_health()
-    existing_keys = set(health.keys())
+    health = state.load_health()
 
     # Load repos
     repos: list[str] = []
@@ -246,16 +243,13 @@ def collect(cfg: Config | None = None, state: StateManager | None = None) -> lis
     # Discover subscription URLs across all repos in parallel
     repo_sub_urls = _scan_all_repos(repos)
 
-    # Fetch and extract links from discovered URLs (parallel)
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-
+    # Fetch and extract links from discovered URLs
     repo_links: dict[str, list[str]] = {}
-    fetch_tasks: list[tuple[str, str]] = []  # (url, repo_name)
+
+    fetch_tasks: list[tuple[str, str]] = []
     for repo_name, url_pairs in repo_sub_urls.items():
         for url, _ in url_pairs:
             fetch_tasks.append((url, repo_name))
-
-    url_to_links: dict[str, list[str]] = {}
 
     def _fetch_and_extract(url: str) -> tuple[str, list[str]]:
         text = _fetch_url(url, timeout=8)
@@ -264,55 +258,45 @@ def collect(cfg: Config | None = None, state: StateManager | None = None) -> lis
         return url, []
 
     with ThreadPoolExecutor(max_workers=8) as pool:
-        futures = {pool.submit(_fetch_and_extract, url): (url, rn) for url, rn in fetch_tasks}
+        futures = {
+            pool.submit(_fetch_and_extract, url): (url, rn)
+            for url, rn in fetch_tasks
+        }
         for f in as_completed(futures):
             url, rn = futures[f]
             _, links = f.result()
             if links:
                 repo_links.setdefault(rn, []).extend(links)
-                logger.info("  %s → %d links", url, len(links))
+                logger.info("  %s -> %d links", url, len(links))
 
-    # Flatten and deduplicate by health_key
+    # Flatten and deduplicate within this run
     all_links: list[str] = []
     seen_keys: set[str] = set()
     link_to_repo: dict[str, str] = {}
 
     for repo_name, links in repo_links.items():
         for link in links:
-            hk = _health_key(link)
-            if hk not in seen_keys:
+            hk = health_key(link)
+            if hk and hk not in seen_keys:
                 seen_keys.add(hk)
                 all_links.append(link)
                 link_to_repo[link] = repo_name
 
-    # Save collections.txt
-    COLLECTIONS_FILE.write_text(
-        "\n".join(all_links) + "\n" if all_links else "",
-        encoding="utf-8",
-    )
+    # Append to raw pool (dedup against health, create health entries)
+    new_count = state.append_to_raw(all_links, health, cfg.raw_shard_max)
 
-    # Enqueue new links for verification
-    queue = state.load_queue()
-    queued_keys = {item.health_key for item in queue}
-    new_count = 0
+    # Set source_repo for newly created entries
+    for link, repo_name in link_to_repo.items():
+        hk = health_key(link)
+        if hk and hk in health and not health[hk].source_repo:
+            health[hk].source_repo = repo_name
 
-    for link in all_links:
-        hk = _health_key(link)
-        if hk not in existing_keys and hk not in queued_keys:
-            queue.append(
-                QueueItem(
-                    link=link,
-                    health_key=hk,
-                    source_repo=link_to_repo.get(link, ""),
-                    priority=1,
-                )
-            )
-            new_count += 1
-
-    state.save_queue(queue)
+    state.save_health(health)
 
     logger.info(
-        "Collect complete: %d links from %d repos, %d new queued",
-        len(all_links), len(repos), new_count,
+        "Collect complete: %d links from %d repos, %d new added to raw pool",
+        len(all_links),
+        len(repos),
+        new_count,
     )
     return all_links

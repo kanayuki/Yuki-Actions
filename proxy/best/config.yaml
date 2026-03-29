@@ -1,11 +1,7 @@
 # ── 仓库来源 ──
-user_repos: 
+user_repos:
   - "Barabama/FreeNodes"
   - "Pawdroid/Free-servers"
-
-
-
-#  - owner/repo-name
 
 search_queries:
   - "v2ray free nodes subscribe"
@@ -15,23 +11,32 @@ search_queries:
 
 max_search_repos: 20
 
-# ── 验证 ──
-test_engine: auto   # auto | xray | singbox | mihomo | tcp
+# ── 全局仓库 (raw pool) ──
+# raw_shard_max: 10000
+
+# ── 存活验证 (TCP/DNS 宽松) ──
+# alive_max: 10000
+# alive_timeout_s: 5.0
+# alive_concurrency: 64
+
+# ── 真连接测试 (引擎链) ──
+# best_remote_top: 100
+# best_remote_batch: 500
+test_engine: auto  # auto | xray | singbox | mihomo | tcp
 test_timeout_ms: 6000
 test_concurrency: 50
 test_url: "http://www.gstatic.com/generate_204"
-batch_size: 500
 
 # ── 健康管理 ──
 max_consecutive_failures: 3
-health_recheck_interval_min: 60
+# dormant_recheck_days: 7
+# health_max_entries: 50000
 
 # ── 仓库质量 ──
 repo_min_valid_ratio: 0.05
 repo_blacklist_after: 3
 
 # ── 输出 ──
-top_n: 100
 country_pool_max: 100
 min_country_size: 10
 

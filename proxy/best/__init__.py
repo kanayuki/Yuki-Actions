@@ -1,4 +1,4 @@
-"""Best proxy pipeline — staged collection, verification, and ranking."""
+"""Proxy dataset crawler -- staged collection, verification, and ranking."""
 
 from __future__ import annotations
 
