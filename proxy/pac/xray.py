@@ -229,13 +229,15 @@ def gen_share_link(config: dict) -> tuple | None:
         raise ValueError(f"Unsupported protocol: {proxy}")
 
 
-
 @load_all_config(CONFIG_FILE)
-def get_all_links(config: str) -> str:
+def get_all_links(config: str) -> str | None:
     """获取所有可能的配置文件的分享链接"""
 
     try:
-        key, link = gen_share_link(json.loads(config))
+        result = gen_share_link(json.loads(config))
+        if result is None:
+            return None
+        key, link = result
         return key, link
     except ValueError as e:
         console.print(f"[red]✗ {e}[/red]")
