@@ -108,14 +108,15 @@ jobs:
 
     # ── PAC pipeline (independent, every 12h) ──
 
-    - name: 'PAC pipeline (every 12h)'
+    - name: 'PAC pipeline (every 6h)'
       continue-on-error: true
       run: |
         HOUR=$(date -u +%H)
-        if [ "$HOUR" = "00" ] || [ "$HOUR" = "12" ]; then
+        if [ "$HOUR" = "00" ] || [ "$HOUR" = "6" ]; then
           python -m proxy pac
         else
-          echo "Skipped (not 00/12 UTC)"
+          echo "Skipped (not 00/6 UTC)"
+          python -m proxy pac
         fi
 
     # ── Publish: always runs, saves whatever data was produced ──
