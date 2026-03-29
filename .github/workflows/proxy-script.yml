@@ -2,7 +2,7 @@ name: Update Proxy Dataset
 
 on:
   schedule:
-    - cron: '0 0,6,12,18 * *'
+    - cron: '0 0,6,12,18 * * *'
   workflow_dispatch:
 
 jobs:
@@ -20,22 +20,20 @@ jobs:
         if git ls-remote --exit-code origin data &>/dev/null; then
           git fetch origin data
           mkdir -p proxy/merge proxy/dataset/raw proxy/country proxy/bin
-          # Pipeline 1 state
+          # Pipeline 1 (pac + merge) state
           git show origin/data:proxy/share_links.txt                          > proxy/share_links.txt                          2>/dev/null || true
           git show origin/data:proxy/share_link_keys.txt                      > proxy/share_link_keys.txt                      2>/dev/null || true
           git show origin/data:proxy/share_link_health.json                   > proxy/share_link_health.json                   2>/dev/null || true
           git show origin/data:proxy/merge/merge_share_links_filter.txt       > proxy/merge/merge_share_links_filter.txt       2>/dev/null || true
-          # Dataset state
+          # Dataset crawler state
           git show origin/data:proxy/dataset/health.json                      > proxy/dataset/health.json                      2>/dev/null || true
           git show origin/data:proxy/dataset/repo_scores.json                 > proxy/dataset/repo_scores.json                 2>/dev/null || true
           git show origin/data:proxy/dataset/alive.txt                        > proxy/dataset/alive.txt                        2>/dev/null || true
           git show origin/data:proxy/dataset/best_remote.txt                  > proxy/dataset/best_remote.txt                  2>/dev/null || true
-          # Raw pool shards
           for f in $(git ls-tree --name-only origin/data -- proxy/dataset/raw/ 2>/dev/null); do
             mkdir -p "$(dirname "$f")"
             git show "origin/data:$f" > "$f" 2>/dev/null || true
           done
-          # Other state
           git show origin/data:proxy/repositories.txt                         > proxy/repositories.txt                         2>/dev/null || true
           # Country files
           for f in $(git ls-tree --name-only origin/data -- proxy/country/ 2>/dev/null); do
@@ -56,65 +54,93 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    - name: Run proxy dataset crawler
+    # ── Dataset crawler stages (each independent, failures don't block others) ──
+
+    - name: 'Dataset: discover'
+      continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: cd proxy && python -m best discover
+
+    - name: 'Dataset: collect'
+      continue-on-error: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: cd proxy && python -m best collect
+
+    - name: 'Dataset: alive check (every 12h)'
+      continue-on-error: true
       run: |
         HOUR=$(date -u +%H)
-        DAY=$(date -u +%u)  # 1=Monday, 7=Sunday
-
-        cd proxy
-
-        # Every 6h: discover + collect
-        python -m best discover
-        python -m best collect
-
-        # Every 12h (00, 12): alive check
         if [ "$HOUR" = "00" ] || [ "$HOUR" = "12" ]; then
-            python -m best alive
+          cd proxy && python -m best alive
+        else
+          echo "Skipped (not 00/12 UTC)"
         fi
 
-        # Every 6h: best-remote (uses existing alive.txt if no fresh alive check)
-        python -m best best-remote
+    - name: 'Dataset: best-remote'
+      continue-on-error: true
+      run: cd proxy && python -m best best-remote
 
-        # Every 6h: rank
-        python -m best rank
+    - name: 'Dataset: rank'
+      continue-on-error: true
+      run: cd proxy && python -m best rank
 
-        # Weekly Sunday 00:00: maintain
+    - name: 'Dataset: maintain (weekly Sunday)'
+      continue-on-error: true
+      run: |
+        HOUR=$(date -u +%H)
+        DAY=$(date -u +%u)
         if [ "$HOUR" = "00" ] && [ "$DAY" = "7" ]; then
-            python -m best maintain
+          cd proxy && python -m best maintain
+        else
+          echo "Skipped (not Sunday 00 UTC)"
         fi
 
-        # Pipeline 1 (every 12h)
+    # ── Pipeline 1: pac + merge (every 12h, independent of dataset crawler) ──
+
+    - name: 'Pipeline 1: pac + merge (every 12h)'
+      continue-on-error: true
+      run: |
+        HOUR=$(date -u +%H)
         if [ "$HOUR" = "00" ] || [ "$HOUR" = "12" ]; then
-            python main.py
+          cd proxy && python main.py
+        else
+          echo "Skipped (not 00/12 UTC)"
         fi
+
+    # ── Publish: always runs, saves whatever data was produced ──
 
     - name: Publish data to data branch
+      if: always()
       run: |
         git config user.email "kanayuki@163.com"
         git config user.name "kanayuki"
 
-        # Stage generated files
-        mkdir -p /tmp/proxy-data/proxy/merge /tmp/proxy-data/proxy/dataset/raw /tmp/proxy-data/proxy/country /tmp/proxy-data/proxy/bin
-        # Pipeline 1
-        [ -f proxy/share_links.txt ]                          && cp proxy/share_links.txt                          /tmp/proxy-data/proxy/
-        [ -f proxy/share_link_keys.txt ]                      && cp proxy/share_link_keys.txt                      /tmp/proxy-data/proxy/
-        [ -f proxy/share_link_health.json ]                   && cp proxy/share_link_health.json                   /tmp/proxy-data/proxy/
-        [ -f proxy/merge/merge_share_links_filter.txt ]       && cp proxy/merge/merge_share_links_filter.txt       /tmp/proxy-data/proxy/merge/
-        # Dataset
-        [ -f proxy/dataset/health.json ]                      && cp proxy/dataset/health.json                      /tmp/proxy-data/proxy/dataset/
-        [ -f proxy/dataset/repo_scores.json ]                 && cp proxy/dataset/repo_scores.json                 /tmp/proxy-data/proxy/dataset/
-        [ -f proxy/dataset/alive.txt ]                        && cp proxy/dataset/alive.txt                        /tmp/proxy-data/proxy/dataset/
-        [ -f proxy/dataset/best_remote.txt ]                  && cp proxy/dataset/best_remote.txt                  /tmp/proxy-data/proxy/dataset/
-        cp proxy/dataset/raw/*.txt /tmp/proxy-data/proxy/dataset/raw/ 2>/dev/null || true
+        # Stage all generated files to a temp dir
+        mkdir -p /tmp/pd/proxy/merge /tmp/pd/proxy/dataset/raw /tmp/pd/proxy/country /tmp/pd/proxy/bin
+
+        # Pipeline 1 state
+        [ -f proxy/share_links.txt ]                    && cp proxy/share_links.txt                    /tmp/pd/proxy/
+        [ -f proxy/share_link_keys.txt ]                && cp proxy/share_link_keys.txt                /tmp/pd/proxy/
+        [ -f proxy/share_link_health.json ]             && cp proxy/share_link_health.json             /tmp/pd/proxy/
+        [ -f proxy/merge/merge_share_links_filter.txt ] && cp proxy/merge/merge_share_links_filter.txt /tmp/pd/proxy/merge/
+
+        # Dataset state
+        [ -f proxy/dataset/health.json ]       && cp proxy/dataset/health.json       /tmp/pd/proxy/dataset/
+        [ -f proxy/dataset/repo_scores.json ]  && cp proxy/dataset/repo_scores.json  /tmp/pd/proxy/dataset/
+        [ -f proxy/dataset/alive.txt ]         && cp proxy/dataset/alive.txt         /tmp/pd/proxy/dataset/
+        [ -f proxy/dataset/best_remote.txt ]   && cp proxy/dataset/best_remote.txt   /tmp/pd/proxy/dataset/
+        cp proxy/dataset/raw/*.txt /tmp/pd/proxy/dataset/raw/ 2>/dev/null || true
+
         # Other
-        [ -f proxy/repositories.txt ]                         && cp proxy/repositories.txt                         /tmp/proxy-data/proxy/
-        cp proxy/country/*.txt /tmp/proxy-data/proxy/country/ 2>/dev/null || true
+        [ -f proxy/repositories.txt ] && cp proxy/repositories.txt /tmp/pd/proxy/
+        cp proxy/country/*.txt /tmp/pd/proxy/country/ 2>/dev/null || true
+
         # Binaries
-        [ -f proxy/bin/versions.json ] && cp proxy/bin/versions.json /tmp/proxy-data/proxy/bin/
+        [ -f proxy/bin/versions.json ] && cp proxy/bin/versions.json /tmp/pd/proxy/bin/
         for f in proxy/bin/xray proxy/bin/xray.exe proxy/bin/sing-box proxy/bin/sing-box.exe proxy/bin/mihomo proxy/bin/mihomo.exe; do
-          [ -f "$f" ] && cp "$f" /tmp/proxy-data/proxy/bin/
+          [ -f "$f" ] && cp "$f" /tmp/pd/proxy/bin/
         done
 
         # Worktree for data branch
@@ -126,24 +152,9 @@ jobs:
 
         cd /tmp/data-wt
         mkdir -p proxy/merge proxy/dataset/raw proxy/country proxy/bin
-        # Pipeline 1
-        [ -f /tmp/proxy-data/proxy/share_links.txt ]                          && cp /tmp/proxy-data/proxy/share_links.txt                          proxy/
-        [ -f /tmp/proxy-data/proxy/share_link_keys.txt ]                      && cp /tmp/proxy-data/proxy/share_link_keys.txt                      proxy/
-        [ -f /tmp/proxy-data/proxy/share_link_health.json ]                   && cp /tmp/proxy-data/proxy/share_link_health.json                   proxy/
-        [ -f /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt ]       && cp /tmp/proxy-data/proxy/merge/merge_share_links_filter.txt       proxy/merge/
-        # Dataset
-        [ -f /tmp/proxy-data/proxy/dataset/health.json ]                      && cp /tmp/proxy-data/proxy/dataset/health.json                      proxy/dataset/
-        [ -f /tmp/proxy-data/proxy/dataset/repo_scores.json ]                 && cp /tmp/proxy-data/proxy/dataset/repo_scores.json                 proxy/dataset/
-        [ -f /tmp/proxy-data/proxy/dataset/alive.txt ]                        && cp /tmp/proxy-data/proxy/dataset/alive.txt                        proxy/dataset/
-        [ -f /tmp/proxy-data/proxy/dataset/best_remote.txt ]                  && cp /tmp/proxy-data/proxy/dataset/best_remote.txt                  proxy/dataset/
-        cp /tmp/proxy-data/proxy/dataset/raw/*.txt proxy/dataset/raw/ 2>/dev/null || true
-        # Other
-        [ -f /tmp/proxy-data/proxy/repositories.txt ]                         && cp /tmp/proxy-data/proxy/repositories.txt                         proxy/
-        cp /tmp/proxy-data/proxy/country/*.txt proxy/country/ 2>/dev/null || true
-        [ -f /tmp/proxy-data/proxy/bin/versions.json ] && cp /tmp/proxy-data/proxy/bin/versions.json proxy/bin/
-        for f in xray xray.exe sing-box sing-box.exe mihomo mihomo.exe; do
-          [ -f "/tmp/proxy-data/proxy/bin/$f" ] && cp "/tmp/proxy-data/proxy/bin/$f" proxy/bin/
-        done
+
+        # Copy everything from staging
+        cp -r /tmp/pd/proxy/* proxy/ 2>/dev/null || true
 
         git add -A
         git diff --cached --quiet && echo "No changes to commit" && exit 0
