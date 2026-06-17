@@ -11561,13 +11561,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 949.2,
+    "latency_ms": 544.9,
     "latency_history": [
-      319.9,
       531.2,
       549.6,
       387.6,
-      949.2
+      949.2,
+      544.9
     ],
     "first_seen": "2026-04-07T07:17:05+00:00",
     "dormant": false,
@@ -68155,13 +68155,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 324.8,
+    "latency_ms": 1114.0,
     "latency_history": [
-      565.1,
       503.1,
       1481.9,
       446.1,
-      324.8
+      324.8,
+      1114.0
     ],
     "first_seen": "2026-05-15T08:48:47+00:00",
     "dormant": false,
@@ -71505,13 +71505,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 5195.7,
+    "latency_ms": 604.8,
     "latency_history": [
-      2323.1,
       1311.2,
       5012.0,
       508.3,
-      5195.7
+      5195.7,
+      604.8
     ],
     "first_seen": "2026-05-16T19:03:51+00:00",
     "dormant": false,
@@ -74633,13 +74633,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 296.4,
+    "latency_ms": 4788.6,
     "latency_history": [
-      506.0,
       526.3,
       1021.2,
       483.6,
-      296.4
+      296.4,
+      4788.6
     ],
     "first_seen": "2026-05-18T15:31:18+00:00",
     "dormant": false,
@@ -75121,13 +75121,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 3900.4,
+    "latency_ms": 1407.5,
     "latency_history": [
-      553.5,
       2407.0,
       4029.5,
       390.2,
-      3900.4
+      3900.4,
+      1407.5
     ],
     "first_seen": "2026-05-19T09:41:14+00:00",
     "dormant": false,
@@ -91064,13 +91064,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 327.7,
+    "latency_ms": 1041.4,
     "latency_history": [
-      538.6,
       488.4,
       531.0,
       539.3,
-      327.7
+      327.7,
+      1041.4
     ],
     "first_seen": "2026-06-05T14:49:49+00:00",
     "dormant": false,
@@ -91782,13 +91782,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 339.8,
+    "latency_ms": 1799.5,
     "latency_history": [
-      489.1,
       487.0,
       731.9,
       466.2,
-      339.8
+      339.8,
+      1799.5
     ],
     "first_seen": "2026-06-06T13:41:31+00:00",
     "dormant": false,
@@ -91917,13 +91917,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 382.8,
+    "latency_ms": 621.9,
     "latency_history": [
-      1334.3,
       896.5,
       1098.5,
       451.1,
-      382.8
+      382.8,
+      621.9
     ],
     "first_seen": "2026-06-06T19:22:11+00:00",
     "dormant": false,
@@ -92964,13 +92964,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 75.0,
+    "latency_ms": 84.6,
     "latency_history": [
-      77.5,
       59.2,
       94.6,
       248.0,
-      75.0
+      75.0,
+      84.6
     ],
     "first_seen": "2026-06-08T15:51:37+00:00",
     "dormant": false,
@@ -92987,13 +92987,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 552.5,
+    "latency_ms": 564.3,
     "latency_history": [
-      548.8,
       1039.0,
       494.2,
       4426.1,
-      552.5
+      552.5,
+      564.3
     ],
     "first_seen": "2026-06-08T15:51:37+00:00",
     "dormant": false,
@@ -93255,13 +93255,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 345.0,
+    "latency_ms": 555.8,
     "latency_history": [
-      338.4,
       556.6,
       540.0,
       507.3,
-      345.0
+      345.0,
+      555.8
     ],
     "first_seen": "2026-06-09T03:27:55+00:00",
     "dormant": false,
@@ -93901,13 +93901,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 319.2,
+    "latency_ms": 892.6,
     "latency_history": [
-      511.5,
       378.5,
       493.2,
       380.2,
-      319.2
+      319.2,
+      892.6
     ],
     "first_seen": "2026-06-09T14:49:41+00:00",
     "dormant": false,
@@ -93988,13 +93988,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 329.9,
+    "latency_ms": 1149.9,
     "latency_history": [
-      2365.3,
       498.6,
       514.7,
       439.1,
-      329.9
+      329.9,
+      1149.9
     ],
     "first_seen": "2026-06-09T20:06:25+00:00",
     "dormant": false,
@@ -97289,13 +97289,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 318.2,
+    "latency_ms": 606.8,
     "latency_history": [
-      786.0,
       507.8,
       1323.0,
       661.2,
-      318.2
+      318.2,
+      606.8
     ],
     "first_seen": "2026-06-13T08:57:32+00:00",
     "dormant": false,
@@ -97573,13 +97573,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 595.8,
+    "latency_ms": 701.1,
     "latency_history": [
-      630.9,
       675.9,
       665.4,
       873.4,
-      595.8
+      595.8,
+      701.1
     ],
     "first_seen": "2026-06-14T04:01:13+00:00",
     "dormant": false,
@@ -97764,13 +97764,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 421.1,
+    "latency_ms": 510.9,
     "latency_history": [
-      376.5,
       486.0,
       1412.7,
       470.2,
-      421.1
+      421.1,
+      510.9
     ],
     "first_seen": "2026-06-14T09:33:31+00:00",
     "dormant": false,
@@ -98176,13 +98176,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 2076.2,
+    "latency_ms": 846.0,
     "latency_history": [
-      497.3,
       631.7,
       673.2,
       533.1,
-      2076.2
+      2076.2,
+      846.0
     ],
     "first_seen": "2026-06-14T14:01:33+00:00",
     "dormant": false,
@@ -98313,13 +98313,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 606.2,
+    "latency_ms": 699.3,
     "latency_history": [
-      1076.6,
       470.6,
       764.4,
       591.2,
-      606.2
+      606.2,
+      699.3
     ],
     "first_seen": "2026-06-15T04:13:39+00:00",
     "dormant": false,
@@ -98746,13 +98746,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 79.2,
+    "latency_ms": 56.1,
     "latency_history": [
-      51.6,
       74.5,
       62.8,
       136.4,
-      79.2
+      79.2,
+      56.1
     ],
     "first_seen": "2026-06-15T12:12:36+00:00",
     "dormant": false,
@@ -98769,13 +98769,13 @@
     "fail_count": 0,
     "last_verified": "2026-06-15T12:14:57+00:00",
     "last_ok": "2026-06-15T12:14:57+00:00",
-    "latency_ms": 604.4,
+    "latency_ms": 432.0,
     "latency_history": [
-      636.7,
       432.6,
       434.7,
       532.9,
-      604.4
+      604.4,
+      432.0
     ],
     "first_seen": "2026-06-15T12:12:36+00:00",
     "dormant": false,
@@ -100361,6 +100361,40 @@
     "latency_ms": 0.0,
     "latency_history": [],
     "first_seen": "2026-06-17T10:54:29+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "0817febacf2070b9701b8a9a8ed8bc955015dea5caa0f4697dc011db130af96b": {
+    "link": "ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTp5dTJYblNQV2htUWp4bjgzaUpBM0RB@148.253.208.76:3478#%E8%8B%B1%E5%9B%BD+V2CROSS.COM",
+    "protocol": "ss",
+    "host": "148.253.208.76",
+    "port": 3478,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-06-17T15:29:40+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "bd5de6b2a99eef17eb443347cd5f9aca174bf93dd21c7287e0c66f9ebf7320e6": {
+    "link": "vless://eeb6823c-b926-4ea2-866a-5542edd26e59@cloudflare.czkcdn.cn:443?path=/&security=tls&encryption=none&insecure=1&host=t1s1.rittbo.kdns.fr&type=ws&allowInsecure=1&sni=t1s1.rittbo.kdns.fr#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9",
+    "protocol": "vless",
+    "host": "cloudflare.czkcdn.cn",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-06-17T15:29:40+00:00",
     "dormant": false,
     "dormant_since": ""
   }
