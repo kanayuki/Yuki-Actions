@@ -851,3 +851,14 @@ trojan://e0195c73018d597b1c2f0ea89d8676ae@95.40.59.3:29642?allowInsecure=1&sni=w
 trojan://e0195c73018d597b1c2f0ea89d8676ae@16.163.104.155:29642?allowInsecure=1&sni=www.nintendogames.net#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A12%7C%40ripaojiedian
 trojan://BxceQaOe@18.166.66.17:41421?allowInsecure=1&sni=t.me%252Fripaojiedian#%F0%9F%87%B8%F0%9F%87%AC%20%E6%96%B0%E5%8A%A0%E5%9D%A13%7C%40ripaojiedian
 trojan://BxceQaOe@16.163.107.6:39959?allowInsecure=1&sni=t.me%2Fripaojiedian#%F0%9F%87%BA%F0%9F%87%B8%20%E7%BE%8E%E5%9B%BD3%7C%40ripaojiedian
+vless://394f6981-a782-4779-9a85-e6cf22935d93@143.244.45.53:8443?encryption=none&security=tls&sni=ams1.fromblancwithlove.com&insecure=0&allowInsecure=0&type=tcp&headerType=none#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+trojan://humanity@199.181.197.212:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&&host=www.calmloud.com&type=ws&&sni=www.calmloud.com#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+trojan://MiTiVPN@151.101.110.219:443?path=/ed&security=tls&alpn=http/1.1&insecure=1&host=mitivpn.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=1&sni=global.fastly.com#%E6%97%A5%E6%9C%AC+%E4%B8%9C%E4%BA%ACFastly%E8%8A%82%E7%82%B9
+vless://394f6981-a782-4779-9a85-e6cf22935d93@185.229.191.13:8443?encryption=none&security=tls&sni=ams1.fromblancwithlove.com&fp=chrome&insecure=1&allowInsecure=1&type=tcp&headerType=none#%E8%8D%B7%E5%85%B0+V2CROSS.COM
+vless://a2fde8c9-00ee-4f7f-af28-38b669623b99@91.186.215.199:443?security=reality&encryption=none&pbk=3crBPZzqZ_QFzPD0mde5jmuqkVokupWB8Nz_xehlmic&headerType=none&fp=chrome&type=tcp&sni=www.microsoft.com&sid=972f5c0c231aaeab#%E4%BC%8A%E6%9C%97+V2CROSS.COM
+vless://394f6981-a782-4779-9a85-e6cf22935d93@143.244.45.50:8443?encryption=none&security=tls&sni=ams1.fromblancwithlove.com&insecure=0&allowInsecure=0&type=tcp&headerType=none#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+trojan://humanity@104.16.71.213:443?path=/assignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://394f6981-a782-4779-9a85-e6cf22935d93@185.229.191.157:8443?encryption=none&security=tls&sni=ams1.fromblancwithlove.com&insecure=0&allowInsecure=0&type=tcp&headerType=none#%E8%8D%B7%E5%85%B0+V2CROSS.COM
+vless://394f6981-a782-4779-9a85-e6cf22935d93@185.229.191.180:8443?encryption=none&security=tls&sni=ams1.fromblancwithlove.com&type=tcp#%E8%8D%B7%E5%85%B0+V2CROSS.COM
+trojan://humanity@172.64.147.223:443?type=ws&security=tls&path=/assignment&sni=www.multiplydose.com&fp=chrome&insecure=0&allowInsecure=0#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@8.6.112.6:443?path=%2Fassignment&security=tls&alpn=http%2F1.1&insecure=0&host=www.calmloud.com&fp=chrome&type=ws&allowInsecure=0&sni=www.calmloud.com#%E7%BE%8E%E5%9B%BD+%E5%BE%97%E5%85%8B%E8%90%A8%E6%96%AF%E5%B7%9E%E8%BE%BE%E6%8B%89%E6%96%AFCloudflare+Warp%E8%8A%82%E7%82%B9
