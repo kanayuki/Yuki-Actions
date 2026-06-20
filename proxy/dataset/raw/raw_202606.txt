@@ -919,3 +919,5 @@ vless://1f4c983e-382c-d2fa-b2dc-7981f02b34de@77.73.131.154:443?security=reality&
 vless://e5cc16a6-ea42-46b2-82ae-ad2157e1641b@104.16.72.251:443?security=tls&alpn=&fp=chrome&sni=hhlfy.twiladaphne.ndjp.net&type=ws&path=/&host=hhlfy.twiladaphne.ndjp.net#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 vless://dc8eccdb-ecfa-435f-9ac1-5dc4882e7b51@188.114.97.6:80?type=ws&security=none&host=de.vpnbase.net&path=/http#%E5%B7%B4%E8%A5%BF%E5%9C%A3%E4%BF%9D%E7%BD%97+CloudFlare%E8%8A%82%E7%82%B9
 vless://27f2ae85-3e15-4a9a-9c71-49ee032e7b26@217.28.48.29:25752?security=none&type=tcp&packetEncoding=xudp&encryption=none#%E6%8B%89%E8%84%B1%E7%BB%B4%E4%BA%9A+V2CROSS.COM
+trojan://n-S5Kuz58YgwljisuLEJltip2OWf1ourWz@185.137.157.154:443?security=tls&sni=fra154.clientfirewall.click#%E7%BD%97%E9%A9%AC%E5%B0%BC%E4%BA%9A+V2CROSS.COM
+vless://da4f61d1-8ca2-4bbf-a79a-1dfff04073e6@1.sdwan.realm-sync.com:54387?security=reality&type=tcp&packetEncoding=xudp&sni=swcdn.apple.com&fp=chrome&flow=xtls-rprx-vision&sid=f810&pbk=qqb-vrDIPSrFIithw497zM-LmGUEcTo-dqAjhHi6kyY&encryption=none#%E7%91%9E%E5%A3%AB+V2CROSS.COM
