@@ -89,3 +89,9 @@ vless://19668b6f-e215-41e6-8102-b8d29fb5b8ae@dtac.exp.dog:80?security=none&type=
 vless://54bb59cf-96fc-4a66-8488-fa2391f2e650@190.97.165.84:448?flow=xtls-rprx-vision&fp=chrome&host=www.cloudflare.com&path=/&pbk=XxCsLlJ3kJJa2MiPHS3FlF0DyAS9TkQkn8lfCVZgDQw&security=reality&sid=cd2d4a8f08aa985d&sni=www.cloudflare.com&type=tcp#%E5%B7%B4%E6%8B%BF%E9%A9%AC+V2CROSS.COM
 vless://4f375fb4-3c95-425f-bc7b-8085487a6f3c@31.76.11.46.cdn-one.org:443?type=ws&security=tls&path=%2F52872%2FBNzG4FvIAr&host=31.76.11.46.cdn-one.org&fp=chrome#DE%20-%20zhuhai.uk
 vless://5c192fd7-ef98-4112-a20c-129108fcd7e9@217.60.193.1:443?type=tcp&security=tls&sni=ddc-akn.astralweb.tech&fp=firefox#DE%20-%20zhuhai.uk%2003
+trojan://51a0af77-a60c-4d9b-81a4-f50e1b38d90b@jumao91.shop:2096?allowInsecure=1&host=jumao91.shop&path=%2Fproxyip%3D45.207.156.255&security=tls&sni=jumao91.shop&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://c7e9c591-2764-423a-afca-efbd010fd396@217.144.190.14:2053?encryption=none&security=tls&sni=forfreeuse.sub-flow.online&fp=chrome&insecure=0&allowInsecure=0&type=ws&host=forfreeuse.sub-flow.online&path=%2F#%E4%BF%84%E7%BD%97%E6%96%AF+V2CROSS.COM
+vless://dc8eccdb-ecfa-435f-9ac1-5dc4882e7b51@104.16.72.41:80?path=%2Fhttp&security=none&encryption=none&host=de.vpnbase.net&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://6a248b82-ad33-4a8f-8ef7-cdd0ac26c261@207.2.120.229:443?type=tcp&security=reality&sni=sw-new.boxypn.com&flow=xtls-rprx-vision&pbk=SUTv6bVuL6TnWcPGf03-1QFmJ8Q_ISoA1WIajvct32M&fp=firefox#SE%20-%20zhuhai.uk
+vless://8fb65472-5957-4f64-ba2d-b5812b2f155a@157.137.209.208:62145?type=tcp&security=none#CO%20-%20zhuhai.uk
+hysteria2://300f8c21-6341-4503-a5db-c13d331c63c8@hg1.yuanbaojc.site:20801?sni=127.0.0.1&allowInsecure=1#KR%20-%20zhuhai.uk
