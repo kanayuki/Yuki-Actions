@@ -11,15 +11,13 @@ from . import mieru
 from . import singbox
 from . import xray
 
-from util import console, get_hash
+from .util import console, get_hash
 from core.parse import parse_link
 from core.verify import filter_valid_links, verify_links
 
 
-path = Path(".") / "proxy"
-keyfile = path / "share_link_keys.txt"
-link_file = path / "share_links.txt"
-health_file = path / "share_link_health.json"
+link_file = Path(__file__).parent.parent  / "share_links.txt"
+
 
 
 def _health_key(link: str) -> str:

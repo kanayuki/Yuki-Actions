@@ -1,10 +1,10 @@
 import json
 import base64
 
-from util import gen_remark, load_all_config, get_hash
+from .util import gen_remark, load_all_config, get_hash
 from pathlib import Path
 
-CONFIG_FILE = Path(".") / "proxy" / "pac" / "mieru_config_links.txt"
+CONFIG_FILE = Path(__file__).parent / "mieru_config_links.txt"
 
 postfix = "mieru"
 

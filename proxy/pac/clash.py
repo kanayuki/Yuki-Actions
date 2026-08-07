@@ -3,11 +3,11 @@ import json
 import urllib
 
 import yaml
-from util import arrange_links, console, gen_remark, get_config, load_all_config, get_hash
+from .util import arrange_links, console, gen_remark, get_config, load_all_config, get_hash
 
 from pathlib import Path
 
-CONFIG_FILE = Path(".") / "proxy" / "pac" / "clash_config_links.txt"
+CONFIG_FILE = Path(__file__).parent / "clash_config_links.txt"
 
 
 postfix = "clash"

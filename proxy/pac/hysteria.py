@@ -1,10 +1,10 @@
 import json
 
-from util import arrange_links, console, gen_remark, load_all_config, get_hash
+from .util import arrange_links, console, gen_remark, load_all_config, get_hash
 
 from pathlib import Path
 
-CONFIG_FILE = Path(".") / "proxy" / "pac" / "hysteria_config_links.txt"
+CONFIG_FILE = Path(__file__).parent / "hysteria_config_links.txt"
 
 postfix = "hysteria"
 

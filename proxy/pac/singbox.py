@@ -1,10 +1,10 @@
 import json
 
 import yaml
-from util import arrange_links, console, gen_remark, get_config, load_all_config, get_hash
+from .util import arrange_links, console, gen_remark, get_config, load_all_config, get_hash
 from pathlib import Path
 
-CONFIG_FILE = Path(".") / "proxy" / "pac" / "singbox_config_links.txt"
+CONFIG_FILE = Path(__file__).parent / "singbox_config_links.txt"
 
 
 postfix = "singbox"
@@ -149,8 +149,12 @@ def gen_share_link(config: dict) -> str | None:
 def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
     # print("获取所有clash配置的分享链接")
-
-    link = gen_share_link(json.loads(config))
+    try:
+        config = json.loads(config)
+    except json.JSONDecodeError as e:
+        print(f"Error loading JSON: {e}")
+        return None
+    link = gen_share_link(config)
     # print(f"clash 分享链接：{link}")
     return link
 
