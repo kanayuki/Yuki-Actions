@@ -650,3 +650,10 @@ vless://6202b230-417c-4d8e-b624-0f71afa9c75d@88.216.66.30:8880?security=none&typ
 vless://b6c29ae7-4748-4049-b642-b695c0d2c776@159.194.226.13:2053?path=%2F&type=ws#%E7%91%9E%E5%85%B8+V2CROSS.COM
 vmess://eyJhZGQiOiAiMzY2LTEwOTUucmFiYml0cHJvLWluLTMuY29tIiwgImFpZCI6ICIwIiwgImFscG4iOiAiIiwgImZwIjogIiIsICJob3N0IjogIiIsICJpZCI6ICJlMzUxZDZkOC1jMTY3LTNlMDctOGZkYS0zZjJmNGVjMDc2MGIiLCAibmV0IjogInRjcCIsICJwYXRoIjogIiIsICJwb3J0IjogIjI5MDA5IiwgInBzIjogIlx1N2Y4ZVx1NTZmZCBWMkNST1NTLkNPTSIsICJzY3kiOiAiYXV0byIsICJzZWN1cml0eSI6ICJhdXRvIiwgInNuaSI6ICIiLCAidGxzIjogIiIsICJ0eXBlIjogIm5vbmUiLCAidiI6ICIyIn0=
 vless://03707fb7-0990-440f-88f6-b0e0f7242a38@104.16.75.44:443?security=tls&encryption=none&insecure=0&type=ws&allowInsecure=0&sni=de-new.ariyuz.org#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+anytls://5d8bf6d0-73ed-46e4-8571-91e2b9d1d228@app1.myzxdy.top:40217/?sni=s.hshssh.com&insecure=1&udp=1#SG%20-%20zhuhai.uk
+anytls://13f0acfa-38c1-4e82-a758-583aa31740df@us62.jdoanst2026.com:443/?sni=us62.jdoanst2026.com&udp=1#SG%20-%20zhuhai.uk%2002
+vless://fb957ee2-2ca0-43f3-ab86-724a9ca0b628@27.44.127.166:49356?type=tcp&security=tls&sni=dmla.huaweiyouxuan.com&flow=xtls-rprx-vision&allowInsecure=1#US%20-%20zhuhai.uk%2006
+vless://47975fcf-1f4c-4808-9012-114569b081e4@2.56.178.136:443?type=tcp&security=reality&sni=userapi.com&flow=xtls-rprx-vision&pbk=nTyGEX99oLzIlXTD12u9fvk2rsByCP2XAjoskFV2Qx8&sid=7b2e9f4a1c830d5e&fp=firefox&allowInsecure=1#DE%20-%20zhuhai.uk
+trojan://humanity@104.16.174.14:443?fp=chrome&path=%2Fassignment&security=tls&sni=www.ignitelimit.com&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://06d44c57-8e1a-41f4-b9c4-65d35869e078@pl03.skorostnet.space:13868?encryption=none&type=tcp&security=reality&headerType=none&sni=wp.pl&fp=chrome&insecure=1&allowInsecure=1&pbk=YxGdcVKnOjKUtaG-E68lzI_rd9DI5RvsbLY0qyMFX2w&sid=e852dc&flow=xtls-rprx-vision#%E7%88%B1%E5%B0%94%E5%85%B0+V2CROSS.COM
+vless://363202dd-0521-46b4-b4e2-443dfbaa2ce1@162.159.140.78:8880?security=none&type=ws&path=/pyip=ProxyIP.KR.CMLiussss.net&host=flat-heart-b60a.401-306.workers.dev&packetEncoding=xudp&encryption=none#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
