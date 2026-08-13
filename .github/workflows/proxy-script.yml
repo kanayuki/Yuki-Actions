@@ -2,7 +2,7 @@ name: Update Proxy Dataset
 
 on:
   schedule:
-    - cron: '0 0,6,12,18 * * *'
+    - cron: '0 */3 * * *'
   workflow_dispatch:
 
 jobs:
@@ -106,17 +106,21 @@ jobs:
           echo "Skipped (not Sunday 00 UTC)"
         fi
 
-    # ── PAC pipeline (independent, every 12h) ──
+    # ── PAC pipeline (independent, every 3h) ──
 
-    - name: 'PAC pipeline (every 6h)'
+    - name: 'PAC pipeline (every 3h)'
       continue-on-error: true
       run: |
-        HOUR=$(date -u +%H)
-        if [ "$HOUR" = "00" ] || [ "$HOUR" = "6" ]; then
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          echo "Manual trigger, running PAC directly"
           python -m proxy pac
         else
-          echo "Skipped (not 00/6 UTC)"
-          python -m proxy pac
+          HOUR=$(date -u +%H)
+          if [ $((HOUR % 3)) -eq 0 ]; then
+            python -m proxy pac
+          else
+            echo "Skipped (not 0/3/6/9/12/15/18/21 UTC)"
+          fi
         fi
 
     # ── Publish: always runs, saves whatever data was produced ──
