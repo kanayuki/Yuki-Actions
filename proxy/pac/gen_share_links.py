@@ -29,11 +29,11 @@ def _health_key(link: str) -> str:
 
 
 def _load_health() -> dict[str, int]:
-    if health_file.exists():
-        try:
-            return json.loads(health_file.read_text(encoding="utf-8"))
-        except Exception:
-            pass
+    # if health_file.exists():
+    #     try:
+    #         return json.loads(health_file.read_text(encoding="utf-8"))
+    #     except Exception:
+    #         pass
     return {}
 
 
@@ -77,7 +77,7 @@ def update() -> None:
     # ── 全量验证 ───────────────────────────────────────────
     console.print(Rule("[bold cyan]全量验证[/bold cyan]"))
     results = verify_links(all_links, timeout=5.0, concurrency=64)
-    result_map = {r.link: r for r in results}
+    # result_map = {r.link: r for r in results}
 
     # 更新连续失败计数
     health = _load_health()
