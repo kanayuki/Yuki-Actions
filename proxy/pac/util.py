@@ -28,7 +28,7 @@ def today():
 
 
 def get_config(url: str) -> str | None:
-    console.print(f"  [dim]{url}[/dim]")
+    console.print(f"[dim]{url}[/dim]")
     try:
         resp = requests.get(url, headers=_HEADERS, verify=False, timeout=15)
         console.print(f"[dim]{resp.status_code} {resp.reason}[/dim]")

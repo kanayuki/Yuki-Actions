@@ -1,9 +1,16 @@
 import base64
 import json
-import urllib
+from urllib.parse import quote
 
 import yaml
-from .util import arrange_links, console, gen_remark, get_config, load_all_config, get_hash
+from .util import (
+    arrange_links,
+    console,
+    gen_remark,
+    get_config,
+    load_all_config,
+    get_hash,
+)
 
 from pathlib import Path
 
@@ -255,7 +262,7 @@ def gen_hysteria_share_link(proxy) -> str:
     # 提取必要字段
     server = proxy["server"]
     port = proxy["port"]
-    auth_str = proxy["auth-str"]
+    auth_str = quote(proxy["auth-str"], safe="")
     # name = proxy['name']
     name = gen_remark(server, postfix)
 
@@ -371,7 +378,6 @@ def get_all_links(config: str) -> str:
     # print("获取所有clash配置的分享链接")
 
     res = gen_share_link(yaml.safe_load(config))
-    
 
     # print(f"clash 分享链接：{link}")
     return res
