@@ -270,7 +270,8 @@ def gen_hysteria_share_link(proxy) -> str:
         alpn = ",".join(proxy["alpn"])  # 将数组转为逗号分隔的字符串
         params.append(f"alpn={alpn}")
     if proxy.get("skip-cert-verify"):
-        params.append(f"insecure={1 if proxy['skip-cert-verify'] else 0}")
+        # params.append(f"insecure={1 if proxy['skip-cert-verify'] else 0}")
+        params.append(f"allowInsecure={1 if proxy['skip-cert-verify'] else 0}")
 
     # 构建参数部分
     param_str = "&".join(params)
