@@ -28,13 +28,13 @@ def today():
 
 
 def get_config(url: str) -> str | None:
-    console.print(f"  [dim]{url}[/dim]", end="  ")
+    console.print(f"  [dim]{url}[/dim]")
     try:
         resp = requests.get(url, headers=_HEADERS, verify=False, timeout=15)
+        console.print(f"[dim]{resp.status_code} {resp.reason}[/dim]")
         if resp.status_code == 200:
-            console.print("[green]✓[/green]")
+            # console.print("[green]✓[/green]")
             return resp.text
-        console.print(f"[red]✗ {resp.status_code} {resp.reason}[/red]")
     except Exception as e:
         console.print(f"[red]✗ {e}[/red]")
     return None
@@ -55,11 +55,14 @@ def load_all_config(file: str):
                 if config is None:
                     console.print(f"  [red]✗[/red] Failed to fetch config from {url}")
                     continue
-                link = func(config, *args, **kwargs)
-                if link is None:
+                res = func(config, *args, **kwargs)
+                if res is None:
                     console.print(f"  [yellow]⚠[/yellow] Failed to parse share link from {url}")
                     continue
-                links.append(link)
+                elif  isinstance(res, str):
+                    links.append(res)
+                elif isinstance(res, list):
+                    links.extend(res)
             return links
 
         return wrapper

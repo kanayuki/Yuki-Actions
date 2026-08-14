@@ -145,15 +145,54 @@ def gen_share_link(config: dict) -> str | None:
     return None
 
 
+def split_multi_json(raw_text: str) -> list[dict]:
+    """
+    分割多个连续拼接的独立JSON对象 {}{}{}
+    自动处理嵌套 [] {}，返回解析后的字典列表
+    """
+    res = []
+    stack = 0
+    start_idx = None
+
+    for idx, char in enumerate(raw_text):
+        if char == "{":
+            stack += 1
+            if stack == 1:
+                start_idx = idx
+        elif char == "}":
+            stack -= 1
+            if stack == 0 and start_idx is not None:
+                # 截取完整一块JSON字符串
+                json_slice = raw_text[start_idx:idx+1]
+                try:
+                    data = json.loads(json_slice)
+                    res.append(data)
+                except json.JSONDecodeError as e:
+                    print(f"JSON解析失败：{e}")
+                start_idx = None
+    return res
+
 @load_all_config(CONFIG_FILE)
 def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
     # print("获取所有clash配置的分享链接")
-    try:
-        config = json.loads(config)
-    except json.JSONDecodeError as e:
-        print(f"Error loading JSON: {e}")
-        return None
+
+    #NOTE: 临时处理配置重复:{}/n{}，后续需要根据实际情况调整
+    import re
+    if re.search(r"}/n{", config):
+        console.print(f"[yellow]⚠[/yellow] 配置重复，取第一个")
+        
+        all_json_objs = split_multi_json(config)
+        print(f"分割得到 {len(all_json_objs)} 个合法JSON")
+         
+        #NOTE: 20260814, 这里两个JSON配置一样，取第一个
+        config=all_json_objs[0]
+    else:
+        try:
+            config = json.loads(config)
+        except json.JSONDecodeError as e:
+            print(f"Error loading JSON: {e}")
+            return None
     link = gen_share_link(config)
     # print(f"clash 分享链接：{link}")
     return link
