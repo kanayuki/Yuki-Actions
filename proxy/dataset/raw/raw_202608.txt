@@ -1112,3 +1112,4 @@ vless://79dafc6f-e61b-46cf-8a3c-74f6304d230c@freesocks.work:2083?alpn=h2&encrypt
 vless://05cf7b0e-ad1a-42bb-80e7-73ae45b1019a@172.67.201.133:8443?security=tls&type=ws&path=/api/voip/updates/static/x9i2&host=france.io-com-de-dev.org&packetEncoding=xudp&alpn=http/1.1&sni=france.io-com-de-dev.org&fp=chrome&encryption=none#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 vless://6620ef58-9c62-43fe-9596-ff862b200958@200.165.228.47:4100?type=ws&security=none&sni=live.ok.ru&path=%2Fv1&allowInsecure=1#SC%20-%20zhuhai.uk
 ss://cmM0LW1kNToxNGZGUHJiZXpFM0hEWnpzTU9yNg==@138.199.43.159:8080#US%20-%20zhuhai.uk%2008
+vless://3b9eb177-6f0c-4d49-be4a-7e5168569f45@pg-nl2-bot.gigatapbot.top:47822?type=tcp&security=reality&sni=pg-bot.gigatapbot.top&flow=xtls-rprx-vision&pbk=VWhynxStqii0ll4ttnUJWG4Qy9dJFXhZu6Y8OiIO5Vk&sid=c577182abe08e64c&fp=firefox&allowInsecure=1#NL%20-%20zhuhai.uk%2002
