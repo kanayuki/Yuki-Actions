@@ -41,7 +41,11 @@ def get_config(url: str) -> str | None:
 
 
 def load_all_config(file: str):
-    """Decorator: read URLs from file, fetch each config, call func per config."""
+    """Decorator: read URLs from file, fetch each config, call func per config.
+
+    Deduplicates by config content hash: identical configs are skipped entirely
+    (no parse + build overhead).
+    """
 
     def decorator(func):
         @functools.wraps(func)
@@ -50,16 +54,25 @@ def load_all_config(file: str):
                 urls = [u.strip() for u in f.read().splitlines() if u.strip()]
 
             links = []
+            seen = set()
             for url in urls:
+                console.print(f"[dim]{'='*50}[/dim]")
                 config = get_config(url)
                 if config is None:
                     console.print(f"  [red]✗[/red] Failed to fetch config from {url}")
                     continue
+                cfg_hash = get_hash(config)
+                if cfg_hash in seen:
+                    console.print(f"  [dim]↻ duplicate config, skipped[/dim]")
+                    continue
+                seen.add(cfg_hash)
+
+
                 res = func(config, *args, **kwargs)
                 if res is None:
                     console.print(f"  [yellow]⚠[/yellow] Failed to parse share link from {url}")
                     continue
-                elif  isinstance(res, str):
+                elif isinstance(res, str):
                     links.append(res)
                 elif isinstance(res, list):
                     links.extend(res)
@@ -91,13 +104,14 @@ def get_country_code(ip: str = "") -> str:
         return "XX"
 
 
-def arrange_links(links: list[tuple[str, str]]) -> list[str]:
-    """Print a rich table of (key, link) pairs and return deduplicated links."""
+def arrange_links(links: list[str]) -> list[str]:
+    """Print a rich table of links and return deduplicated links."""
     if not links:
         console.print("[yellow]No links found[/yellow]")
         return []
 
-    link_dict = {k: link for k, link in links}
+    # dedup by URL hash
+    link_dict = {get_hash(link): link for link in links}
 
     table = Table(title="分享链接", show_lines=False, header_style="bold cyan")
     table.add_column("#", style="dim", justify="right", width=4)
@@ -129,6 +143,58 @@ def gen_remark(address: str, postfix: str = "") -> str:
 
 def get_hash(string: str) -> str:
     return hashlib.sha256(string.encode()).hexdigest()
+
+
+# ── 共享链接文件路径 ──
+_link_file = Path(__file__).parent.parent / "share_links.txt"
+_keyfile = Path(__file__).parent.parent / "share_link_keys.txt"
+
+
+def save_links(links: list[str], label: str = "") -> None:
+    """将链接列表与现有文件合并去重后写入 share_links.txt / share_link_keys.txt。
+
+    去重逻辑：用 hash(url) 做 key，新链接优先（覆盖旧值）。
+
+    Args:
+        links: 分享链接列表
+        label: 日志标签，如 "singbox" / "all"
+    """
+    label = label or "links"
+
+    new_link_dict = {get_hash(url): url for url in links}
+
+    existing_links = []
+    if _link_file.exists():
+        existing_links = [
+            l for l in _link_file.read_text(encoding="utf-8").splitlines() if l.strip()
+        ]
+
+    existing_keys = []
+    if _keyfile.exists():
+        existing_keys = [
+            l for l in _keyfile.read_text(encoding="utf-8").splitlines() if l.strip()
+        ]
+
+    if len(existing_keys) != len(existing_links):
+        console.print(
+            f"  [{label}] 键文件({len(existing_keys)})与链接文件({len(existing_links)})不一致，仅使用新数据"
+        )
+        merged = new_link_dict
+    else:
+        existing_dict = dict(zip(existing_keys, existing_links))
+        merged = {**existing_dict, **new_link_dict}
+
+    console.print(
+        f"  [{label}] 现有 {len(existing_links)} 条 + 新 {len(new_link_dict)} 条 → 合并后 {len(merged)} 条"
+    )
+
+    with open(_link_file, "w", encoding="utf-8") as f:
+        for link in merged.values():
+            f.write(link + "\n")
+
+    with open(_keyfile, "w", encoding="utf-8") as f:
+        for key in merged.keys():
+            f.write(key + "\n")
 
 
 if __name__ == "__main__":

@@ -1,15 +1,20 @@
+import sys
+from pathlib import Path
+
+if __name__ == "__main__" and str(Path(__file__).resolve().parent.parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import json
 import base64
 
-from .util import gen_remark, load_all_config, get_hash
-from pathlib import Path
+from pac.util import arrange_links, gen_remark, load_all_config, save_links
 
 CONFIG_FILE = Path(__file__).parent / "mieru_config_links.txt"
 
 postfix = "mieru"
 
 
-def gen_mieru_share_link(config):
+def build_mieru_link(config):
     """生成Mieru分享链接"""
     # profileName = config["profileName"]
 
@@ -40,12 +45,9 @@ def gen_mieru_share_link(config):
     # mierus://用户名:密码@服务器地址?参数列表
     # mierus://baozi:manlianpenfen@1.2.3.4?handshake-mode=HANDSHAKE_NO_WAIT&mtu=1400&multiplexing=MULTIPLEXING_HIGH&port=6666&port=9998-9999&port=6489&port=4896&profile=default&protocol=TCP&protocol=TCP&protocol=UDP&protocol=UDP
     link = f"{name}:{password}@{ipAddress}?{params_str}"
-    # mierus_link = f"mierus://{link}"
     encoded_link = base64.b64encode(link.encode("utf-8")).decode("utf-8")
     mieru_link = f"mieru://{encoded_link}"
-
-    key = get_hash(f"{name}:{password}@{ipAddress}") 
-    return key, mieru_link
+    return mieru_link
 
 
 @load_all_config(CONFIG_FILE)   
@@ -53,7 +55,7 @@ def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
     try:
         config_dict = json.loads(config)
-        link = gen_mieru_share_link(config_dict.get("profiles")[0])
+        link = build_mieru_link(config_dict.get("profiles")[0])
         return link
     except Exception as e:
         print(f"解析Mieru配置失败: {e}")
@@ -61,6 +63,6 @@ def get_all_links(config: str) -> str:
 
 
 if __name__ == "__main__":
-    # 测试函数
     links = get_all_links()
-    print(links)
+    arrange_links(links)
+    save_links(links, label="mieru")

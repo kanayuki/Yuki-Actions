@@ -1,8 +1,13 @@
-import base64
-import json
+import sys
 from pathlib import Path
 
-from .util import arrange_links, console, gen_remark, load_all_config, get_hash
+if __name__ == "__main__" and str(Path(__file__).resolve().parent.parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+import base64
+import json
+
+from pac.util import arrange_links, console, gen_remark, load_all_config, save_links
 
 
 CONFIG_FILE = Path(__file__).parent / "xray_config_links.txt"
@@ -10,7 +15,7 @@ CONFIG_FILE = Path(__file__).parent / "xray_config_links.txt"
 postfix = "xray"
 
 
-def gen_vless_share_link(config) -> tuple:
+def build_vless_link(config) -> tuple:
     """生成vless分享链接"""
     # vless://ebfdccb6-7416-4b6e-860d-98587344d500@yh1.dtku41.xyz:443?
     # encryption=none&security=tls&sni=lg1.freessr2.xyz&fp=chrome&
@@ -96,13 +101,11 @@ def gen_vless_share_link(config) -> tuple:
     address = (
         f"[{address}]" if ":" in address and not address.startswith("[") else address
     )
-    url = f"{protocol}://{user_id}@{address}:{port}?{query}"
-    key = get_hash(url)
-    url = f"{url}#{remark}"
-    return key, url
+    url = f"{protocol}://{user_id}@{address}:{port}?{query}#{remark}"
+    return url
 
 
-def gen_vmess_share_link(config) -> tuple:
+def build_vmess_link(config) -> tuple:
     """生成vmess分享链接"""
     #     {
     #   "v": "2",
@@ -173,12 +176,10 @@ def gen_vmess_share_link(config) -> tuple:
     id = base64.urlsafe_b64encode(text.encode()).decode()
 
     url = f"{protocol}://{id}"
-    key = get_hash(f"{protocol}:{address}:{port}:{user['id']}")
-
-    return key, url
+    return url
 
 
-def gen_shadowsocks_share_link(config) -> tuple:
+def build_shadowsocks_link(config) -> tuple:
     """生成shadowsocks分享链接"""
     # ss://MjAyMi1ibGFrZTMtYWVzLTI1Ni1nY206b2F0cys3dmRhU09iNE5zeFd3Q0JRbGw0cVR3UHUvZGhwZWdpSUducWQ5Yz0=
     # @www.dtku44.xyz:22335#shadowsocks_20240409
@@ -201,30 +202,28 @@ def gen_shadowsocks_share_link(config) -> tuple:
     text = f"{method}:{password}"
     id = base64.urlsafe_b64encode(text.encode()).decode()
     remark = gen_remark(address, postfix)
-    url = f"{protocol}://{id}@{address}:{port}"
-    key = get_hash(url)
-    url = f"{url}#{remark}"
-    return key, url
+    url = f"{protocol}://{id}@{address}:{port}#{remark}"
+    return url
 
 
 protocol_map = {
-    "vless": gen_vless_share_link,
-    "vmess": gen_vmess_share_link,
-    "shadowsocks": gen_shadowsocks_share_link,
+    "vless": build_vless_link,
+    "vmess": build_vmess_link,
+    "shadowsocks": build_shadowsocks_link,
 }
 
 
-def gen_share_link(config: dict) -> tuple | None:
-    """生成分享链接 vless, vmess, shadowsocks,"""
+def build_link(config: dict) -> str | None:
+    """构建分享链接 vless, vmess, shadowsocks"""
     outbounds: list = config["outbounds"]
     proxy: dict = [item for item in outbounds if item["tag"] == "proxy"][0]
 
     protocol = proxy["protocol"]
 
     if protocol in protocol_map:
-        key, url = protocol_map[protocol](proxy)
-        console.print(f"  [cyan]{protocol}[/cyan]  {url}")
-        return key, url
+        url = protocol_map[protocol](proxy)
+        console.print(f"[cyan]{url}[/cyan]")
+        return url
     else:
         raise ValueError(f"Unsupported protocol: {proxy}")
 
@@ -235,21 +234,13 @@ def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
 
     try:
-        key, link = gen_share_link(json.loads(config))
-        return key, link
+        return build_link(json.loads(config))
     except ValueError as e:
         console.print(f"[red]✗ {e}[/red]")
         return None
 
 
 if __name__ == "__main__":
-    # url = 'https://www.githubip.xyz/Alvin9999/pac2/master/xray/2/config.json'
-    # url = 'https://www.githubip.xyz/Alvin9999/pac2/master/xray/config.json'
-    # config = get_xray_config()
-    # save_config(config)
-
-    arrange_links(get_all_links())
-
-    # 保存到文件
-    # with open(r'D:\Code\Python\practice\v2ray_links.txt', 'w', encoding='utf-8') as f:
-    #     f.write('\n'.join(unique_links))
+    links = get_all_links()
+    arrange_links(links)
+    save_links(links, label="xray")

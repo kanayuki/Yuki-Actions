@@ -1,18 +1,22 @@
+import sys
+from pathlib import Path
+
+if __name__ == "__main__" and str(Path(__file__).resolve().parent.parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import base64
 import json
 from urllib.parse import quote
 
 import yaml
-from .util import (
+from pac.util import (
     arrange_links,
     console,
     gen_remark,
     get_config,
     load_all_config,
-    get_hash,
+    save_links,
 )
-
-from pathlib import Path
 
 CONFIG_FILE = Path(__file__).parent / "clash_config_links.txt"
 
@@ -20,7 +24,7 @@ CONFIG_FILE = Path(__file__).parent / "clash_config_links.txt"
 postfix = "clash"
 
 
-def gen_vless_share_link(config) -> tuple[str, str]:
+def build_vless_link(config) -> tuple[str, str]:
     """生成vless分享链接"""
     # vless://ebfdccb6-7416-4b6e-860d-98587344d500@yh1.dtku41.xyz:443?
     # encryption=none&security=tls&sni=lg1.freessr2.xyz&fp=chrome&
@@ -99,13 +103,11 @@ def gen_vless_share_link(config) -> tuple[str, str]:
     remark = gen_remark(server, postfix)
     # 如果 server 是 IPv6 地址，则需要加上中括号
     server = f"[{server}]" if ":" in server else server
-    url = f"{protocol}://{uuid}@{server}:{port}?{query}"
-    key = get_hash(url)
-    url += f"#{remark}"
-    return key, url
+    url = f"{protocol}://{uuid}@{server}:{port}?{query}#{remark}"
+    return url
 
 
-def gen_vmess_share_link(config) -> str:
+def build_vmess_link(config) -> str:
     """生成vmess分享链接"""
     # {
     #   "v": "2",
@@ -177,11 +179,10 @@ def gen_vmess_share_link(config) -> str:
     id = base64.urlsafe_b64encode(text.encode()).decode()
 
     url = f"{protocol}://{id}"
-    key = get_hash(f"{protocol}:{address}:{port}:{user['id']}")
-    return key, url
+    return url
 
 
-def gen_shadowsocks_share_link(config) -> str:
+def build_shadowsocks_link(config) -> str:
     """生成shadowsocks分享链接"""
     # ss://MjAyMi1ibGFrZTMtYWVzLTI1Ni1nY206b2F0cys3dmRhU09iNE5zeFd3Q0JRbGw0cVR3UHUvZGhwZWdpSUducWQ5Yz0=
     # @www.dtku44.xyz:22335#shadowsocks_20240409
@@ -205,13 +206,11 @@ def gen_shadowsocks_share_link(config) -> str:
     id = base64.urlsafe_b64encode(text.encode()).decode()
 
     remark = gen_remark(address, postfix)
-    url = f"{protocol}://{id}@{address}:{port}"
-    key = get_hash(url)
-    url += f"#{remark}"
-    return key, url
+    url = f"{protocol}://{id}@{address}:{port}#{remark}"
+    return url
 
 
-def gen_trojan_share_link(config) -> str:
+def build_trojan_link(config) -> str:
     """生成trojan分享链接"""
     # trojan://password@server:port#trojan_20240409
     protocol = config["protocol"]
@@ -219,7 +218,7 @@ def gen_trojan_share_link(config) -> str:
     server = settings["servers"][0]
 
 
-def gen_tuic_share_link(proxy) -> str:
+def build_tuic_link(proxy) -> str:
     # TUIC 分享链接格式: tuic://uuid:password@server:port?参数#备注
     uuid = proxy["uuid"]
     password = proxy["password"]
@@ -248,16 +247,11 @@ def gen_tuic_share_link(proxy) -> str:
     server = f"[{server}]" if ":" in server else server
 
     # 生成 TUIC 分享链接
-    tuic_link = f"tuic://{uuid}:{password}@{server}:{port}{param_str}"
-    key = get_hash(tuic_link)
-    tuic_link += f"#{name}"
-
-    # 输出结果
-    # print("TUIC 分享链接:", tuic_link)
-    return key, tuic_link
+    tuic_link = f"tuic://{uuid}:{password}@{server}:{port}{param_str}#{name}"
+    return tuic_link
 
 
-def gen_hysteria_share_link(proxy) -> str:
+def build_hysteria_link(proxy) -> str:
     """生成hysteria分享链接"""
     # 提取必要字段
     server = proxy["server"]
@@ -288,16 +282,11 @@ def gen_hysteria_share_link(proxy) -> str:
     server = f"[{server}]" if ":" in server else server
 
     # 生成 Hysteria 分享链接
-    hysteria_link = f"hysteria2://{auth_str}@{server}:{port}{param_str}"
-    key = get_hash(hysteria_link)
-    hysteria_link += f"#{name}"
-
-    # 输出结果
-    # print("Hysteria2 分享链接:", hysteria_link)
-    return key, hysteria_link
+    hysteria_link = f"hysteria2://{auth_str}@{server}:{port}{param_str}#{name}"
+    return hysteria_link
 
 
-def gen_anytls_share_link(proxy: dict) -> str | None:
+def build_anytls_link(proxy: dict) -> str | None:
     """生成anytls分享链接"""
     # anytls://dongtaiwang.com@fan2.856098.xyz:8443?security=tls&alpn=h2%2Chttp%2F1.1&fp=chrome&allowInsecure=1&type=tcp#333333333333
 
@@ -333,28 +322,23 @@ def gen_anytls_share_link(proxy: dict) -> str | None:
     server = f"[{server}]" if ":" in server else server
 
     # 生成 anytls 分享链接
-    anytls_link = f"anytls://{password}@{server}:{port}{param_str}"
-    key = get_hash(anytls_link)
-    anytls_link += f"#{name}"
-
-    # 输出结果
-    # print("anytls 分享链接:", anytls_link)
-    return key, anytls_link
+    anytls_link = f"anytls://{password}@{server}:{port}{param_str}#{name}"
+    return anytls_link
 
 
 protocol_map = {
-    "vless": gen_vless_share_link,
-    "vmess": gen_vmess_share_link,
-    "shadowsocks": gen_shadowsocks_share_link,
-    "trojan": gen_trojan_share_link,
-    "hysteria": gen_hysteria_share_link,
-    "tuic": gen_tuic_share_link,
-    "anytls": gen_anytls_share_link,
+    "vless": build_vless_link,
+    "vmess": build_vmess_link,
+    "shadowsocks": build_shadowsocks_link,
+    "trojan": build_trojan_link,
+    "hysteria": build_hysteria_link,
+    "tuic": build_tuic_link,
+    "anytls": build_anytls_link,
 }
 
 
-def gen_share_link(config: dict) -> tuple | None:
-    """生成分享链接 vless, vmess, shadowsocks, trojan, hysteria, tuic"""
+def build_link(config: dict) -> str | None:
+    """构建分享链接 vless, vmess, shadowsocks, trojan, hysteria, tuic"""
 
     # 提取第一个 proxy
     proxy = config["proxies"][0]
@@ -363,9 +347,9 @@ def gen_share_link(config: dict) -> tuple | None:
     protocol = proxy["type"].lower()
 
     if protocol in protocol_map:
-        key, url = protocol_map[protocol](proxy)
-        console.print(f"  [cyan]{protocol}[/cyan]  {url}")
-        return key, url
+        url = protocol_map[protocol](proxy)
+        console.print(f"[cyan]{url}[/cyan]")
+        return url
     else:
         print(f"Unsupported protocol: {proxy}")
 
@@ -377,7 +361,7 @@ def get_all_links(config: str) -> str:
     """获取所有可能的配置文件的分享链接"""
     # print("获取所有clash配置的分享链接")
 
-    res = gen_share_link(yaml.safe_load(config))
+    res = build_link(yaml.safe_load(config))
 
     # print(f"clash 分享链接：{link}")
     return res
@@ -389,12 +373,11 @@ def test_vless():
     )
     config = yaml.safe_load(config)
     print(config)
-    link = gen_share_link(config)
+    link = build_link(config)
     print(link)
 
 
 if __name__ == "__main__":
-
-    arrange_links(get_all_links())
-
-    # test_vless()
+    links = get_all_links()
+    arrange_links(links)
+    save_links(links, label="clash")

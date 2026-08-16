@@ -1,16 +1,21 @@
+import sys
+from pathlib import Path
+
+if __name__ == "__main__" and str(Path(__file__).resolve().parent.parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
 import json
 from urllib.parse import quote
 
 import yaml
-from util import (
+from pac.util import (
     arrange_links,
     console,
     gen_remark,
     get_config,
     load_all_config,
-    get_hash,
+    save_links,
 )
-from pathlib import Path
 
 
 CONFIG_FILE = Path(__file__).parent / "singbox_config_links.txt"
@@ -19,7 +24,7 @@ CONFIG_FILE = Path(__file__).parent / "singbox_config_links.txt"
 postfix = "singbox"
 
 
-def gen_hysteria_share_link(proxy: str) -> tuple:
+def build_hysteria_link(proxy: str) -> tuple:
     """生成hysteria分享链接"""
     # {
     #   "type": "hysteria",
@@ -64,16 +69,11 @@ def gen_hysteria_share_link(proxy: str) -> tuple:
     remark = gen_remark(server, postfix)
 
     # 生成 Hysteria 分享链接
-    hysteria_link = f"hysteria2://{auth_str}@{server}:{port}{param_str}"
-    key = get_hash(hysteria_link)
-    hysteria_link = f"{hysteria_link}#{remark}"
-
-    # 输出结果
-    # print("Hysteria2 分享链接:", hysteria_link)
-    return key, hysteria_link
+    hysteria_link = f"hysteria2://{auth_str}@{server}:{port}{param_str}#{remark}"
+    return hysteria_link
 
 
-def gen_vless_share_link(proxy: str) -> tuple:
+def build_vless_link(proxy: str) -> tuple:
     """生成vless分享链接"""
     # vless://ebfdccb6-7416-4b6e-860d-98587344d500@yh1.dtku41.xyz:443?
     # encryption=none&security=tls&sni=lg1.freessr2.xyz&fp=chrome&
@@ -123,19 +123,17 @@ def gen_vless_share_link(proxy: str) -> tuple:
     param_str = f"?{param_str}" or ""
 
     remark = gen_remark(server, postfix)
-    url = f"vless://{uuid}@{server}:{port}{param_str}"
-    key = get_hash(url)
-    url += f"#{remark}"
-    return key, url
+    url = f"vless://{uuid}@{server}:{port}{param_str}#{remark}"
+    return url
 
 
 protocol_map = {
-    "hysteria": gen_hysteria_share_link,
-    "vless": gen_vless_share_link,
+    "hysteria": build_hysteria_link,
+    "vless": build_vless_link,
 }
 
 
-def gen_share_link(config: dict) -> str | None:
+def build_link(config: dict) -> str | None:
     """生成分享链接 vless, vmess, shadowsocks, trojan, hysteria, tuic"""
 
     # 提取第一个 proxy
@@ -146,7 +144,7 @@ def gen_share_link(config: dict) -> str | None:
 
     if protocol in protocol_map:
         url = protocol_map[protocol](proxy)
-        console.print(f"  [cyan]{protocol}[/cyan]  {url}")
+        console.print(f"[cyan]{url}[/cyan]")
         return url
     else:
         print(f"Unsupported protocol: {proxy}")
@@ -176,7 +174,7 @@ def get_all_links(config: str) -> str:
         print(f"Error loading JSON: {e}")
         return None
 
-    link = gen_share_link(config)
+    link = build_link(config)
     # print(f"clash 分享链接：{link}")
     return link
 
@@ -187,12 +185,11 @@ def test_vless():
     )
     config = yaml.safe_load(config)
     print(config)
-    link = gen_share_link(config)
+    link = build_link(config)
     print(link)
 
 
 if __name__ == "__main__":
-    
-    arrange_links(get_all_links())
-
-    # test_vless()
+    links = get_all_links()
+    arrange_links(links)
+    save_links(links, label="singbox")
