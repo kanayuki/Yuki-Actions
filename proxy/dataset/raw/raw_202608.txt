@@ -1351,3 +1351,7 @@ anytls://ac466a42-4623-42ad-a5a4-b747dd8763f9@khhk.zlstar.sbs:32655/?sni=668.zls
 anytls://13f0acfa-38c1-4e82-a758-583aa31740df@yzany01.jdoanst2026.com:45883/?sni=hk35.ascwt179.com#HK%20-%20zhuhai.uk%2004
 vless://423b1d79-08c4-403f-9d5e-c541f791b55f@114.29.238.251:13443?type=tcp&security=reality&sni=auto.cendora.ru&flow=xtls-rprx-vision&pbk=gc9oXe37KCCm3J1dJ03wdGsnxPBdeEkRPOvl_t-vfVM&sid=a7f3c91b2e6d84c0&fp=qq#HK%20-%20zhuhai.uk%2005
 anytls://ac466a42-4623-42ad-a5a4-b747dd8763f9@khhk.zlstar.sbs:56789/?sni=666.zlstar.sbs&insecure=1&udp=1#HK%20-%20zhuhai.uk%2007
+vless://928e6cce-8ced-4243-9a48-a6642edd09b0@202.144.192.76:13779?type=tcp&security=reality&sni=tesla.com&pbk=llTyp52oRXnJmQ3I9UUrmlwbMA79B-wLCRHCu-8dLGg&sid=af1bdd293097b664&fp=chrome#JP%20-%20zhuhai.uk
+vless://d65cc14c-f53f-4fe2-b262-97856601319c@169.40.42.35:443?type=tcp&security=reality&sni=yahoo.com&flow=xtls-rprx-vision&pbk=e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg&sid=c39cc7310a&fp=ios&allowInsecure=1#US%20-%20zhuhai.uk%2005
+vless://d65cc14c-f53f-4fe2-b262-97856601319c@169.40.42.229:443?type=tcp&security=reality&sni=yahoo.com&flow=xtls-rprx-vision&pbk=e2RLf57Li_-MDZGE9ss1BWPgP54mqRb5PfXhW2jcVVg&sid=c39cc7310a&fp=ios#US%20-%20zhuhai.uk%2006
+vless://423b1d79-08c4-403f-9d5e-c541f791b55f@mws.tunnelgate.org:14443?type=ws&security=tls&sni=mws.tunnelgate.org&path=%2Fru&host=mws.tunnelgate.org&allowInsecure=1#RU%20-%20zhuhai.uk
