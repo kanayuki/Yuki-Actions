@@ -70,7 +70,6 @@ vless://fc965ad9-bdd7-4815-ad71-b39ec5972dc1@108.162.192.75:443?encryption=none&
 vless://7270612b-49f6-4b04-999c-34d8263da767@108.162.195.45:443?encryption=none&host=picassooo.info&path=/aymdlws&security=tls&sni=picassooo.info&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 vless://cabbfe13-038b-4dbb-9c45-5079c829abfa@104.26.14.16:8080?security=&encryption=none&host=tr-cd.sublink-vip2.com&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 vless://fc965ad9-bdd7-4815-ad71-b39ec5972dc1@172.64.32.75:443?path=/tsghdws&security=tls&encryption=none&insecure=0&host=octopusss4.com&type=ws&allowInsecure=0&sni=octopusss4.com&brand=@Arvand_soul#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@104.16.71.213:443?path=/assignment&security=tls&insecure=0&host=www.calmlunch.com&type=ws&allowInsecure=0&sni=www.calmlunch.com#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 trojan://humanity@172.64.147.223:443?type=ws&security=tls&path=/assignment&sni=www.multiplydose.com&fp=chrome&insecure=0&allowInsecure=0#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 trojan://humanity@104.18.152.54:443?path=/assignment&security=tls&alpn=h3,h2&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=www.multiplydose.com#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 vless://a7dd651e-902b-4c55-b238-6ec060ec4050@104.21.61.228:2052?path=/eyJqdW5rIjoibkpTdFFJUE5PR3V5dlpNIiwicHJvdG9jb2wiOiJ2bCIsIm1vZGUiOiJwcm94eWlwIiwicGFuZWxJUHMiOlsiNDkuMTIuMjM3LjcxIl19?ed=2560&security=none&encryption=none&host=late-haze-dc16.jokerhosting-ir.workers.dev&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
@@ -98,3 +97,4 @@ vless://e4dfa054-4b6e-405f-c439-6e4f0b6b700b@104.16.247.6:443?type=ws&security=t
 vless://663cf772-829c-4bc6-893d-b7d021d42f5b@172.67.79.74:2083?type=ws&security=tls&sni=vp2.cc.cd&path=%2F&host=vp2.cc.cd&fp=chrome#HK%20-%20zhuhai.uk%2003
 vless://68eee13f-1a7a-4761-b71e-83b997eeccf9@172.64.144.222:443?type=ws&security=tls&sni=l7dix.hyfa.c94.hh.hhyf.kdns.fr&path=%2Fglasspanel%2Fguest000_0_5de14443985f%2F&host=l7dix.hyfa.c94.hh.hhyf.kdns.fr#US%20-%20zhuhai.uk%2007
 vless://7b102311-43fd-4e8f-877e-8090623c101d@172.67.73.19:443?type=ws&security=tls&sni=vp38.cc.cd&path=%2F&host=vp38.cc.cd&fp=chrome#HK%20-%20zhuhai.uk
+vless://eeb6823c-b926-4ea2-866a-5542edd26e59@172.67.79.128:443?security=tls&type=ws&path=/fp&host=t1s1.rittbo.kdns.fr&packetEncoding=xudp&sni=t1s1.rittbo.kdns.fr&fp=chrome&encryption=none#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
