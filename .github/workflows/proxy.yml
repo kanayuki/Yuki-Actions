@@ -1,11 +1,17 @@
-name: Update Proxy Dataset
+name: Update Proxy
 
 on:
   schedule:
     - cron: '0 */3 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: proxy-data
+  cancel-in-progress: false
+
 jobs:
+  # ── Main pipeline: collect -> verify -> output -> maintain ──
+
   update-proxy-data:
     runs-on: ubuntu-latest
 
@@ -32,16 +38,14 @@ jobs:
           git show origin/data:proxy/repositories.txt                         > proxy/repositories.txt                         2>/dev/null || true
           # Country files
           for f in $(git ls-tree --name-only origin/data -- proxy/country/ 2>/dev/null); do
+            mkdir -p "$(dirname "$f")"
             git show "origin/data:$f" > "$f" 2>/dev/null || true
           done
           # Merge output
           git show origin/data:proxy/merge/merge.txt                          > proxy/merge/merge.txt                          2>/dev/null || true
-          # PAC state (independent pipeline)
-          git show origin/data:proxy/share_links.txt                          > proxy/share_links.txt                          2>/dev/null || true
-          git show origin/data:proxy/share_link_keys.txt                      > proxy/share_link_keys.txt                      2>/dev/null || true
-          git show origin/data:proxy/share_link_health.json                   > proxy/share_link_health.json                   2>/dev/null || true
           # Binaries
           for f in $(git ls-tree --name-only origin/data -- proxy/bin/ 2>/dev/null); do
+            mkdir -p "$(dirname "$f")"
             git show "origin/data:$f" > "$f" 2>/dev/null || true
             chmod +x "$f" 2>/dev/null || true
           done
@@ -55,15 +59,17 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
-    # ── Sources: collect from all enabled sources ──
+    - name: 'Update binaries'
+      continue-on-error: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: cd proxy && python core/binary.py --update
 
     - name: 'Collect: all sources'
       continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: python -m proxy collect
-
-    # ── Verify: alive check (every 12h) ──
 
     - name: 'Verify: alive (every 12h)'
       continue-on-error: true
@@ -75,25 +81,17 @@ jobs:
           echo "Skipped (not 00/12 UTC)"
         fi
 
-    # ── Verify: best-remote ──
-
     - name: 'Verify: best-remote'
       continue-on-error: true
       run: python -m proxy verify best-remote
-
-    # ── Output: country ──
 
     - name: 'Output: country'
       continue-on-error: true
       run: python -m proxy output country
 
-    # ── Output: merge ──
-
     - name: 'Output: merge'
       continue-on-error: true
       run: python -m proxy output merge
-
-    # ── Maintenance (weekly Sunday 00 UTC) ──
 
     - name: 'Maintenance (weekly Sunday)'
       continue-on-error: true
@@ -106,32 +104,9 @@ jobs:
           echo "Skipped (not Sunday 00 UTC)"
         fi
 
-    # ── PAC pipeline (independent, every 3h) ──
-
-    - name: 'PAC pipeline (every 3h)'
-      continue-on-error: true
-      run: |
-        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-          echo "Manual trigger, running PAC directly"
-          python -m proxy pac
-        else
-          HOUR=$(date -u +%H)
-          if [ $((HOUR % 3)) -eq 0 ]; then
-            python -m proxy pac
-          else
-            echo "Skipped (not 0/3/6/9/12/15/18/21 UTC)"
-          fi
-        fi
-
-    # ── Publish: always runs, saves whatever data was produced ──
-
-    - name: Publish data to data branch
+    - name: Stage outputs
       if: always()
       run: |
-        git config user.email "kanayuki@163.com"
-        git config user.name "kanayuki"
-
-        # Stage all generated files to a temp dir
         mkdir -p /tmp/pd/proxy/merge /tmp/pd/proxy/dataset/raw /tmp/pd/proxy/country /tmp/pd/proxy/bin
 
         # Dataset state
@@ -146,16 +121,101 @@ jobs:
         cp proxy/country/*.txt /tmp/pd/proxy/country/ 2>/dev/null || true
         [ -f proxy/merge/merge.txt ]           && cp proxy/merge/merge.txt           /tmp/pd/proxy/merge/
 
-        # PAC state (independent)
-        [ -f proxy/share_links.txt ]           && cp proxy/share_links.txt           /tmp/pd/proxy/
-        [ -f proxy/share_link_keys.txt ]       && cp proxy/share_link_keys.txt       /tmp/pd/proxy/
-        [ -f proxy/share_link_health.json ]    && cp proxy/share_link_health.json    /tmp/pd/proxy/
-
         # Binaries
         [ -f proxy/bin/versions.json ] && cp proxy/bin/versions.json /tmp/pd/proxy/bin/
         for f in proxy/bin/xray proxy/bin/xray.exe proxy/bin/sing-box proxy/bin/sing-box.exe proxy/bin/mihomo proxy/bin/mihomo.exe; do
           [ -f "$f" ] && cp "$f" /tmp/pd/proxy/bin/
         done
+
+    - name: Upload outputs
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: proxy-data
+        path: /tmp/pd/proxy
+        retention-days: 1
+        if-no-files-found: ignore
+
+  # ── PAC pipeline (independent) ──
+
+  pac-pipeline:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout main
+      uses: actions/checkout@v5
+
+    - name: Load PAC state from data branch
+      run: |
+        if git ls-remote --exit-code origin data &>/dev/null; then
+          git fetch origin data
+          git show origin/data:proxy/share_links.txt        > proxy/share_links.txt        2>/dev/null || true
+          git show origin/data:proxy/share_link_keys.txt    > proxy/share_link_keys.txt    2>/dev/null || true
+          git show origin/data:proxy/share_link_health.json > proxy/share_link_health.json 2>/dev/null || true
+          # GeoIP 持久缓存（避免 ip-api.com 限流）
+          git show origin/data:proxy/geo_cache.json         > proxy/geo_cache.json         2>/dev/null || true
+          # 上次订阅产物（本轮失败时保留旧状态）
+          mkdir -p proxy/subscribe
+          for f in v2rayn.txt v2rayn_base64.txt clash.yaml; do
+            git show "origin/data:proxy/subscribe/$f" > "proxy/subscribe/$f" 2>/dev/null || true
+          done
+        fi
+
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.13'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: 'PAC: generate share links'
+      continue-on-error: true
+      run: python -m proxy pac
+
+    - name: Stage PAC outputs
+      if: always()
+      run: |
+        mkdir -p /tmp/pac/proxy/subscribe
+        for f in proxy/share_links.txt proxy/share_link_keys.txt proxy/share_link_health.json proxy/geo_cache.json; do
+          [ -f "$f" ] && cp "$f" /tmp/pac/proxy/
+        done
+        for f in v2rayn.txt v2rayn_base64.txt clash.yaml; do
+          [ -f "proxy/subscribe/$f" ] && cp "proxy/subscribe/$f" /tmp/pac/proxy/subscribe/
+        done
+
+    - name: Upload PAC outputs
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: pac-data
+        path: /tmp/pac/proxy
+        retention-days: 1
+        if-no-files-found: ignore
+
+  # ── Publish: single push to data branch ──
+
+  publish:
+    needs: [update-proxy-data, pac-pipeline]
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout main
+      uses: actions/checkout@v5
+      with:
+        fetch-depth: 0
+
+    - name: Download artifacts
+      continue-on-error: true
+      uses: actions/download-artifact@v5
+      with:
+        path: /tmp/artifacts
+
+    - name: Publish data to data branch
+      run: |
+        git config user.email "kanayuki@163.com"
+        git config user.name "kanayuki"
 
         # Worktree for data branch
         if git show-ref --quiet refs/remotes/origin/data; then
@@ -167,8 +227,9 @@ jobs:
         cd /tmp/data-wt
         mkdir -p proxy/merge proxy/dataset/raw proxy/country proxy/bin
 
-        # Copy everything from staging
-        cp -r /tmp/pd/proxy/* proxy/ 2>/dev/null || true
+        # Copy staged outputs from both pipelines
+        cp -r /tmp/artifacts/proxy-data/. proxy/ 2>/dev/null || true
+        cp -r /tmp/artifacts/pac-data/.  proxy/ 2>/dev/null || true
 
         git add -A
         git diff --cached --quiet && echo "No changes to commit" && exit 0

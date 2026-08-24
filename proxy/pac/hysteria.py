@@ -5,77 +5,68 @@ if __name__ == "__main__" and str(Path(__file__).resolve().parent.parent) not in
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import json
+from urllib.parse import quote
 
-from pac.util import arrange_links, console, gen_remark, load_all_config, save_links
-
-CONFIG_FILE = Path(__file__).parent / "hysteria_config_links.txt"
-
-postfix = "hysteria"
+from pac.nodes import Node
+from pac.util import console
 
 
-def build_hysteria_link(config: dict) -> str:
-    # hysteria2://dongtaiwang.com@195.154.33.70:42259/?sni=www.bing.com&insecure=1#hysteria2_20250123
-    # 提取配置信息
-    # {
-    #   "server": "51.159.111.32:31180",
-    #   "auth": "dongtaiwang.com",
-    #   "bandwidth": {
-    #     "up": "11 mbps",
-    #     "down": "55 mbps"
-    #   },
-    #   "tls": {
-    #     "sni": "apple.com",
-    #     "insecure": true
-    #   },
-    #   "quic": {
-    #     "initStreamReceiveWindow": 16777216,
-    #     "maxStreamReceiveWindow": 16777216,
-    #     "initConnReceiveWindow": 33554432,
-    #     "maxConnReceiveWindow": 33554432
-    #   },
-    #   "socks5": {
-    #     "listen": "127.0.0.1:1080"
-    #   },
-    #   "transport": {
-    #     "udp": {
-    #       "hopInterval": "30s"
-    #     }
-    #   }
-    # }
+def build_hysteria2_link(config: dict, remark: str = "TMP") -> str:
+    """生成hysteria2分享链接（hysteria2 客户端 config.json 格式）
+
+    hysteria2://dongtaiwang.com@195.154.33.70:42259/?sni=www.bing.com&insecure=1#remark
+    """
     protocol = "hysteria2"
 
-    address: str = config.get("server")
-
+    address: str = config.get("server", "")
     index = address.rfind(":")
     if index == -1:
-        print(f"Invalid address: {address}")
-        return ""
+        raise ValueError(f"Invalid address: {address}")
 
     server = address[:index]
     port = address[index + 1 :].split(",")[0]
 
     auth = config.get("auth", "")
 
+    sni = ""
+    insecure = "1"
     if tls := config.get("tls"):
         sni = tls.get("sni", "")
-        insecure = tls.get("insecure", True)
-        insecure = "1" if insecure else "0"
+        insecure = "1" if tls.get("insecure", True) else "0"
 
-    remark = gen_remark(server, postfix)
-    url = f"{protocol}://{auth}@{server}:{port}/?sni={sni}&insecure={insecure}#{remark}"
+    url = f"{protocol}://{quote(str(auth), safe='')}@{server}:{port}/?sni={sni}&insecure={insecure}#{remark}"
     return url
 
 
-@load_all_config(CONFIG_FILE)
-def get_all_links(config: str) -> str:
+def parse_config(text: str, source: str = "") -> list[Node]:
+    """解析 hysteria2 客户端配置 → 节点列表。"""
+    try:
+        config = json.loads(text)
+    except json.JSONDecodeError as e:
+        console.print(f"  [red]✗ hysteria2 JSON 解析失败: {e}[/red]")
+        return []
 
-    link = build_hysteria_link(json.loads(config))
-    console.print(f"  [cyan]hysteria2[/cyan]  {link}")
+    address: str = config.get("server", "")
+    index = address.rfind(":")
+    if index == -1:
+        console.print(f"  [red]✗ 无效的 server 地址: {address}[/red]")
+        return []
+    host = address[:index]
+    port = int(address[index + 1 :].split(",")[0])
 
-    return link
+    try:
+        link = build_hysteria2_link(config)
+    except Exception as e:
+        console.print(f"  [yellow]⚠ hysteria2 节点解析失败: {e}[/yellow]")
+        return []
 
-
-if __name__ == "__main__":
-    links = get_all_links()
-    arrange_links(links)
-    save_links(links, label="hysteria")
+    return [
+        Node(
+            protocol="hysteria2",
+            host=host,
+            port=port,
+            credential=str(config.get("auth", "")),
+            source=source,
+            link=link,
+        )
+    ]
