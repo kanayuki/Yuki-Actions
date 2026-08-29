@@ -1,5 +1,5 @@
 proxies:
-- name: FR_20260828_vless_3
+- name: FR_20260829_vless_3
   type: vless
   server: 62.210.70.194
   port: 37783
@@ -11,7 +11,7 @@ proxies:
     short-id: 21569dd6
   servername: www.yahoo.com
   client-fingerprint: chrome
-- name: FR_20260828_vless_2
+- name: FR_20260829_vless_2
   type: vless
   server: 2001:bc8:32d7:302::14
   port: 37783
@@ -23,7 +23,7 @@ proxies:
     short-id: 21569dd6
   servername: www.yahoo.com
   client-fingerprint: chrome
-- name: FR_20260828_vmess
+- name: FR_20260829_vmess
   type: vmess
   server: 2001:bc8:32d7:302::10
   port: 44579
@@ -33,7 +33,7 @@ proxies:
   network: ws
   ws-opts:
     path: /
-- name: FR_20260828_vless
+- name: FR_20260829_vless
   type: vless
   server: 2001:bc8:32d7:302::13
   port: 34324
@@ -45,7 +45,7 @@ proxies:
     short-id: ''
   servername: dash.cloudflare.com
   client-fingerprint: chrome
-- name: FR_20260828_hysteria1_3
+- name: FR_20260829_hysteria1_3
   type: hysteria
   server: 62.210.70.191
   port: 23556
@@ -57,7 +57,7 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
-- name: FR_20260828_hysteria1
+- name: FR_20260829_hysteria1
   type: hysteria
   server: 163.172.117.163
   port: 36699
@@ -69,7 +69,7 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
-- name: DE_20260828_hysteria1
+- name: DE_20260829_hysteria1
   type: hysteria
   server: 2a14:7584:d097::a
   port: 54177
@@ -81,13 +81,13 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
-- name: XX_20260828_anytls
+- name: XX_20260829_anytls
   type: anytls
   server: anytls2.864106.xyz
   port: 19000
   password: github.com/Alvin9999-newpac/fanqiang
   sni: anytls2.864106.xyz
-- name: US_20260828_hysteria1
+- name: US_20260829_hysteria1
   type: hysteria
   server: 198.200.57.142
   port: 22335
@@ -99,7 +99,7 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
-- name: US_20260828_mieru_3
+- name: US_20260829_mieru_3
   type: mieru
   server: 198.200.57.152
   port: 33556
@@ -108,7 +108,7 @@ proxies:
   password: github.com/Alvin9999-newpac/fanqiang
   udp: true
   multiplexing: MULTIPLEXING_LOW
-- name: XX_20260828_hysteria1
+- name: XX_20260829_hysteria1
   type: hysteria
   server: tw-25.497489.xyz
   port: 10099
@@ -131,8 +131,8 @@ proxies:
   skip-cert-verify: true
   alpn:
   - h3
-  name: FR_20260828_hysteria1_2
-- name: XX_20260828_hysteria2
+  name: FR_20260829_hysteria1_2
+- name: XX_20260829_hysteria2
   type: hysteria2
   server: 2001:bc8:32d7:17b::3
   port: 22000
@@ -150,7 +150,7 @@ proxies:
   skip-cert-verify: true
   alpn:
   - h3
-  name: DE_20260828_hysteria1_2
+  name: DE_20260829_hysteria1_2
 - type: hysteria
   server: 5.83.129.153
   port: 27626
@@ -162,7 +162,7 @@ proxies:
   skip-cert-verify: true
   alpn:
   - h3
-  name: DE_20260828_hysteria1_3
+  name: DE_20260829_hysteria1_3
 - type: mieru
   server: 198.200.57.152
   username: Alvin9999-newpac
@@ -170,7 +170,7 @@ proxies:
   transport: TCP
   multiplexing: MULTIPLEXING_LOW
   port: 33556
-  name: US_20260828_mieru_2
+  name: US_20260829_mieru_2
 - type: mieru
   server: 157.254.223.43
   username: dongtaiwang.com
@@ -178,7 +178,7 @@ proxies:
   transport: TCP
   multiplexing: MULTIPLEXING_LOW
   port: 23456
-  name: US_20260828_mieru
+  name: US_20260829_mieru
 - type: shadowquic
   server: 198.2.214.27
   port: 22448
@@ -189,7 +189,7 @@ proxies:
   alpn:
   - h3
   zero-rtt: true
-  name: US_20260828_shadowquic_2
+  name: US_20260829_shadowquic_2
 - type: shadowquic
   server: 142.249.37.83
   port: 1443
@@ -200,57 +200,57 @@ proxies:
   alpn:
   - h3
   zero-rtt: true
-  name: US_20260828_shadowquic
+  name: US_20260829_shadowquic
 proxy-groups:
 - name: PROXY
   type: select
   proxies:
   - AUTO
   - DIRECT
-  - FR_20260828_vless_3
-  - FR_20260828_vless_2
-  - FR_20260828_vmess
-  - FR_20260828_vless
-  - FR_20260828_hysteria1_3
-  - FR_20260828_hysteria1
-  - DE_20260828_hysteria1
-  - XX_20260828_anytls
-  - US_20260828_hysteria1
-  - US_20260828_mieru_3
-  - XX_20260828_hysteria1
-  - FR_20260828_hysteria1_2
-  - XX_20260828_hysteria2
-  - DE_20260828_hysteria1_2
-  - DE_20260828_hysteria1_3
-  - US_20260828_mieru_2
-  - US_20260828_mieru
-  - US_20260828_shadowquic_2
-  - US_20260828_shadowquic
+  - FR_20260829_vless_3
+  - FR_20260829_vless_2
+  - FR_20260829_vmess
+  - FR_20260829_vless
+  - FR_20260829_hysteria1_3
+  - FR_20260829_hysteria1
+  - DE_20260829_hysteria1
+  - XX_20260829_anytls
+  - US_20260829_hysteria1
+  - US_20260829_mieru_3
+  - XX_20260829_hysteria1
+  - FR_20260829_hysteria1_2
+  - XX_20260829_hysteria2
+  - DE_20260829_hysteria1_2
+  - DE_20260829_hysteria1_3
+  - US_20260829_mieru_2
+  - US_20260829_mieru
+  - US_20260829_shadowquic_2
+  - US_20260829_shadowquic
 - name: AUTO
   type: url-test
   url: http://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
   proxies:
-  - FR_20260828_vless_3
-  - FR_20260828_vless_2
-  - FR_20260828_vmess
-  - FR_20260828_vless
-  - FR_20260828_hysteria1_3
-  - FR_20260828_hysteria1
-  - DE_20260828_hysteria1
-  - XX_20260828_anytls
-  - US_20260828_hysteria1
-  - US_20260828_mieru_3
-  - XX_20260828_hysteria1
-  - FR_20260828_hysteria1_2
-  - XX_20260828_hysteria2
-  - DE_20260828_hysteria1_2
-  - DE_20260828_hysteria1_3
-  - US_20260828_mieru_2
-  - US_20260828_mieru
-  - US_20260828_shadowquic_2
-  - US_20260828_shadowquic
+  - FR_20260829_vless_3
+  - FR_20260829_vless_2
+  - FR_20260829_vmess
+  - FR_20260829_vless
+  - FR_20260829_hysteria1_3
+  - FR_20260829_hysteria1
+  - DE_20260829_hysteria1
+  - XX_20260829_anytls
+  - US_20260829_hysteria1
+  - US_20260829_mieru_3
+  - XX_20260829_hysteria1
+  - FR_20260829_hysteria1_2
+  - XX_20260829_hysteria2
+  - DE_20260829_hysteria1_2
+  - DE_20260829_hysteria1_3
+  - US_20260829_mieru_2
+  - US_20260829_mieru
+  - US_20260829_shadowquic_2
+  - US_20260829_shadowquic
 rules:
 - GEOIP,LAN,DIRECT,no-resolve
 - GEOIP,CN,DIRECT
