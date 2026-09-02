@@ -122,9 +122,11 @@ jobs:
         [ -f proxy/merge/merge.txt ]           && cp proxy/merge/merge.txt           /tmp/pd/proxy/merge/
 
         # Binaries
+        # NOTE: use `if` instead of `[ -f ] && cp` inside loops — a failed test
+        # as the last command would make the whole script exit 1.
         [ -f proxy/bin/versions.json ] && cp proxy/bin/versions.json /tmp/pd/proxy/bin/
         for f in proxy/bin/xray proxy/bin/xray.exe proxy/bin/sing-box proxy/bin/sing-box.exe proxy/bin/mihomo proxy/bin/mihomo.exe; do
-          [ -f "$f" ] && cp "$f" /tmp/pd/proxy/bin/
+          if [ -f "$f" ]; then cp "$f" /tmp/pd/proxy/bin/; fi
         done
 
     - name: Upload outputs
@@ -177,11 +179,13 @@ jobs:
       if: always()
       run: |
         mkdir -p /tmp/pac/proxy/subscribe
+        # NOTE: use `if` instead of `[ -f ] && cp` inside loops — a failed test
+        # as the last command would make the whole script exit 1.
         for f in proxy/share_links.txt proxy/share_link_keys.txt proxy/share_link_health.json proxy/geo_cache.json; do
-          [ -f "$f" ] && cp "$f" /tmp/pac/proxy/
+          if [ -f "$f" ]; then cp "$f" /tmp/pac/proxy/; fi
         done
         for f in v2rayn.txt v2rayn_base64.txt clash.yaml; do
-          [ -f "proxy/subscribe/$f" ] && cp "proxy/subscribe/$f" /tmp/pac/proxy/subscribe/
+          if [ -f "proxy/subscribe/$f" ]; then cp "proxy/subscribe/$f" /tmp/pac/proxy/subscribe/; fi
         done
 
     - name: Upload PAC outputs
