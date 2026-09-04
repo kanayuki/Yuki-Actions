@@ -1,7 +1,8 @@
 """PAC 管线编排器：下载 → 解析 → 节点池 → 渲染双客户端订阅。
 
 流程：
-1. fetcher.fetch_all()   统一下载全部 *_config_links.txt，URL/内容哈希双重去重
+1. fetcher.fetch_all()   统一下载全部 *_config_links.txt，URL/内容哈希双重去重；
+                         成功获取即写入 config store，并合并近窗口存量配置（见 pac/store.py）
 2. 各协议 parser.parse_config() → Node → NodePool（身份键跨源去重）
 3. geo_cache 批量解析国家码 → NodePool.finalize() 命名节点
 4. render_v2rayn / render_clash 生成订阅产物（proxy/subscribe/）

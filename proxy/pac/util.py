@@ -1,5 +1,4 @@
 import functools
-import json
 import shutil
 from datetime import datetime
 from pathlib import Path
@@ -81,14 +80,6 @@ def load_all_config(file: str):
         return wrapper
 
     return decorator
-
-
-def save_config(config):
-    protocol = config["outbounds"][0]["protocol"]
-    path = f"./xray/config_{protocol}_{today()}.json"
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(config, f, ensure_ascii=False, indent=4)
-    return path
 
 
 @functools.lru_cache(maxsize=128)

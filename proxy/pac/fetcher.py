@@ -2,6 +2,10 @@
 
 互为备用的 URL（指向相同配置）只下载并解析一次；
 同一 URL 出现在多个清单中也只下载一次。
+
+下载成功即写入 config store（内容寻址，见 pac/store.py）。
+解析范围 = 本轮获取 ∪ 最近 WINDOW_DAYS 天出现过的存量配置（窗口合并），
+缓解源临时故障或渐进衰减导致的订阅缩水。
 """
 
 from __future__ import annotations
@@ -9,6 +13,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+from pac import store
 from pac.util import console, get_config, get_hash
 
 # parser 类型 → URL 清单文件名（与 get_config_urls.py 的 TYPE_MAP 对应）
@@ -33,10 +38,13 @@ class FetchedConfig:
 
 
 def fetch_all(types: list[str] | None = None) -> list[FetchedConfig]:
-    """下载全部配置。返回去重后的配置列表。"""
+    """下载全部配置，写入 store 并合并近窗口存量。返回去重后的配置列表。"""
     results: list[FetchedConfig] = []
     seen_url: set[str] = set()
     seen_hash: set[str] = set()
+    seen_records: list[tuple[str, str, str]] = []  # (完整 hash, ptype, month)
+    store_new = 0
+    store_fail = 0
     failed = 0
 
     for ptype in types or LINKS_FILES:
@@ -60,8 +68,34 @@ def fetch_all(types: list[str] | None = None) -> list[FetchedConfig]:
             seen_hash.add(cfg_hash)
             results.append(FetchedConfig(ptype=ptype, source=url, text=text))
 
+            # write-through：成功获取即落盘（best-effort）
+            saved = store.save(ptype, url, text, cfg_hash)
+            if saved is None:
+                store_fail += 1
+            else:
+                month, is_new = saved
+                seen_records.append((cfg_hash, ptype, month))
+                store_new += is_new
+
+    fetched = len(results)
+    store.mark_seen(seen_records)
+
+    # 窗口合并：纳入最近 N 天出现过、本轮未获取到的存量配置
+    window = store.load_window(exclude=seen_hash)
+    if types is not None:
+        window = [w for w in window if w[0] in types]
+    results.extend(FetchedConfig(ptype=p, source=label, text=text) for p, label, text in window)
+
     console.print(
         f"  下载 {len(seen_url)} 个 URL，"
-        f"失败 [red]{failed}[/red]，去重后 {len(results)} 份配置"
+        f"失败 [red]{failed}[/red]，去重后 {fetched} 份配置"
     )
+    if store_new:
+        console.print(f"  [dim]store: 新增 {store_new} 份配置[/dim]")
+    if store_fail:
+        console.print(f"  [yellow]⚠ store 写入失败 {store_fail} 份[/yellow]")
+    if window:
+        console.print(
+            f"  [dim]窗口合并: +{len(window)} 份（近 {store.WINDOW_DAYS} 天存量，共 {len(results)} 份）[/dim]"
+        )
     return results
