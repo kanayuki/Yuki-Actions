@@ -60,10 +60,13 @@ def parse_config(text: str, source: str = "") -> list[Node]:
 
     address = config["server"]
     index = address.rfind(":")
+    host = address[:index].strip("[]")  # IPv6 形如 [::1]:port，去掉方括号
+    if isinstance(clash_proxy, dict):
+        clash_proxy["server"] = host  # mihomo 期望裸地址
     return [
         Node(
             protocol="hysteria1",
-            host=address[:index],
+            host=host,
             port=int(address[index + 1 :]),
             credential=str(config.get("auth_str", "")),
             source=source,

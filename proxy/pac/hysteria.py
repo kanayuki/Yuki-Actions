@@ -51,7 +51,7 @@ def parse_config(text: str, source: str = "") -> list[Node]:
     if index == -1:
         console.print(f"  [red]✗ 无效的 server 地址: {address}[/red]")
         return []
-    host = address[:index]
+    host = address[:index].strip("[]")  # IPv6 形如 [::1]:port，去掉方括号
     port = int(address[index + 1 :].split(",")[0])
 
     try:
