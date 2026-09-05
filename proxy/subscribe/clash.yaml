@@ -81,7 +81,7 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
-- name: XX_20260905_anytls
+- name: US_20260905_anytls
   type: anytls
   server: anytls2.864106.xyz
   port: 19000
@@ -108,7 +108,7 @@ proxies:
   password: github.com/Alvin9999-newpac/fanqiang
   udp: true
   multiplexing: MULTIPLEXING_LOW
-- name: XX_20260905_hysteria1
+- name: TW_20260905_hysteria1
   type: hysteria
   server: tw-25.497489.xyz
   port: 10099
@@ -132,7 +132,7 @@ proxies:
   alpn:
   - h3
   name: FR_20260905_hysteria1_2
-- name: XX_20260905_hysteria2
+- name: FR_20260905_hysteria2
   type: hysteria2
   server: 2001:bc8:32d7:17b::3
   port: 22000
@@ -214,12 +214,12 @@ proxy-groups:
   - FR_20260905_hysteria1_3
   - FR_20260905_hysteria1
   - DE_20260905_hysteria1
-  - XX_20260905_anytls
+  - US_20260905_anytls
   - US_20260905_hysteria1
   - US_20260905_mieru_3
-  - XX_20260905_hysteria1
+  - TW_20260905_hysteria1
   - FR_20260905_hysteria1_2
-  - XX_20260905_hysteria2
+  - FR_20260905_hysteria2
   - DE_20260905_hysteria1_2
   - DE_20260905_hysteria1_3
   - US_20260905_mieru_2
@@ -239,12 +239,12 @@ proxy-groups:
   - FR_20260905_hysteria1_3
   - FR_20260905_hysteria1
   - DE_20260905_hysteria1
-  - XX_20260905_anytls
+  - US_20260905_anytls
   - US_20260905_hysteria1
   - US_20260905_mieru_3
-  - XX_20260905_hysteria1
+  - TW_20260905_hysteria1
   - FR_20260905_hysteria1_2
-  - XX_20260905_hysteria2
+  - FR_20260905_hysteria2
   - DE_20260905_hysteria1_2
   - DE_20260905_hysteria1_3
   - US_20260905_mieru_2
