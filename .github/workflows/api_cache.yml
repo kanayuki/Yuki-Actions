@@ -1,0 +1,20 @@
+# API Cache 工作流（空白模板）
+# 模块未完成前：仅保留最小合法结构，避免 GitHub 校验报错；不会定时自动运行
+# 模块完成后：补充 schedule 触发与实际任务步骤
+name: API Cache
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: api-cache
+  cancel-in-progress: false
+
+jobs:
+  api-cache:
+    runs-on: ubuntu-latest
+
+    steps:
+    # TODO: 模块完成后替换为实际步骤（checkout / setup-python / run api_cache）
+    - name: Placeholder
+      run: echo "api_cache module is under construction; nothing to do."
