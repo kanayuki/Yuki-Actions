@@ -783,3 +783,5 @@ vless://44eae030-290b-4083-8102-6f8bab05701b@104.16.10.48:443?path=/&security=tl
 anytls://9sK2mP8xQ7vL3nZ6@ac7548f3ebe045b39a90288ff1e97528.pnuqcnp.cn:443/?sni=ac7548f3ebe045b39a90288ff1e97528.lwdnxf.cn&insecure=1&alpn=http/1.1&fp=chrome&udp=1#HK%20-%20zhuhai.uk
 vless://86ea1e85-b95d-4afd-b28f-b41831d56665@186.246.10.40:443?type=ws&security=tls&sni=cdn.dachniy-vopros.org&path=%2Fhome&host=cdn.dachniy-vopros.org#NL%20-%20zhuhai.uk%2003
 vless://c5694dc5-39fd-4a92-8430-3837baa522a3@194.93.63.246:443?security=reality&encryption=none&pbk=GmZv3anSeAeHr_cMFKr-6MPLli-nyKNatnY6P3AFK00&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=pl.bubahero.com&sid=9c2378562188c3cb#%E4%BF%9D%E5%8A%A0%E5%88%A9%E4%BA%9A+V2CROSS.COM
+hysteria2://b8949dae-cb53-4b5a-ad9c-50f58c4656fb@sg3.xiaoliyu.us:2052?insecure=1&security=tls&sni=sg3.xiaoliyu.us#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+vless://2ac46dc3-0593-4898-bd52-42a7d5a8f2e2@de1-web.mysoyka.online:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=de1-web.mysoyka.online&fp=chrome&pbk=5USjl6vRG3X4bxVWL9oZ7eUpyr-N3kezxnUi14WOrlY&sid=3d475d331e49eee8&type=tcp&headerType=none#%E5%B7%B4%E8%A5%BF+V2CROSS.COM
