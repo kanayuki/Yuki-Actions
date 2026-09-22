@@ -6,7 +6,6 @@ hysteria2://h_B9x3942fJ9x_Kpx3914KQ_nZ934HFg_rT@103.246.248.234:8080?sni=hopp-le
 hysteria2://f9e76796-72ba-4af1-9435-a556bd81c140@156.229.163.112:55000?insecure=1&security=tls&sni=www.bing.com#%E5%8D%97%E9%9D%9E+V2CROSS.COM
 hysteria2://cbb5cf13f04b22883390f1a073753123@147.224.12.19:443?sni=www.bing.com&obfs=salamander&obfs-password=7a5537b116d923fe572f85f1db7fe501&insecure=1#US%20-%20zhuhai.uk%2003
 hysteria2://9da1fe49d6d788e865cb40113d2a4b9c@146.71.85.6:443?sni=www.bing.com&obfs=salamander&obfs-password=8c076142c9f5eaf115ec1522aa5bbade&insecure=1#US%20-%20zhuhai.uk%2005
-hysteria2://975e9f98b4a1b01285ffdb8158ced798@107.172.76.105:443?sni=www.bing.com&obfs=salamander&obfs-password=c8d95078e61be690c18e2fbbefe5e2ef&insecure=1#US%20-%20zhuhai.uk
 hysteria2://28a91bb2-51fe-48e1-9865-ec8bc9e48890@204.152.221.119:4434?insecure=1&security=tls&sni=www.cloudflare.com#%E7%BE%8E%E5%9B%BD+%E5%8A%A0%E5%88%A9%E7%A6%8F%E5%B0%BC%E4%BA%9A%E5%B7%9E%E6%B4%9B%E6%9D%89%E7%9F%B6QuadraNet%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
 hysteria2://3DMpEHI94Ic7izl0YBXU@38.207.163.44:8443?insecure=1&security=tls#%E7%BE%8E%E5%9B%BD+%E5%8D%8E%E7%9B%9B%E9%A1%BFCogent%E9%80%9A%E4%BF%A1%E5%85%AC%E5%8F%B8
 hysteria2://c2356e22-b026-4f12-8508-cf61f0b0c867@107.174.255.14:4356?insecure=1#US%20-%20zhuhai.uk%2003
@@ -98,3 +97,4 @@ trojan://Mitivpn@198.54.216.141:80?allowInsecure=1#%F0%9F%87%B8%F0%9F%87%ACSG%E6
 vless://XpnTeam-35@199.232.78.160:443?path=/&security=tls&alpn=http/1.1&encryption=none&insecure=0&host=Appxdn.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=ssl.fastly.com#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
 vless://1d16c6e0-1bbe-435b-b661-90043fee999c@198.62.62.123:443?security=tls&type=ws&path=/Telegram-WangCai2🇨🇳&host=notls.lukongtou.eu.org&packetEncoding=xudp&sni=notls.lukongtou.eu.org&fp=chrome&encryption=none#%E5%8C%97%E7%BE%8E%E5%9C%B0%E5%8C%BA+V2CROSS.COM
 vless://948fac3c-42bf-41a6-a5f9-704d36ff0d8d@166.117.33.104:443?encryption=none&security=tls&sni=snippet.danfeng.theworkpc.com&type=ws&host=snippet.danfeng.theworkpc.com&path=%2Fdanfeng%3Fed%3D2560#%E7%BE%8E%E5%9B%BD%28yudou789.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
+vless://948fac3c-42bf-41a6-a5f9-704d36ff0d8d@192.0.63.84:443?encryption=none&security=tls&sni=snippet.danfeng.dedyn.io&type=ws&host=snippet.danfeng.dedyn.io&path=%2Fdanfeng#%E7%BE%8E%E5%9B%BD%28yudou789.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
