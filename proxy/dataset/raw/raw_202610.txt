@@ -68,3 +68,9 @@ vless://e440fa81-fe9d-4ca1-b711-f7b72c3d79ed@34.128.84.173:443?type=tcp&security
 anytls://oraAny_8nQ5wT1zR@[2603:c024:4524:3400:0:7caf:8cfa:add3]:8443/?sni=sg.liujiaqi.top&udp=1#SG%20-%20zhuhai.uk
 tuic://8A9905B7-801B-41AF-BFC9-2034212770F6@tw3.dexlos.com:8080?sni=tw3.dexlos.com&alpn=h3#TW%20-%20zhuhai.uk
 vless://94def50e-5f3c-4e4c-9719-3325f42d2131@31.76.34.216:443?security=reality&type=tcp&sni=ru-c-1.minzt.su&fp=chrome&flow=xtls-rprx-vision&pbk=XrgbY2hKJQG8QOZO2J1pGmZsbvjSsSWoM9iULIMGK00&encryption=none#RU%20-%20zhuhai.uk%2001
+trojan://9efd3f19-c7cb-4fa9-8d66-0598043597dc@t2w2t2w2.bpca2026.top:443?type=ws&sni=t2w2t2w2.bpca2026.top&path=%2Fimages&host=t2w2t2w2.bpca2026.top&allowInsecure=1#TW%20-%20zhuhai.uk
+vless://5567cac6-2a32-4318-83cd-7df3a9eebbd7@35.185.179.62:443?type=tcp&security=reality&sni=www.cloudflare.com&pbk=hJCcmOf_ECJ3GUfHUjsgfcFKcgGb22H7cz_m_FvcVm4&sid=eb97ce837da2f6ad&fp=chrome#SG%20-%20zhuhai.uk
+vless://172db2f1-9180-4e5b-b1f5-0dfd0a05d496@minimize-evenness.cdn-content.com:443?type=ws&security=tls&sni=minimize-evenness.cdn-content.com&path=%2Fws&host=minimize-evenness.cdn-content.com&fp=chrome#US%20-%20zhuhai.uk%2006
+vless://c1c04450-bf71-4049-ad0c-9cf6d94d9f1f@59.125.69.23:443?type=ws&security=tls&sni=ty986gfazs.cainiaohub.xyz&path=%2F81574b6b-c9d7-44a0-b83d-dad56e8cb530&host=ty986gfazs.cainiaohub.xyz&fp=chrome&allowInsecure=1#TW%20-%20zhuhai.uk%2003
+hysteria2://9Me_Jx935gnHx13_Nx45M_NYXe037js_Be4z@162.249.127.141:8443?security=tls&sni=hop-germany-september.dynuddns.com#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+hysteria2://1beb216e3f60aea9555dae60d219a5ca@152.69.231.175:50160?security=tls&sni=152-69-231-175.liao.kdns.fr#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
