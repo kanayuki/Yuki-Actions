@@ -311,3 +311,9 @@ vless://57beeeb0-03fc-4fc9-94da-7604488a7134@2610sgdodo.volkvpn.com:40286?type=t
 trojan://cdb97a9f-35a0-4f36-8791-798b9415c851@c80c993c-e6d4-548c-88c0-c4893b3d3d4d.886.onl:50023?type=tcp&sni=www.h3yun.com&allowInsecure=1#TW%20-%20zhuhai.uk
 vless://03e52750-0c85-42c1-a30b-b2e35da7abbb@172.190.134.233:26490?type=tcp&security=reality&sni=addons.mozilla.org&flow=xtls-rprx-vision&pbk=f4aZkLbmSLe874qztsQi5UPJq-9wonTRqOpHnQdiIm8&fp=firefox#US%20-%20zhuhai.uk%2005
 vless://595a6246-d7b0-48bc-a5f0-17068aec2e88@alb1.keepverify.net:8443?security=tls&type=tcp&sni=alb1.keepverify.net&fp=chrome&flow=xtls-rprx-vision&encryption=none#NL%20-%20zhuhai.uk%2001
+anytls://a7c5d30b-ce9b-4e34-b5cb-66f8308790ef@xw2a49p1.zf-mix.9999231.xyz:1020/?sni=se-house.9999231.xyz&fp=chrome&udp=1#SE%20-%20zhuhai.uk
+ss://YWVzLTI1Ni1nY206ODU1OTBiZDItODA3Yi00OWI5LWFmMjAtMTEwMWMxOGI5ZWRh@ruot.ayucloudservices.nl:40021#JP%20-%20zhuhai.uk
+trojan://ec5d4252-898b-42a6-b3a6-6e61b52817f8@cmhk88.bilibilii.cc:20000?type=tcp&sni=aio-static.hkbn.net&allowInsecure=1#HK%20-%20zhuhai.uk
+ss://YWVzLTEyOC1nY206ODU1OTBiZDItODA3Yi00OWI5LWFmMjAtMTEwMWMxOGI5ZWRh@ruot.ayucloudservices.nl:40027#KR%20-%20zhuhai.uk
+ss://YWVzLTI1Ni1nY206ODU1OTBiZDItODA3Yi00OWI5LWFmMjAtMTEwMWMxOGI5ZWRh@ruot.ayucloudservices.nl:22035#MY%20-%20zhuhai.uk
+vless://9d672694-c146-422e-b3b5-3717a38a0fcc@104.21.84.30:2053?security=tls&type=ws&path=/api/voip/updates/static/fr2035&host=fr.api-music-fa.com&packetEncoding=xudp&alpn=http/1.1&sni=fr.api-music-fa.com&fp=chrome#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
