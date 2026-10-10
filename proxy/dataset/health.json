@@ -97846,13 +97846,13 @@
     "fail_count": 0,
     "last_verified": "2026-10-09T00:57:09+00:00",
     "last_ok": "2026-10-09T00:57:09+00:00",
-    "latency_ms": 392.4,
+    "latency_ms": 3603.2,
     "latency_history": [
-      334.9,
       479.7,
       479.1,
       433.2,
-      392.4
+      392.4,
+      3603.2
     ],
     "first_seen": "2026-06-03T10:57:57+00:00",
     "dormant": false,
@@ -245403,13 +245403,13 @@
     "fail_count": 0,
     "last_verified": "2026-10-09T00:57:09+00:00",
     "last_ok": "2026-10-09T00:57:09+00:00",
-    "latency_ms": 79.1,
+    "latency_ms": 67.8,
     "latency_history": [
-      62.1,
       68.5,
       33.8,
       89.6,
-      79.1
+      79.1,
+      67.8
     ],
     "first_seen": "2026-09-10T02:48:48+00:00",
     "dormant": false,
@@ -271631,13 +271631,13 @@
     "fail_count": 0,
     "last_verified": "2026-10-09T00:57:09+00:00",
     "last_ok": "2026-10-09T00:57:09+00:00",
-    "latency_ms": 816.4,
+    "latency_ms": 685.9,
     "latency_history": [
-      522.7,
       343.1,
       348.9,
       846.6,
-      816.4
+      816.4,
+      685.9
     ],
     "first_seen": "2026-10-08T09:52:22+00:00",
     "dormant": false,
@@ -272676,6 +272676,40 @@
     "latency_ms": 0.0,
     "latency_history": [],
     "first_seen": "2026-10-10T16:51:36+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "569302cc78c3e623295a20551033860bcbe32d2bc4f673524b81ec0c0265e9a3": {
+    "link": "vless://616c7b3b-41f4-4038-88c6-d6fedd0ae4a7@nd-3.ardesnode.ru:443?type=tcp&security=reality&sni=nd-3.ardesnode.ru&flow=xtls-rprx-vision&pbk=PKlt_5ASsz137EvA9SKSadtjEv1k_U7VRtoelKCgADs&sid=9ea74b83f4993ca9&fp=chrome#NL%20-%20zhuhai.uk%2004",
+    "protocol": "vless",
+    "host": "nd-3.ardesnode.ru",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-10-10T21:04:30+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "6bea67f0f63a3dad5f5cf506366f63eb66f3015f7e60440f0664dba3a846fa3a": {
+    "link": "vless://318c935d-c195-41d3-99ad-9bbcfdab3386@179.254.166.40:443?&security=reality&flow=xtls-rprx-vision&pbk=0-or5ogGhYbBgsVSrSC2Fhxyp2BN97Y9pqIdg61Qd08&sid=4be4110078ebed4a&fp=chrome&sni=de2.srv.vbuste.ru&type=tcp&headerType=none&host=de2.srv.vbuste.ru&path=%2F#%E5%B7%B4%E8%A5%BF+V2CROSS.COM",
+    "protocol": "vless",
+    "host": "179.254.166.40",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-10-10T21:04:30+00:00",
     "dormant": false,
     "dormant_since": ""
   }
