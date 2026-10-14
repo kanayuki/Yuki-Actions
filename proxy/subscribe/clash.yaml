@@ -81,6 +81,12 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
+- name: US_20261014_anytls
+  type: anytls
+  server: anytls2.864106.xyz
+  port: 19000
+  password: github.com/Alvin9999-newpac/fanqiang
+  sni: anytls2.864106.xyz
 - name: US_20261014_hysteria1_2
   type: hysteria
   server: 198.200.57.142
@@ -195,12 +201,6 @@ proxies:
   alpn:
   - h3
   name: DE_20261014_hysteria1_2
-- name: US_20261014_anytls
-  type: anytls
-  server: anytls2.864106.xyz
-  port: 19000
-  password: github.com/Alvin9999-newpac/fanqiang
-  sni: anytls2.864106.xyz
 - name: FR_20261014_vless_3
   type: vless
   server: 62.210.70.194
@@ -238,6 +238,7 @@ proxy-groups:
   - FR_20261014_hysteria1
   - FR_20261014_hysteria1_3
   - DE_20261014_hysteria1
+  - US_20261014_anytls
   - US_20261014_hysteria1_2
   - US_20261014_mieru_3
   - TW_20261014_hysteria1
@@ -249,7 +250,6 @@ proxy-groups:
   - US_20261014_shadowquic_2
   - US_20261014_shadowquic
   - DE_20261014_hysteria1_2
-  - US_20261014_anytls
   - FR_20261014_vless_3
   - DE_20261014_hysteria1_3
 - name: AUTO
@@ -265,6 +265,7 @@ proxy-groups:
   - FR_20261014_hysteria1
   - FR_20261014_hysteria1_3
   - DE_20261014_hysteria1
+  - US_20261014_anytls
   - US_20261014_hysteria1_2
   - US_20261014_mieru_3
   - TW_20261014_hysteria1
@@ -276,7 +277,6 @@ proxy-groups:
   - US_20261014_shadowquic_2
   - US_20261014_shadowquic
   - DE_20261014_hysteria1_2
-  - US_20261014_anytls
   - FR_20261014_vless_3
   - DE_20261014_hysteria1_3
 rules:
