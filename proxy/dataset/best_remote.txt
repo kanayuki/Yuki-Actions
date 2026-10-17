@@ -1,12 +1,10 @@
-hysteria2://184cdec28da5a09450803c8debcd2cc9@138.3.208.26:50160?sni=138.3.208.26&insecure=1#JP%20-%20zhuhai.uk
+trojan://humanity@104.16.72.2:443?type=ws&security=tls&path=/assignment&host=www.calmlunch.com&sni=www.calmlunch.com&insecure=0&allowInsecure=0#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 hysteria2://3a702d4d1de4949005d8431220e040fb@152.67.75.161:443?sni=www.bing.com&obfs=salamander&obfs-password=c13f29db6a638ad2b211b9ce2669ef27&insecure=1#CH%20-%20zhuhai.uk
-hysteria2://maintell@152.70.237.123:2053?insecure=1&security=tls&sni=bing.com#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
-hysteria2://1671a252e2a97dc2bda4e515475931da@132.226.226.189:50160?insecure=1&security=tls&sni=www.bing.com#%E8%8D%B7%E5%85%B0+V2CROSS.COM
-hysteria2://b42d90fa667942aebc734d60@137.23.2.56:20000?sni=rmgyvpn.rest&obfs=salamander&obfs-password=b42d90fa667942aebc734d60&insecure=1#AU%20-%20zhuhai.uk
-trojan://humanity@104.21.33.59:443?path=/assignment&security=tls&alpn=http/1.1&fm={"tcp": [{"type": "fragment", "settings": {"packets": "tlshello", "lengths": ["5", "94", "1"], "delays": ["0"], "maxSplit": "0"}},{"type": "fragment", "settings": {"packets": "1-1", "lengths": ["109", "1"], "delays": ["1"], "maxSplit": "355"}}]}&insecure=0&host=www.pleadcourt.org&fp=unsafe&type=ws&allowInsecure=0&sni=www.pleadcourt.org#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-hysteria2://633bc3be486b646190661ac2387c150a@152.67.115.203:443?sni=www.bing.com&obfs=salamander&obfs-password=850a3fb1cd33a28f12d837578ae1a2e7&insecure=1#AU%20-%20zhuhai.uk
-trojan://humanity@8.47.69.0:443?alpn=http%2F1.1&fp=chrome&path=%2Fassignment&security=tls&sni=www.pleadcourt.org&type=ws#%E7%BE%8E%E5%9B%BD+%E5%8A%A0%E5%88%A9%E7%A6%8F%E5%B0%BC%E4%BA%9A%E5%B7%9E%E6%B4%9B%E6%9D%89%E7%9F%B6Cloudflare+Warp%E8%8A%82%E7%82%B9
-hysteria2://d042d150716709bb778cc73889cddb02@138.2.89.249:443?sni=www.bing.com&obfs=salamander&obfs-password=309502c4a8df10b46fb976d4a8c43f42&insecure=1#SG%20-%20zhuhai.uk%2002
 hysteria2://u63SxILNwtrQZ7Y1ZrFaZfsA@8.211.175.236:8443?insecure=1&security=tls&sni=bing.com#%E4%B8%AD%E5%9B%BD+%E9%98%BF%E9%87%8C%E4%BA%91
-hysteria2://f25f19f29ce3fb53a35bf1b35b452a43@129.159.156.109:50160?sni=www.bing.com&insecure=1#IL%20-%20zhuhai.uk
-trojan://humanity@212.183.88.136:443/?type=ws&host=www.calmlunch.com&path=/assignment&security=tls&sni=www.calmlunch.com#%E5%A5%A5%E5%9C%B0%E5%88%A9+V2CROSS.COM
+hysteria2://184cdec28da5a09450803c8debcd2cc9@138.3.208.26:50160?sni=138.3.208.26&insecure=1#JP%20-%20zhuhai.uk
+hysteria2://1671a252e2a97dc2bda4e515475931da@132.226.226.189:50160?insecure=1&security=tls&sni=www.bing.com#%E8%8D%B7%E5%85%B0+V2CROSS.COM
+hysteria2://maintell@152.70.237.123:2053?insecure=1&security=tls&sni=bing.com#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+hysteria2://633bc3be486b646190661ac2387c150a@152.67.115.203:443?sni=www.bing.com&obfs=salamander&obfs-password=850a3fb1cd33a28f12d837578ae1a2e7&insecure=1#AU%20-%20zhuhai.uk
+hysteria2://b42d90fa667942aebc734d60@137.23.2.56:20000?sni=rmgyvpn.rest&obfs=salamander&obfs-password=b42d90fa667942aebc734d60&insecure=1#AU%20-%20zhuhai.uk
+hysteria2://d042d150716709bb778cc73889cddb02@138.2.89.249:443?sni=www.bing.com&obfs=salamander&obfs-password=309502c4a8df10b46fb976d4a8c43f42&insecure=1#SG%20-%20zhuhai.uk%2002
+trojan://humanity@104.21.33.59:443?path=/assignment&security=tls&alpn=http/1.1&fm={"tcp": [{"type": "fragment", "settings": {"packets": "tlshello", "lengths": ["5", "94", "1"], "delays": ["0"], "maxSplit": "0"}},{"type": "fragment", "settings": {"packets": "1-1", "lengths": ["109", "1"], "delays": ["1"], "maxSplit": "355"}}]}&insecure=0&host=www.pleadcourt.org&fp=unsafe&type=ws&allowInsecure=0&sni=www.pleadcourt.org#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
