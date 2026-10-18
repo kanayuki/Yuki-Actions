@@ -87,7 +87,7 @@ proxies:
   port: 19000
   password: github.com/Alvin9999-newpac/fanqiang
   sni: anytls2.864106.xyz
-- name: US_20261018_hysteria1_2
+- name: US_20261018_hysteria1_3
   type: hysteria
   server: 198.200.57.142
   port: 22335
@@ -139,6 +139,18 @@ proxies:
   password: dongtaiwang.com
   sni: www.microsoft.com
   skip-cert-verify: true
+- type: hysteria
+  server: 137.175.82.44
+  port: 443
+  auth-str: dongtaiwang.com
+  protocol: udp
+  up: 11
+  down: 55
+  sni: bing.com
+  skip-cert-verify: true
+  alpn:
+  - h3
+  name: US_20261018_hysteria1_2
 - type: hysteria
   server: 107.149.207.185
   port: 443
@@ -239,11 +251,12 @@ proxy-groups:
   - FR_20261018_hysteria1_3
   - DE_20261018_hysteria1
   - US_20261018_anytls
-  - US_20261018_hysteria1_2
+  - US_20261018_hysteria1_3
   - US_20261018_mieru_3
   - TW_20261018_hysteria1
   - FR_20261018_hysteria1_2
   - FR_20261018_hysteria2
+  - US_20261018_hysteria1_2
   - US_20261018_hysteria1
   - US_20261018_mieru_2
   - US_20261018_mieru
@@ -266,11 +279,12 @@ proxy-groups:
   - FR_20261018_hysteria1_3
   - DE_20261018_hysteria1
   - US_20261018_anytls
-  - US_20261018_hysteria1_2
+  - US_20261018_hysteria1_3
   - US_20261018_mieru_3
   - TW_20261018_hysteria1
   - FR_20261018_hysteria1_2
   - FR_20261018_hysteria2
+  - US_20261018_hysteria1_2
   - US_20261018_hysteria1
   - US_20261018_mieru_2
   - US_20261018_mieru
