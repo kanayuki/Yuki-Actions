@@ -632,3 +632,6 @@ vless://22136b20-6365-4ae6-b21a-799a00ab1346@89.124.100.104:8080?security=realit
 vless://fd1d80da-3b27-457a-810b-2b28a309edc1@195.123.6.19:8443?security=reality&encryption=none&pbk=EDXtIJRcxgBXd32fNHSWcd8GUarM3aZeYf_xDD5gSXY&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=travel.yandex.ru&sid=6a42dc3d#%E4%B9%8C%E5%85%8B%E5%85%B0+V2CROSS.COM
 vless://495c7195-85b8-498a-bf20-2ea9ce9175b5@141.98.233.6:443?sni=snip.edgeoneai.cc.cd&type=ws&host=snip.edgeoneai.cc.cd&path=/fp=chrome&security=tls#%E6%B3%A2%E5%85%B0+V2CROSS.COM
 anytls://0324fbc29561@654968169.df6h451rh.xin:443/?sni=images.ctfassets.net&insecure=1&udp=1#HK%20-%20zhuhai.uk%2002
+vless://c720cb74-4c84-4fce-b8ae-637dbaa16199@185.141.227.223:443?&security=tls&fp=firefox&sni=z1q3pv4g78.rucdncomp.pro&type=ws&headerType=none&host=z1q3pv4g78.rucdncomp.pro&path=%2Fuseraction%2Fevents%2Fb892639b7195%2F#%E4%BF%84%E7%BD%97%E6%96%AF+V2CROSS.COM
+vless://495c7195-85b8-498a-bf20-2ea9ce9175b5@45.76.208.253:443?&security=tls&fp=chrome&sni=snip.edgeoneai.cc.cd&type=ws&headerType=none&host=snip.edgeoneai.cc.cd&path=%2F#%E6%97%A5%E6%9C%AC+%E4%B8%9C%E4%BA%ACChoopa%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
+vless://495c7195-85b8-498a-bf20-2ea9ce9175b5@195.133.17.250:443?sni=snip.edgeoneai.cc.cd&type=ws&host=snip.edgeoneai.cc.cd&path=/fp=chrome&security=tls#%E4%BF%84%E7%BD%97%E6%96%AF+V2CROSS.COM
