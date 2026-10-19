@@ -81,12 +81,18 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
-- name: US_20261019_anytls
-  type: anytls
-  server: anytls2.864106.xyz
-  port: 19000
-  password: github.com/Alvin9999-newpac/fanqiang
-  sni: anytls2.864106.xyz
+- name: TW_20261019_hysteria1
+  type: hysteria
+  server: tw-25.497489.xyz
+  port: 10099
+  auth-str: github.com/Alvin9999-newpac/fanqiang
+  sni: tw-25.497489.xyz
+  skip-cert-verify: false
+  alpn:
+  - h3
+  protocol: udp
+  up: 20 Mbps
+  down: 20 Mbps
 - name: US_20261019_hysteria1_3
   type: hysteria
   server: 198.200.57.142
@@ -108,18 +114,6 @@ proxies:
   password: github.com/Alvin9999-newpac/fanqiang
   udp: true
   multiplexing: MULTIPLEXING_LOW
-- name: TW_20261019_hysteria1
-  type: hysteria
-  server: tw-25.497489.xyz
-  port: 10099
-  auth-str: github.com/Alvin9999-newpac/fanqiang
-  sni: tw-25.497489.xyz
-  skip-cert-verify: false
-  alpn:
-  - h3
-  protocol: udp
-  up: 20 Mbps
-  down: 20 Mbps
 - type: hysteria
   server: 195.154.44.227
   port: 55668
@@ -213,6 +207,12 @@ proxies:
   alpn:
   - h3
   name: DE_20261019_hysteria1_2
+- name: US_20261019_anytls
+  type: anytls
+  server: anytls2.864106.xyz
+  port: 19000
+  password: github.com/Alvin9999-newpac/fanqiang
+  sni: anytls2.864106.xyz
 - name: FR_20261019_vless_3
   type: vless
   server: 62.210.70.194
@@ -250,10 +250,9 @@ proxy-groups:
   - FR_20261019_hysteria1
   - FR_20261019_hysteria1_3
   - DE_20261019_hysteria1
-  - US_20261019_anytls
+  - TW_20261019_hysteria1
   - US_20261019_hysteria1_3
   - US_20261019_mieru_3
-  - TW_20261019_hysteria1
   - FR_20261019_hysteria1_2
   - FR_20261019_hysteria2
   - US_20261019_hysteria1_2
@@ -263,6 +262,7 @@ proxy-groups:
   - US_20261019_shadowquic_2
   - US_20261019_shadowquic
   - DE_20261019_hysteria1_2
+  - US_20261019_anytls
   - FR_20261019_vless_3
   - DE_20261019_hysteria1_3
 - name: AUTO
@@ -278,10 +278,9 @@ proxy-groups:
   - FR_20261019_hysteria1
   - FR_20261019_hysteria1_3
   - DE_20261019_hysteria1
-  - US_20261019_anytls
+  - TW_20261019_hysteria1
   - US_20261019_hysteria1_3
   - US_20261019_mieru_3
-  - TW_20261019_hysteria1
   - FR_20261019_hysteria1_2
   - FR_20261019_hysteria2
   - US_20261019_hysteria1_2
@@ -291,6 +290,7 @@ proxy-groups:
   - US_20261019_shadowquic_2
   - US_20261019_shadowquic
   - DE_20261019_hysteria1_2
+  - US_20261019_anytls
   - FR_20261019_vless_3
   - DE_20261019_hysteria1_3
 rules:
