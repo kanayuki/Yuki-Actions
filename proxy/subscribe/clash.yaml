@@ -11,6 +11,28 @@ proxies:
     short-id: 21569dd6
   servername: www.yahoo.com
   client-fingerprint: chrome
+- name: FR_20261024_vmess
+  type: vmess
+  server: 2001:bc8:32d7:302::10
+  port: 44579
+  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
+  alterId: 0
+  cipher: auto
+  network: ws
+  ws-opts:
+    path: /
+- name: FR_20261024_vless
+  type: vless
+  server: 2001:bc8:32d7:302::13
+  port: 34324
+  uuid: 26c462ba-a90c-4814-9d7c-a629bc0bdb5c
+  network: tcp
+  tls: true
+  reality-opts:
+    public-key: pHn5CHa2P6-lNBIkTOI3zJQN19jfNFkXxGFuyefpP0M
+    short-id: ''
+  servername: dash.cloudflare.com
+  client-fingerprint: chrome
 - name: FR_20261024_hysteria1_4
   type: hysteria
   server: 62.210.70.191
@@ -59,6 +81,39 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
+- name: TW_20261024_hysteria1
+  type: hysteria
+  server: tw-25.497489.xyz
+  port: 10099
+  auth-str: github.com/Alvin9999-newpac/fanqiang
+  sni: tw-25.497489.xyz
+  skip-cert-verify: false
+  alpn:
+  - h3
+  protocol: udp
+  up: 20 Mbps
+  down: 20 Mbps
+- name: US_20261024_hysteria1_3
+  type: hysteria
+  server: 198.200.57.142
+  port: 22335
+  auth-str: github.com/Alvin9999-newpac/fanqiang
+  sni: bing.com
+  skip-cert-verify: true
+  alpn:
+  - h3
+  protocol: udp
+  up: 11 Mbps
+  down: 55 Mbps
+- name: US_20261024_mieru_3
+  type: mieru
+  server: 198.200.57.152
+  port: 33556
+  transport: TCP
+  username: Alvin9999-newpac
+  password: github.com/Alvin9999-newpac/fanqiang
+  udp: true
+  multiplexing: MULTIPLEXING_LOW
 - type: hysteria
   server: 195.154.44.227
   port: 55668
@@ -90,6 +145,18 @@ proxies:
   alpn:
   - h3
   name: US_20261024_hysteria1_2
+- type: hysteria
+  server: 107.149.207.185
+  port: 443
+  auth-str: dongtaiwang.com
+  protocol: udp
+  up: 11
+  down: 55
+  sni: www.bing.com
+  skip-cert-verify: true
+  alpn:
+  - h3
+  name: US_20261024_hysteria1
 - type: mieru
   server: 198.200.57.152
   username: Alvin9999-newpac
@@ -128,79 +195,12 @@ proxies:
   - h3
   zero-rtt: true
   name: US_20261024_shadowquic
-- name: FR_20261024_vmess
-  type: vmess
-  server: 2001:bc8:32d7:302::10
-  port: 44579
-  uuid: 8e34e170-13ae-4892-9d20-05962acc9f84
-  alterId: 0
-  cipher: auto
-  network: ws
-  ws-opts:
-    path: /
-- name: US_20261024_hysteria1_3
-  type: hysteria
-  server: 198.200.57.142
-  port: 22335
-  auth-str: github.com/Alvin9999-newpac/fanqiang
-  sni: bing.com
-  skip-cert-verify: true
-  alpn:
-  - h3
-  protocol: udp
-  up: 11 Mbps
-  down: 55 Mbps
 - name: US_20261024_anytls
   type: anytls
   server: anytls2.864106.xyz
   port: 19000
   password: github.com/Alvin9999-newpac/fanqiang
   sni: anytls2.864106.xyz
-- name: FR_20261024_vless
-  type: vless
-  server: 2001:bc8:32d7:302::13
-  port: 34324
-  uuid: 26c462ba-a90c-4814-9d7c-a629bc0bdb5c
-  network: tcp
-  tls: true
-  reality-opts:
-    public-key: pHn5CHa2P6-lNBIkTOI3zJQN19jfNFkXxGFuyefpP0M
-    short-id: ''
-  servername: dash.cloudflare.com
-  client-fingerprint: chrome
-- type: hysteria
-  server: 107.149.207.185
-  port: 443
-  auth-str: dongtaiwang.com
-  protocol: udp
-  up: 11
-  down: 55
-  sni: www.bing.com
-  skip-cert-verify: true
-  alpn:
-  - h3
-  name: US_20261024_hysteria1
-- name: US_20261024_mieru_3
-  type: mieru
-  server: 198.200.57.152
-  port: 33556
-  transport: TCP
-  username: Alvin9999-newpac
-  password: github.com/Alvin9999-newpac/fanqiang
-  udp: true
-  multiplexing: MULTIPLEXING_LOW
-- name: TW_20261024_hysteria1
-  type: hysteria
-  server: tw-25.497489.xyz
-  port: 10099
-  auth-str: github.com/Alvin9999-newpac/fanqiang
-  sni: tw-25.497489.xyz
-  skip-cert-verify: false
-  alpn:
-  - h3
-  protocol: udp
-  up: 20 Mbps
-  down: 20 Mbps
 proxy-groups:
 - name: PROXY
   type: select
@@ -208,24 +208,24 @@ proxy-groups:
   - AUTO
   - DIRECT
   - FR_20261024_vless_2
+  - FR_20261024_vmess
+  - FR_20261024_vless
   - FR_20261024_hysteria1_4
   - FR_20261024_hysteria1
   - FR_20261024_hysteria1_3
   - DE_20261024_hysteria1
+  - TW_20261024_hysteria1
+  - US_20261024_hysteria1_3
+  - US_20261024_mieru_3
   - FR_20261024_hysteria1_2
   - FR_20261024_hysteria2
   - US_20261024_hysteria1_2
+  - US_20261024_hysteria1
   - US_20261024_mieru_2
   - US_20261024_mieru
   - US_20261024_shadowquic_2
   - US_20261024_shadowquic
-  - FR_20261024_vmess
-  - US_20261024_hysteria1_3
   - US_20261024_anytls
-  - FR_20261024_vless
-  - US_20261024_hysteria1
-  - US_20261024_mieru_3
-  - TW_20261024_hysteria1
 - name: AUTO
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -233,24 +233,24 @@ proxy-groups:
   tolerance: 50
   proxies:
   - FR_20261024_vless_2
+  - FR_20261024_vmess
+  - FR_20261024_vless
   - FR_20261024_hysteria1_4
   - FR_20261024_hysteria1
   - FR_20261024_hysteria1_3
   - DE_20261024_hysteria1
+  - TW_20261024_hysteria1
+  - US_20261024_hysteria1_3
+  - US_20261024_mieru_3
   - FR_20261024_hysteria1_2
   - FR_20261024_hysteria2
   - US_20261024_hysteria1_2
+  - US_20261024_hysteria1
   - US_20261024_mieru_2
   - US_20261024_mieru
   - US_20261024_shadowquic_2
   - US_20261024_shadowquic
-  - FR_20261024_vmess
-  - US_20261024_hysteria1_3
   - US_20261024_anytls
-  - FR_20261024_vless
-  - US_20261024_hysteria1
-  - US_20261024_mieru_3
-  - TW_20261024_hysteria1
 rules:
 - GEOIP,LAN,DIRECT,no-resolve
 - GEOIP,CN,DIRECT
