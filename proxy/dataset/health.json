@@ -278853,13 +278853,13 @@
     "fail_count": 0,
     "last_verified": "2026-10-29T00:35:16+00:00",
     "last_ok": "2026-10-29T00:35:16+00:00",
-    "latency_ms": 316.2,
+    "latency_ms": 512.4,
     "latency_history": [
-      397.9,
       495.8,
       0.2,
       343.6,
-      316.2
+      316.2,
+      512.4
     ],
     "first_seen": "2026-10-18T07:43:35+00:00",
     "dormant": false,
@@ -284761,13 +284761,13 @@
     "fail_count": 0,
     "last_verified": "2026-10-29T00:35:16+00:00",
     "last_ok": "2026-10-29T00:35:16+00:00",
-    "latency_ms": 115.5,
+    "latency_ms": 245.1,
     "latency_history": [
-      663.9,
       400.8,
       0.2,
       57.2,
-      115.5
+      115.5,
+      245.1
     ],
     "first_seen": "2026-10-28T12:00:13+00:00",
     "dormant": false,
@@ -285443,6 +285443,23 @@
     "latency_ms": 0.0,
     "latency_history": [],
     "first_seen": "2026-10-29T09:16:05+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "b7f73536be33d65a6f8dcd43f23d28bca1b0ea4161f7210033d34f919c0aeef1": {
+    "link": "vless://e9a8144e-5237-488a-afb1-9ca3d8d54c80@152.175.8.61:36155?encryption=none&security=tls&type=tcp&sni=hk014.zestapp778.com#%E6%99%BA%E5%88%A9+V2CROSS.COM",
+    "protocol": "vless",
+    "host": "152.175.8.61",
+    "port": 36155,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-10-29T17:57:26+00:00",
     "dormant": false,
     "dormant_since": ""
   }
