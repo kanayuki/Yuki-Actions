@@ -33,9 +33,9 @@ proxies:
     short-id: ''
   servername: dash.cloudflare.com
   client-fingerprint: chrome
-- name: FR_20261030_hysteria1_4
+- name: FR_20261030_hysteria1_3
   type: hysteria
-  server: 62.210.70.191
+  server: 62.210.28.175
   port: 24667
   auth-str: dongtaiwang.com
   sni: bing.com
@@ -57,7 +57,7 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
-- name: FR_20261030_hysteria1_3
+- name: FR_20261030_hysteria1_4
   type: hysteria
   server: 62.210.70.191
   port: 23556
@@ -195,6 +195,18 @@ proxies:
   - h3
   zero-rtt: true
   name: US_20261030_shadowquic
+- name: FR_20261030_hysteria1_5
+  type: hysteria
+  server: 62.210.70.191
+  port: 24667
+  auth-str: dongtaiwang.com
+  sni: bing.com
+  skip-cert-verify: true
+  alpn:
+  - h3
+  protocol: udp
+  up: 11 Mbps
+  down: 55 Mbps
 proxy-groups:
 - name: PROXY
   type: select
@@ -204,9 +216,9 @@ proxy-groups:
   - FR_20261030_vless_2
   - FR_20261030_vmess
   - FR_20261030_vless
-  - FR_20261030_hysteria1_4
-  - FR_20261030_hysteria1
   - FR_20261030_hysteria1_3
+  - FR_20261030_hysteria1
+  - FR_20261030_hysteria1_4
   - DE_20261030_hysteria1
   - TW_20261030_hysteria1
   - US_20261030_hysteria1_3
@@ -219,6 +231,7 @@ proxy-groups:
   - US_20261030_mieru
   - US_20261030_shadowquic_2
   - US_20261030_shadowquic
+  - FR_20261030_hysteria1_5
 - name: AUTO
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -228,9 +241,9 @@ proxy-groups:
   - FR_20261030_vless_2
   - FR_20261030_vmess
   - FR_20261030_vless
-  - FR_20261030_hysteria1_4
-  - FR_20261030_hysteria1
   - FR_20261030_hysteria1_3
+  - FR_20261030_hysteria1
+  - FR_20261030_hysteria1_4
   - DE_20261030_hysteria1
   - TW_20261030_hysteria1
   - US_20261030_hysteria1_3
@@ -243,6 +256,7 @@ proxy-groups:
   - US_20261030_mieru
   - US_20261030_shadowquic_2
   - US_20261030_shadowquic
+  - FR_20261030_hysteria1_5
 rules:
 - GEOIP,LAN,DIRECT,no-resolve
 - GEOIP,CN,DIRECT
