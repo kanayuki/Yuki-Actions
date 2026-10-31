@@ -93,7 +93,7 @@ proxies:
   protocol: udp
   up: 20 Mbps
   down: 20 Mbps
-- name: US_20261031_hysteria1_3
+- name: US_20261031_hysteria1_4
   type: hysteria
   server: 198.200.57.142
   port: 22335
@@ -115,9 +115,9 @@ proxies:
   udp: true
   multiplexing: MULTIPLEXING_LOW
 - type: hysteria
-  server: 195.154.44.227
-  port: 55668
-  auth-str: github.com/Alvin9999-newpac/fanqiang
+  server: 137.175.82.43
+  port: 443
+  auth-str: dongtaiwang.com
   protocol: udp
   up: 20
   down: 20
@@ -125,7 +125,7 @@ proxies:
   skip-cert-verify: true
   alpn:
   - h3
-  name: FR_20261031_hysteria1_2
+  name: US_20261031_hysteria1_2
 - name: FR_20261031_hysteria2
   type: hysteria2
   server: 2001:bc8:32d7:17b::3
@@ -144,7 +144,7 @@ proxies:
   skip-cert-verify: true
   alpn:
   - h3
-  name: US_20261031_hysteria1_2
+  name: US_20261031_hysteria1_3
 - type: hysteria
   server: 107.149.207.185
   port: 443
@@ -195,6 +195,18 @@ proxies:
   - h3
   zero-rtt: true
   name: US_20261031_shadowquic
+- type: hysteria
+  server: 195.154.44.227
+  port: 55668
+  auth-str: github.com/Alvin9999-newpac/fanqiang
+  protocol: udp
+  up: 20
+  down: 20
+  sni: bing.com
+  skip-cert-verify: true
+  alpn:
+  - h3
+  name: FR_20261031_hysteria1_2
 - name: FR_20261031_hysteria1_5
   type: hysteria
   server: 62.210.70.191
@@ -221,16 +233,17 @@ proxy-groups:
   - FR_20261031_hysteria1_4
   - DE_20261031_hysteria1
   - TW_20261031_hysteria1
-  - US_20261031_hysteria1_3
+  - US_20261031_hysteria1_4
   - US_20261031_mieru_3
-  - FR_20261031_hysteria1_2
-  - FR_20261031_hysteria2
   - US_20261031_hysteria1_2
+  - FR_20261031_hysteria2
+  - US_20261031_hysteria1_3
   - US_20261031_hysteria1
   - US_20261031_mieru_2
   - US_20261031_mieru
   - US_20261031_shadowquic_2
   - US_20261031_shadowquic
+  - FR_20261031_hysteria1_2
   - FR_20261031_hysteria1_5
 - name: AUTO
   type: url-test
@@ -246,16 +259,17 @@ proxy-groups:
   - FR_20261031_hysteria1_4
   - DE_20261031_hysteria1
   - TW_20261031_hysteria1
-  - US_20261031_hysteria1_3
+  - US_20261031_hysteria1_4
   - US_20261031_mieru_3
-  - FR_20261031_hysteria1_2
-  - FR_20261031_hysteria2
   - US_20261031_hysteria1_2
+  - FR_20261031_hysteria2
+  - US_20261031_hysteria1_3
   - US_20261031_hysteria1
   - US_20261031_mieru_2
   - US_20261031_mieru
   - US_20261031_shadowquic_2
   - US_20261031_shadowquic
+  - FR_20261031_hysteria1_2
   - FR_20261031_hysteria1_5
 rules:
 - GEOIP,LAN,DIRECT,no-resolve
