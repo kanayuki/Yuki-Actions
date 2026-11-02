@@ -287560,5 +287560,22 @@
     "first_seen": "2026-11-02T00:11:39+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "3b2ccc07a71ee5c498aafbcc05dbf0b80ea3ae587d4f5e7b886a0182f7ecbc49": {
+    "link": "hysteria2://69e41e64-a832-471a-b740-94577ca85520@forshynewh.duckdns.org:443?security=tls&sni=forshynewh.duckdns.org#%E4%BC%8A%E6%9C%97+V2CROSS.COM",
+    "protocol": "hysteria2",
+    "host": "forshynewh.duckdns.org",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-02T10:28:20+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
