@@ -288019,5 +288019,39 @@
     "first_seen": "2026-11-03T20:48:29+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "0cccf26d9bf5a929cd7e4257f86b172c08af325a2c877a491547aae881acb44b": {
+    "link": "hysteria2://a35c508f-4d5d-4531-842e-6e9d43c762c0@pl2.nexfile.net:4444?security=tls&sni=pl2.nexfile.net#%E7%BE%8E%E5%9B%BD+Xerox",
+    "protocol": "hysteria2",
+    "host": "pl2.nexfile.net",
+    "port": 4444,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-04T01:00:48+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "9bfd46842b1fc63ad379efff372f77ce24bf1bb366a9a4e7bf39af4f94f5a8c5": {
+    "link": "vless://ebdfaf99-41d8-4e48-8196-d54510ffb556@45.129.242.56:443?security=reality&type=tcp&packetEncoding=xudp&sni=www.cloudflare.com&fp=chrome&flow=xtls-rprx-vision&sid=abcdef&pbk=YURKlEQ3rap4KOXXGsVFZyYev2oDU2gCEbNTXPdKWRY#%E7%BE%8E%E5%9B%BD+V2CROSS.COM",
+    "protocol": "vless",
+    "host": "45.129.242.56",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-04T01:00:48+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
