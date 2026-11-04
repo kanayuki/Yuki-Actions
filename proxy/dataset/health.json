@@ -288138,5 +288138,22 @@
     "first_seen": "2026-11-04T10:21:57+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "84d5fe3fa2d852b537342832dcc4995e4b96eab7f0986c6062b47c1bb672d4ac": {
+    "link": "trojan://0ab6c98dae3b48e8b9c4a776b6c9c19a@167.88.61.20:443?security=tls&sni=api.browseseniorrolesandenhanceyourcareertoday.com#%E7%91%9E%E5%85%B8+V2CROSS.COM",
+    "protocol": "trojan",
+    "host": "167.88.61.20",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-04T19:16:05+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
