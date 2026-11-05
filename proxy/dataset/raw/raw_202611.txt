@@ -58,3 +58,5 @@ vless://98a24806-141a-43d3-b094-bd66c4eb93b8@198.16.113.220:8443?security=realit
 vless://4d8132cb-f4e3-428c-91ff-2b4f7a868551@84.23.52.120:28449?type=ws&security=tls&sni=pl.sparxiecn.com&path=%2Flovelive&host=84.23.52.120&fp=chrome&allowInsecure=1#PL%20-%20zhuhai.uk
 vless://2377a148-5e9b-431f-93f4-a1bbaa3dabe9@154.19.186.229:8443?type=ws&security=tls&sni=hk1.1am.cc.cd&path=%2F69258b95124b5273&host=hk1.1am.cc.cd&fp=chrome#HK%20-%20zhuhai.uk
 vless://e08d9bc5-6832-4dd4-bd44-d9bbe61e5817@87.232.88.27:443?type=grpc&security=reality&sni=max.ru&host=grpc-67&pbk=4qE0kXmxDvNzsns2jdwd74AN35RptcTD4eKo5REa9w8&sid=04&fp=firefox#US%20-%20zhuhai.uk%2003
+trojan://5t6i121em5lkmsmk@kr002.zestapp778.com:48851?allowInsecure=1&fp=chrome&security=tls&sni=kr002.zestapp778.com&type=tcp#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+hysteria2://23c82941-70f4-4381-90db-bd28e9a902e9@steel7.hadsvpn.com:443?security=tls&sni=steel7.hadsvpn.com#%E5%B7%B4%E8%A5%BF+%E5%9C%A3%E4%BF%9D%E7%BD%97

@@ -288274,5 +288274,39 @@
     "first_seen": "2026-11-05T01:15:14+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "aff3438a397762d87395d502f11406408e1aad5ab360ebd110c45a2d50fdb3a7": {
+    "link": "trojan://5t6i121em5lkmsmk@kr002.zestapp778.com:48851?allowInsecure=1&fp=chrome&security=tls&sni=kr002.zestapp778.com&type=tcp#%E7%BE%8E%E5%9B%BD+V2CROSS.COM",
+    "protocol": "trojan",
+    "host": "kr002.zestapp778.com",
+    "port": 48851,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-05T19:24:59+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "a04c359b5982dec93310a98626a58761d6f6ebadeabc12a8def8bd773f08a741": {
+    "link": "hysteria2://23c82941-70f4-4381-90db-bd28e9a902e9@steel7.hadsvpn.com:443?security=tls&sni=steel7.hadsvpn.com#%E5%B7%B4%E8%A5%BF+%E5%9C%A3%E4%BF%9D%E7%BD%97",
+    "protocol": "hysteria2",
+    "host": "steel7.hadsvpn.com",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-05T19:24:59+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
