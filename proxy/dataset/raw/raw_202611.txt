@@ -60,3 +60,4 @@ vless://2377a148-5e9b-431f-93f4-a1bbaa3dabe9@154.19.186.229:8443?type=ws&securit
 vless://e08d9bc5-6832-4dd4-bd44-d9bbe61e5817@87.232.88.27:443?type=grpc&security=reality&sni=max.ru&host=grpc-67&pbk=4qE0kXmxDvNzsns2jdwd74AN35RptcTD4eKo5REa9w8&sid=04&fp=firefox#US%20-%20zhuhai.uk%2003
 trojan://5t6i121em5lkmsmk@kr002.zestapp778.com:48851?allowInsecure=1&fp=chrome&security=tls&sni=kr002.zestapp778.com&type=tcp#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
 hysteria2://23c82941-70f4-4381-90db-bd28e9a902e9@steel7.hadsvpn.com:443?security=tls&sni=steel7.hadsvpn.com#%E5%B7%B4%E8%A5%BF+%E5%9C%A3%E4%BF%9D%E7%BD%97
+vless://bb9f102d-f023-4d66-8ae3-2245e2904960@66.42.40.136:443?type=tcp&security=reality&sni=www.cloudflare.com&flow=xtls-rprx-vision&pbk=YSklMc171NEC2B6m8INRbVpRCPIZbO9ekgx53IgyXAs&sid=19a26f04a348e35b&fp=chrome#JP%20-%20zhuhai.uk

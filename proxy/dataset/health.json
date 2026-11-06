@@ -288308,5 +288308,22 @@
     "first_seen": "2026-11-05T19:24:59+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "b3338a44c9e7a516a6651b263046cfe72db20e2c68867f408444a5eda22b2ed9": {
+    "link": "vless://bb9f102d-f023-4d66-8ae3-2245e2904960@66.42.40.136:443?type=tcp&security=reality&sni=www.cloudflare.com&flow=xtls-rprx-vision&pbk=YSklMc171NEC2B6m8INRbVpRCPIZbO9ekgx53IgyXAs&sid=19a26f04a348e35b&fp=chrome#JP%20-%20zhuhai.uk",
+    "protocol": "vless",
+    "host": "66.42.40.136",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-06T01:21:00+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
