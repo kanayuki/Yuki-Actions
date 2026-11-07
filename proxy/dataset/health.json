@@ -247147,13 +247147,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-07T00:35:32+00:00",
     "last_ok": "2026-11-07T00:35:32+00:00",
-    "latency_ms": 485.1,
+    "latency_ms": 449.5,
     "latency_history": [
-      471.3,
       0.1,
       484.2,
       482.4,
-      485.1
+      485.1,
+      449.5
     ],
     "first_seen": "2026-09-11T13:12:05+00:00",
     "dormant": false,
@@ -256937,13 +256937,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-07T00:35:32+00:00",
     "last_ok": "2026-11-07T00:35:32+00:00",
-    "latency_ms": 498.0,
+    "latency_ms": 466.2,
     "latency_history": [
-      606.9,
       0.2,
       504.5,
       554.0,
-      498.0
+      498.0,
+      466.2
     ],
     "first_seen": "2026-09-22T03:01:28+00:00",
     "dormant": false,
@@ -264883,13 +264883,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-07T00:35:32+00:00",
     "last_ok": "2026-11-07T00:35:32+00:00",
-    "latency_ms": 439.1,
+    "latency_ms": 494.3,
     "latency_history": [
-      612.3,
       0.1,
       448.5,
       439.6,
-      439.1
+      439.1,
+      494.3
     ],
     "first_seen": "2026-09-30T00:02:46+00:00",
     "dormant": false,
@@ -287964,12 +287964,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-07T00:35:32+00:00",
     "last_ok": "2026-11-07T00:35:32+00:00",
-    "latency_ms": 1949.3,
+    "latency_ms": 1418.4,
     "latency_history": [
       0.1,
       491.7,
       1565.1,
-      1949.3
+      1949.3,
+      1418.4
     ],
     "first_seen": "2026-11-03T13:31:02+00:00",
     "dormant": false,
@@ -288060,12 +288061,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-07T00:35:32+00:00",
     "last_ok": "2026-11-07T00:35:32+00:00",
-    "latency_ms": 1789.0,
+    "latency_ms": 1375.9,
     "latency_history": [
       0.1,
       528.8,
       1108.4,
-      1789.0
+      1789.0,
+      1375.9
     ],
     "first_seen": "2026-11-03T20:48:29+00:00",
     "dormant": false,
@@ -288216,12 +288218,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-07T00:35:32+00:00",
     "last_ok": "2026-11-07T00:35:32+00:00",
-    "latency_ms": 2164.6,
+    "latency_ms": 1110.3,
     "latency_history": [
       0.1,
       500.6,
       1407.1,
-      2164.6
+      2164.6,
+      1110.3
     ],
     "first_seen": "2026-11-04T10:21:57+00:00",
     "dormant": false,
@@ -288652,12 +288655,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-07T00:35:32+00:00",
     "last_ok": "2026-11-07T00:35:32+00:00",
-    "latency_ms": 586.8,
+    "latency_ms": 5577.6,
     "latency_history": [
       0.2,
       779.6,
       5602.0,
-      586.8
+      586.8,
+      5577.6
     ],
     "first_seen": "2026-11-06T18:48:30+00:00",
     "dormant": false,
@@ -289060,6 +289064,57 @@
     "latency_ms": 0.0,
     "latency_history": [],
     "first_seen": "2026-11-07T17:20:32+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "adb5efd8616dcf34cf316429db5dc38923e265d47b723e04d024b296b63eedaa": {
+    "link": "vless://c511858b-d01f-4d35-a88a-be83a8fd1e22@rbichi.connainho.lol:18026?type=tcp&security=reality&sni=vng.com.vn&flow=xtls-rprx-vision&pbk=Zpe4RNze71UGv-T9y55k31k9BtY7gS7uvRV5aA7eiWQ&sid=367e3031&fp=edge&allowInsecure=1#VN%20-%20zhuhai.uk",
+    "protocol": "vless",
+    "host": "rbichi.connainho.lol",
+    "port": 18026,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-07T21:22:31+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "b3836e6559ee3e2975ca81e6225d07a5bcc5ca99c9f3dab51ac5718f13aa8988": {
+    "link": "vless://cda0862a-0f87-4be9-8ed8-1d0c9e382839@5d0319t.nl7.h1clayd.click:443?type=tcp&security=reality&sni=5d0319t.nl7.h1clayd.click&pbk=l-GzBDuNuhnjxoRlZqKvT7jAt_sbVAxhGFsAttO5kXs&sid=361d0dd59c70516f&fp=firefox#NL%20-%20zhuhai.uk",
+    "protocol": "vless",
+    "host": "5d0319t.nl7.h1clayd.click",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-07T21:22:31+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "8ca89ded8c6ca80b73311ad3b8be7ac00b95794174da9ac5200005f7ff15139e": {
+    "link": "vless://c511858b-d01f-4d35-a88a-be83a8fd1e22@mngd.connainho.lol:43799?type=tcp&security=reality&sni=www.apple.com&flow=xtls-rprx-vision&pbk=dwpirw5YMyOQWIpUV99QRq_iU2vLmSlbIFeO7K-gq0c&sid=0d4e7026&fp=chrome&allowInsecure=1#VN%20-%20zhuhai.uk%2002",
+    "protocol": "vless",
+    "host": "mngd.connainho.lol",
+    "port": 43799,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-07T21:22:31+00:00",
     "dormant": false,
     "dormant_since": ""
   }
