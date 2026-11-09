@@ -4578,7 +4578,6 @@ trojan://8r%3C%5B9%27l6hAO%238ZQi@91.149.239.206:443?allowInsecure=1&sni=Koma-YT
 hysteria2://1ba59989-225e-4f1c-ab62-9bd7366009cb@194.135.34.130:443?sni=194.135.34.130&insecure=1#TR%20-%20zhuhai.uk
 hysteria2://d5af110a8bc2003165576352f93b148c@162.211.228.149:50160?sni=www.bing.com&insecure=1#NL%20-%20zhuhai.uk
 vless://fbda2834-b1e7-4148-afb9-deda31036a30@w.geogame.ir:2053?type=tcp&security=tls&sni=w.geogame.ir&fp=chrome#FR%20-%20zhuhai.uk
-hysteria2://a35c508f-4d5d-4531-842e-6e9d43c762c0@13.143.189.147:4444?security=tls&sni=pl2.nexfile.net#%E7%BE%8E%E5%9B%BD+Xerox
 vless://af2a0c18-b08c-471f-baa3-259ac2ce3a85@tr3.wba-pn.ru:443?type=ws&security=tls&sni=tr3.wba-pn.ru&path=%2F&fp=chrome&allowInsecure=1#TR%20-%20zhuhai.uk
 hysteria2://569354367bdf7f34d31bbf33760bf314@166.0.16.52:50160?sni=www.bing.com&insecure=1#US%20-%20zhuhai.uk%2003
 hysteria2://l25nJa8z0D5pT6jl@16.79.28.237:26001?sni=id-ls-c-4.nebulacloud.win#ID%20-%20zhuhai.uk
@@ -4591,14 +4590,12 @@ vless://0373d990-8ca4-4b25-9b4f-5d6bb2f80c2c@cfyes.7770006.xyz:443?type=ws&secur
 vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuW+t+WbvSh5dWRvdTc4OS50b3Ag546J6LGG5YWN6LS56IqC54K5KSIsDQogICJhZGQiOiAieGcxYzYud2FpbWFvZnV3dWpkLmNjIiwNCiAgInBvcnQiOiAiNDQzIiwNCiAgImlkIjogImYwMDM5MGVhLTA4MjAtNDliOS05ZWI3LTU2OWUwM2IwMGZiMyIsDQogICJhaWQiOiAiMCIsDQogICJzY3kiOiAiYXV0byIsDQogICJuZXQiOiAid3MiLA0KICAidHlwZSI6ICJub25lIiwNCiAgImhvc3QiOiAieGcxYzYud2FpbWFvZnV3dWpkLmNjIiwNCiAgInBhdGgiOiAiL2FwaS92MS9ncmFwaHFsIiwNCiAgInRscyI6ICJ0bHMiLA0KICAic25pIjogInhnMWM2LndhaW1hb2Z1d3VqZC5jYyIsDQogICJhbHBuIjogIiINCn0=
 trojan://7e7d81db-779d-4216-9b94-7a6a09874549@0000.cloudflare.182682.xyz:443?type=ws&sni=huoyuznhhy5gkpj2g.usgogo202510.top&path=%2Fimages&host=huoyuznhhy5gkpj2g.usgogo202510.top#US%20-%20zhuhai.uk
 vless://c2564a65-0821-3241-b090-45d49cef58fd@1.ppap.a1.zjs.ppt.998.kfc-520.com:10002?type=tcp&security=reality&sni=www.nvidia.com&flow=xtls-rprx-vision&pbk=3CzFme1556AXsnF-1bVjlvxYtU_rG2i50piDBR_NBjw&sid=f61f173b&fp=firefox#US%20-%20zhuhai.uk%2002
-hysteria2://a35c508f-4d5d-4531-842e-6e9d43c762c0@13.143.189.144:4444?security=tls&sni=pl2.nexfile.net#%E7%BE%8E%E5%9B%BD+Xerox
 vless://deda70d6-62ed-b060-5654-7079fe323a7c@inetchnl-production-5285.up.railway.app:443?encryption=none&security=tls&type=ws&host=inetchnl-production-5285.up.railway.app&path=/ws/deda70d6-62ed-b060-5654-7079fe323a7c&sni=inetchnl-production-5285.up.railway.app&fp=chrome&alpn=h2,http/1.1,h3#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
 vless://f1e24501-c905-4b91-a029-3a3370bc7312@fl-cdn.ru:443?security=reality&encryption=none&pbk=UVteEq1YeqUTm7WIGPDUwQ3pegxSSWR9CBCXglsVLAU&headerType=none&fp=chrome&spx=/&type=tcp&flow=xtls-rprx-vision&sni=fl-cdn.ru&sid=7a3f9e2b1c8d4f6a#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
 trojan://humanity@www.speedtest.org:443?fp=chrome&path=%2Fassignment&security=tls&sni=www.ignitelimit.com&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 vless://55d9ec38-1b8a-454b-981a-6acfe8f56d8c@fu.baiproxy.us.ci:2087?security=tls&type=ws&path=%2F%3Fed%3D2560&host=fu.baiproxy.us.ci&sni=fu.baiproxy.us.ci&fp=qq#US%20-%20zhuhai.uk%2003
 trojan://rYuChHcwQZskq9E0zdoR@ip4.vpean2.qzz.io:443?allowInsecure=0&sni=vpn5.rnmcnm.com&ws=1&wspath=%2Fws-79dffb8106db#%F0%9F%87%AB%F0%9F%87%B7%20FR%E6%B3%95%E5%9B%BD%28mibei77.com%20%E7%B1%B3%E8%B4%9D%E8%8A%82%E7%82%B9%E5%88%86%E4%BA%AB%29
 hysteria2://7836b28e-8451-4596-ad3e-e3601b2335ba@78.159.240.69:8443?insecure=1&security=tls&sni=quic.tyr-agentstvo.tech#%E4%BF%84%E7%BD%97%E6%96%AF+V2CROSS.COM
-hysteria2://a35c508f-4d5d-4531-842e-6e9d43c762c0@13.143.189.149:4444?security=tls&sni=pl2.nexfile.net#%E7%BE%8E%E5%9B%BD+Xerox
 vmess://ewogICJ2IjogMiwKICAicHMiOiAi8J+Hr/Cfh7VfSlBf5pel5pysIiwKICAiYWRkIjogInA0LmNuYi5saW51eGxoLnhpbiIsCiAgInBvcnQiOiAxNjYxNywKICAiaWQiOiAiNmVlMmE3YmEtY2Q5Mi00MjdmLWFjNGYtMmY4ZDI4NGUzMTZjIiwKICAiYWlkIjogMCwKICAic2N5IjogImF1dG8iLAogICJuZXQiOiAid3MiLAogICJ0eXBlIjogbnVsbCwKICAiaG9zdCI6ICI1YjIyNTQ3YmE1Y2M5YjgzYTdhOTUzNGI0YTdjZjllYS5tb2Jnc2xiLnRiY2FjaGUuY29tIiwKICAicGF0aCI6ICIvIiwKICAidGxzIjogZmFsc2UsCiAgInNuaSI6ICIiCn0=
 vless://2b8738de-1af5-4267-b101-c05707769ed4@fans.liverpool.qzz.io:2053/?type=ws&encryption=none&flow=&host=fans.liverpool.qzz.io&path=/eyJqdW5rIjoiZXlpMnFWRURmWkp5ZCIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0=?ed=2560&security=tls&sni=FaNs.livErpoOl.qZZ.io&alpn=http/1.1&fp=chrome#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@cf.130209.xyz:443?encryption=none&security=tls&sni=canda.usic.ccwu.cc&fp=edge&type=ws&host=canda.usic.ccwu.cc&path=%2Fapi%2Fv2%2Fcheck_update#CA%20-%20zhuhai.uk%2001
@@ -4629,6 +4626,7 @@ vless://7ce54bb3-d612-4aa7-be08-089d3c461d53@www.true.th:443?type=ws&security=tl
 vless://ef5f6054-61c7-4ce8-a35b-dbcec449f242@bridge.kolhoz.fuck-rkn.xyz:443?security=reality&type=tcp&sni=jobinvest.ru&fp=chrome&flow=xtls-rprx-vision&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&encryption=none#PL%20-%20zhuhai.uk%2001
 vless://2b8738de-1af5-4267-b101-c05707769ed4@fans.liverpool.qzz.io:2083?ed=2560&eh=Sec-WebSocket-Protocol&encryption=none&fp=chrome&host=fans.liverpool.qzz.io&path=%2FeyJqdW5rIjoiY0Y0cENQUmxsNyIsInByb3RvY29sIjoidmwiLCJtb2RlIjoicHJveHlpcCIsInBhbmVsSVBzIjpbXX0%3D&security=tls&sni=fans.liverpool.qzz.io&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 vless://5aa7d17e-7dc2-46dd-9acf-c3c97440259b@cloudflare.182682.xyz:443?encryption=none&security=tls&sni=sss.yaml7.ggff.net&type=ws&host=sss.yaml7.ggff.net&path=%2F%3Fed%3D2048#%E7%BE%8E%E5%9B%BD%28yudou789.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
+hysteria2://184cdec28da5a09450803c8debcd2cc9@138.3.208.26:50160?sni=138.3.208.26&insecure=1#JP%20-%20zhuhai.uk
 hysteria2://github.com%2FAlvin9999-newpac%2Ffanqiang@62.210.147.2:43115?insecure=1&security=tls&sni=www.microsoft.com#%E6%B3%95%E5%9B%BD+ONLINE+S.A.S.%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
 hysteria2://gf1%3Agfhysteria2024@173.212.201.85:443?insecure=1&security=tls&sni=www.docker.com#%E5%BE%B7%E5%9B%BD+%E7%BA%BD%E4%BC%A6%E5%A0%A1CONTABO%E6%9C%BA%E6%88%BF
 vless://2ceb8461-18ed-413e-958e-645c9fbf2abe@cfyes.ziyoufly.xyz:443?type=ws&security=tls&sni=cf-uh-sg01-2.23523463.xyz&path=%2Fziyou&host=cf-uh-sg01-2.23523463.xyz&fp=chrome#SG%20-%20zhuhai.uk%2002
@@ -4662,6 +4660,7 @@ vless://1a4e38b0-b430-321c-9962-c732bfede070@uk02.alilago.org:443?type=tcp&secur
 hysteria2://uj7XGZGUqRlmdpk6rysyZMN333RWsxTFj0hBIMaFV-NUCd5r@185.225.19.39:443?security=tls&sni=ro.h2corp.org#%E6%91%A9%E5%B0%94%E5%A4%9A%E7%93%A6+V2CROSS.COM
 vless://ce069292-c8bf-40dd-a6b1-87818a1e64e9@cfyx.aliyun.20237737.xyz:443?encryption=none&security=tls&sni=2-1ng.pages.dev&type=ws&host=2-1ng.pages.dev&path=%2F#%E6%96%B0%E5%8A%A0%E5%9D%A1%28yudou789.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
 vmess://eyJ2IjoiMiIsInBzIjoi8J+HuPCfh6wg5paw5Yqg5Z2hfEByaXBhb2ppZWRpYW4iLCJhZGQiOiJBaW03SHFUdXZOT29mY3N4LnYuM2Rucy52aXAiLCJwb3J0IjoiNDQzIiwidHlwZSI6Im5vbmUiLCJpZCI6IjFhYmU0OWRlZGI2ZTRmNjVhMGYwYTVlYTc5ZGRlZmFkIiwiYWlkIjoiMCIsIm5ldCI6IndzIiwicGF0aCI6Ii93cy12bWVzcyIsImhvc3QiOiJBaW03SHFUdXZOT29mY3N4LnYuM2Rucy52aXAiLCJ0bHMiOiJ0bHMifQ==
+hysteria2://a35c508f-4d5d-4531-842e-6e9d43c762c0@13.143.189.144:4444?security=tls&sni=pl2.nexfile.net#%E7%BE%8E%E5%9B%BD+Xerox
 vless://a61496c3-f256-4a36-8a52-8638b9cc900a@van2.ragnarok-it.xyz:8446?&security=reality&flow=xtls-rprx-vision&pbk=Y6ZtoxCUW1qFIvLTNfbrsyfCDoIBaRsqGNtbF_mcAXM&sid=7bac4b112d30d1&fp=edge&sni=amd.com&type=tcp&headerType=none&host=amd.com&path=%2F#%E5%BE%B7%E5%9B%BD+V2CROSS.COM
 trojan://humanity@ip.myip2.qzz.io:443?fp=chrome&path=%2Fassignment&security=tls&sni=www.ignitelimit.com&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 vless://1a4e38b0-b430-321c-9962-c732bfede070@uk03.alilago.org:443?type=tcp&security=reality&sni=www.apple.com&flow=xtls-rprx-vision&pbk=Vc8ycAgKqfRvtXjvGP0ry_U91o5wgrQlqOhHq72HYRs&sid=1bc2c1ef1c&fp=chrome#GB%20-%20zhuhai.uk%2005
@@ -4722,6 +4721,7 @@ hysteria2://daca6264-bd96-48d4-a0ff-c96e50a00aa0@uswx4.wxgqlfx.vip:35193?insecur
 ss://YWVzLTEyOC1nY206UUhQeTJ1QDI2MDMyMy4xLjAubDMudW5jbGVtYW5jby5jb206OTAyMg==#%F0%9F%87%AD%F0%9F%87%B0_HK_%E4%B8%AD%E5%9B%BD%E9%A6%99%E6%B8%AF
 hysteria2://1e3a5c5fde1da9dd1358b4adeb0c4ca1@45.32.252.144:443?security=tls&sni=vps.vpsv.cc#%E6%97%A5%E6%9C%AC+%E4%B8%9C%E4%BA%ACChoopa%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
 hysteria2://H7mP2xY9kJ4nQ8wR5tF6vB3z@202.146.222.89:443?insecure=1&security=tls&sni=https%3A%2F%2Ft.me%2Fclashv8%F0%9F%87%A8%F0%9F%87%B3#%E9%A6%99%E6%B8%AF+%E7%89%B9%E5%88%AB%E8%A1%8C%E6%94%BF%E5%8C%BA
+hysteria2://633bc3be486b646190661ac2387c150a@152.67.115.203:443?sni=www.bing.com&obfs=salamander&obfs-password=850a3fb1cd33a28f12d837578ae1a2e7&insecure=1#AU%20-%20zhuhai.uk
 vless://8645b9cb-0d7c-440d-b300-fd44011c5019@www.speedtest.net:8443?type=ws&security=tls&sni=arvan.dearhossein-taktaz.ir&path=%2F&host=arvan.dearhossein-taktaz.ir&allowInsecure=1#FI%20-%20zhuhai.uk
 vless://dabc63c7-493b-476f-919d-7c73b797220c@fin2.nfnpx.online:443?type=tcp&security=reality&sni=fin2.nfnpx.online&flow=xtls-rprx-vision&pbk=LsesLwq7kI3X91a5oygEXLOyWQwEDSSHltrCppMWCH4&sid=ec0dc4de68e19e14&fp=firefox#FI%20-%20zhuhai.uk%2002
 vless://7f2935fa-3845-466c-9320-c17aed65f454@ct.877774.xyz:443?type=ws&security=tls&sni=jp-osa.862400.xyz&path=%2Fannouncement&host=jp-osa.862400.xyz&fp=random#JP%20-%20zhuhai.uk
@@ -4745,9 +4745,7 @@ hysteria2://fJT5wNXNkYDvYKKGWUc9f2vd0LvHKSwc@43.167.198.167:443?insecure=1&secur
 hysteria2://H7mP2xY9kJ4nQ8wR5tF6vB3z@vpn-fr-002.fastervpn.world:443?sni=vpn-fr-002.fastervpn.world&allowInsecure=1#FR%20-%20zhuhai.uk
 ss://YWVzLTEyOC1nY206UUhQeTJ1QDI2MDMyMy4xLjAubDMudW5jbGVtYW5jby5jb206MjAwMTI=#%F0%9F%87%AD%F0%9F%87%B0_HK_%E4%B8%AD%E5%9B%BD%E9%A6%99%E6%B8%AF
 hysteria2://ef18d810-719c-4bf1-83c6-615d01f217eb@jp.cryptoofarm.com:443?insecure=1&security=tls&sni=jp.cryptoofarm.com#%E7%AB%8B%E9%99%B6%E5%AE%9B+V2CROSS.COM
-hysteria2://633bc3be486b646190661ac2387c150a@152.67.115.203:443?sni=www.bing.com&obfs=salamander&obfs-password=850a3fb1cd33a28f12d837578ae1a2e7&insecure=1#AU%20-%20zhuhai.uk
 hysteria2://1427eb10-7529-4d38-a6a2-01b337868b37@nl1.xiaoliyu.cyou:4433?insecure=1&security=tls&sni=nl1.xiaoliyu.cyou#%E5%8D%97%E9%9D%9E+V2CROSS.COM
-hysteria2://1671a252e2a97dc2bda4e515475931da@132.226.226.189:50160?insecure=1&security=tls&sni=www.bing.com#%E8%8D%B7%E5%85%B0+V2CROSS.COM
 ss://YWVzLTEyOC1nY206YXkybG91ZDFAMjYwMzIzLjEuMC5sMy51bmNsZW1hbmNvLmNvbTo5MDY=#%F0%9F%87%AD%F0%9F%87%B0_HK_%E4%B8%AD%E5%9B%BD%E9%A6%99%E6%B8%AF-%3E%F0%9F%87%BA%F0%9F%87%B8_US_%E7%BE%8E%E5%9B%BD
 ss://YWVzLTEyOC1nY206YXl1Y2xvdWQxQDI2MDMyMy4xLjAubDMudW5jbGVtYW5jby5jb206OTA1Mg==#%F0%9F%87%AD%F0%9F%87%B0_HK_%E4%B8%AD%E5%9B%BD%E9%A6%99%E6%B8%AF
 hysteria2://18cf8030-1ceb-4b7d-8c0c-c036413c144e@ln4.xiaoliyu.cyou:4433?insecure=1&security=tls&sni=ln4.xiaoliyu.cyou#%E7%BE%8E%E5%9B%BD+%E5%AE%BE%E5%A4%95%E6%B3%95%E5%B0%BC%E4%BA%9A%E5%B7%9ECoudersport
@@ -4850,10 +4848,12 @@ trojan://ac246072-3078-4cd2-ba8a-8c91d4eb3570@555.cloudflare.182682.xyz:443?secu
 ss://YWVzLTEyOC1nY206UUhQeTJ1QDI2MDMyMy4xLjAubDMudW5jbGVtYW5jby5jb206OTAzMA==#%F0%9F%87%AD%F0%9F%87%B0_HK_%E4%B8%AD%E5%9B%BD%E9%A6%99%E6%B8%AF
 vless://78eb4455-0d07-4bc2-93e3-7c8654f11d74@premium-tr.geodema.network:8443?security=reality&type=tcp&allowInsecure=1&sni=www.apple.com&fp=firefox&flow=xtls-rprx-vision&pbk=EltWI8AOqkN8lMjRycweRRoFRah5hu6xiKtgBmQOdE8#TR%20-%20zhuhai.uk%2001
 hysteria2://6f65680b8d4de72e9f7c030e92e27a32@166-0-16-52.liao.kdns.fr:50160?sni=166-0-16-52.liao.kdns.fr#US%20-%20zhuhai.uk%2002
+hysteria2://1671a252e2a97dc2bda4e515475931da@132.226.226.189:50160?insecure=1&security=tls&sni=www.bing.com#%E8%8D%B7%E5%85%B0+V2CROSS.COM
 vmess://eyJ2IjoiMiIsInBzIjoi8J+HrfCfh7AgSEvpppnmuK8obWliZWk3Ny5jb20g57Gz6LSd6IqC54K55YiG5LqrKSIsImFkZCI6ImJvYXJkLTAyLmRkbnNrdW5sdW4uY29tIiwicG9ydCI6IjExODg1IiwidHlwZSI6Im5vbmUiLCJpZCI6ImE4YmNjZTQzLWFiZGEtMzE1Yi04ZTgxLWUzZTY1YmNiM2QwNyIsImFpZCI6IjAiLCJuZXQiOiJ0Y3AiLCJwYXRoIjoiLyIsImhvc3QiOiJib2FyZC0wMi5kZG5za3VubHVuLmNvbSIsInRscyI6IiJ9
 anytls://ac466a42-4623-42ad-a5a4-b747dd8763f9@662.zlstar.sbs:24532/?sni=662.zlstar.sbs&insecure=1&udp=1#US%20-%20zhuhai.uk%2005
 vless://b30d86e5-8b47-3716-f500-8e7c648162a6@x4g-production-d530.up.railway.app:443?encryption=none&security=tls&type=ws&host=x4g-production-d530.up.railway.app&path=/ws/b30d86e5-8b47-3716-f500-8e7c648162a6&sni=x4g-production-d530.up.railway.app&fp=chrome&alpn=http/1.1#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTo3ZzdJeWdWK25uTTE0c2VScUlYVDRsTjd3SitoS2NTTGRxZ0VRcGNPcTRnPQ@e2.cover20.ir:30874#%F0%9F%87%A8%F0%9F%87%A6%20CA%E5%8A%A0%E6%8B%BF%E5%A4%A7%28mibei77.com%20%E7%B1%B3%E8%B4%9D%E8%8A%82%E7%82%B9%E5%88%86%E4%BA%AB%29
+hysteria2://f4b80b26-b6d4-49a6-a460-f50efb7a457c@186.246.18.62:443?insecure=1&security=tls&sni=hy.cardlist24.shop#%E5%B7%B4%E8%A5%BF+V2CROSS.COM
 vmess://eyJ2IjoiMiIsInBzIjoi8J+HrfCfh7AgSEvpppnmuK8obWliZWk3Ny5jb20g57Gz6LSd6IqC54K55YiG5LqrKSIsImFkZCI6ImJvYXJkLTAyLmRkbnNrdW5sdW4uY29tIiwicG9ydCI6IjExOTg1IiwidHlwZSI6Im5vbmUiLCJpZCI6ImE4YmNjZTQzLWFiZGEtMzE1Yi04ZTgxLWUzZTY1YmNiM2QwNyIsImFpZCI6IjAiLCJuZXQiOiJ0Y3AiLCJwYXRoIjoiLyIsImhvc3QiOiJib2FyZC0wMi5kZG5za3VubHVuLmNvbSIsInRscyI6IiJ9
 hysteria2://9Me_Jx935gnHx13_Nx45M_NYXe037js_Be4z@162.249.124.99:8443?sni=mercedes-grape.yyuyy.com#DE%20-%20zhuhai.uk
 vless://255386a8-aec5-4425-bfe7-ca49b7448deb@ned.waldron.ir:46142?type=tcp&security=reality&sni=www.yahoo.com&pbk=l-OE7EwER1Z_jAifGE_UZ3FqHDMGzaR0jQHFYj5RNAk&sid=39feeba3085c&fp=edge&allowInsecure=1#NL%20-%20zhuhai.uk
@@ -4873,7 +4873,6 @@ hysteria2://mkL3AfdSZIpTWRB9TcWPn9vywPGN89MRHg3ToRDj@gta.internet-card.sbs:443?s
 trojan://22367c45-f6c4-4ca8-8d52-d9787d7bbe91@www.shopify.com:2053?allowInsecure=0&sni=cm22-bgphhh.pages.dev&ws=1&wspath=%2F#%F0%9F%87%BA%F0%9F%87%B8%20US%E7%BE%8E%E5%9B%BD%28mibei77.com%20%E7%B1%B3%E8%B4%9D%E8%8A%82%E7%82%B9%E5%88%86%E4%BA%AB%29
 trojan://Puj01Rc8UcA9IzcFcYOs8KMOhCz6aX2Q@mfyousheng.nl.eu.org:443?security=tls&sni=mfyousheng.nl.eu.org&type=ws&path=%2FtjwsLhx0SFASG4l9FERJ1g#%E7%BE%8E%E5%9B%BD%28yudou789.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
 hysteria2://b8f1b61e-d5c4-4765-866d-ece1fc8e590b@104.165.205.239:9443?sni=onecloudstream.com#LV%20-%20zhuhai.uk%2002
-hysteria2://184cdec28da5a09450803c8debcd2cc9@138.3.208.26:50160?sni=138.3.208.26&insecure=1#JP%20-%20zhuhai.uk
 vless://21672ca3-da3f-46cd-9b67-2b2d4cb0beb3@m756greek2.rucdn.pro:443?security=reality&type=tcp&sni=m756greek.rucdn.pro&fp=chrome&flow=xtls-rprx-vision&sid=091529455a53b00e&pbk=pWC4Zthw_AH0PZVCkUY-1eNOzmEvNXGecs2eBmpj2nI&encryption=none#RO%20-%20zhuhai.uk%2002
 anytls://ac466a42-4623-42ad-a5a4-b747dd8763f9@990.zlstar.sbs:45366/?sni=990.zlstar.sbs&insecure=1&udp=1#JP%20-%20zhuhai.uk%2003
 vless://ce069292-c8bf-40dd-a6b1-87818a1e64e9@love.zshabai.top:443?encryption=none&security=tls&sni=2-ayr.pages.dev&type=ws&host=2-ayr.pages.dev&path=%2Fproxyip%3DProxyIP.DE.owg.dpdns.org#%E7%BE%8E%E5%9B%BD%28yudou789.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
@@ -5021,6 +5020,7 @@ vmess://ewogICJ2IjogMiwKICAicHMiOiAi8J+HrfCfh7BfSEtf5Lit5Zu96aaZ5rivIiwKICAiYWRk
 vmess://eyJ2IjoiMiIsInBzIjoiVVMgLSB6aHVoYWkudWsiLCJhZGQiOiIzNjYtMTA5NS5yYWJiaXRwcm8taW4tMy5jb20iLCJwb3J0IjoyNzExNSwiaWQiOiJlMzUxZDZkOC1jMTY3LTNlMDctOGZkYS0zZjJmNGVjMDc2MGIiLCJhaWQiOjAsInNjeSI6ImF1dG8iLCJuZXQiOiJ0Y3AiLCJ0eXBlIjoibm9uZSIsImhvc3QiOiIiLCJwYXRoIjoiIiwidGxzIjoibm9uZSIsInNuaSI6IiJ9
 ss://bm9uZTo3OTk2MGIwYi03ZDMxLTQyNjMtODkxNS02NTExYjBlMTM3YTg@cf.130519.xyz:443/?plugin=v2ray-plugin%3Bmode%3Dwebsocket%3Bhost%3Dwoshinidie-et3.pages.dev%3Bpath%3D%2F79960b0b-7d31-4263-8915-6511b0e137a8%2F%3Fed%5C%3D2560%3Btls%3Bmux%3D0#%F0%9F%87%AF%F0%9F%87%B5%20JP%20003%20%7C%20%E2%AC%87%EF%B8%8F%2015MB%2Fs
 trojan://14692a55-a1f0-44c7-ac03-1991a29afb8b@cajeoha.cloudflare.182682.xyz:443?security=tls&sni=caehoawehfo04.catimecsgo.xyz&type=ws&host=caehoawehfo04.catimecsgo.xyz&path=%2Fimages#%E7%BE%8E%E5%9B%BD%28yudou789.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
+hysteria2://a35c508f-4d5d-4531-842e-6e9d43c762c0@13.143.189.147:4444?security=tls&sni=pl2.nexfile.net#%E7%BE%8E%E5%9B%BD+Xerox
 vless://d0f4d620-db2b-45e0-8353-a073461b1130@new01.asaltabie.monster:443?security=tls&type=ws&path=/&host=new01.asaltabie.monster&packetEncoding=xudp&sni=new01.asaltabie.monster&fp=chrome&encryption=none#%E4%BC%8A%E6%9C%97+V2CROSS.COM
 vmess://eyJ2IjoiMiIsInBzIjoiVFcgLSB6aHVoYWkudWsiLCJhZGQiOiIzNjYtMTA5NS5yYWJiaXRwcm8taW4tMy5jb20iLCJwb3J0IjoyOTAxOSwiaWQiOiJlMzUxZDZkOC1jMTY3LTNlMDctOGZkYS0zZjJmNGVjMDc2MGIiLCJhaWQiOjAsInNjeSI6ImF1dG8iLCJuZXQiOiJ0Y3AiLCJ0eXBlIjoibm9uZSIsImhvc3QiOiIiLCJwYXRoIjoiIiwidGxzIjoibm9uZSIsInNuaSI6IiJ9
 trojan://14692a55-a1f0-44c7-ac03-1991a29afb8b@er11.cloudflare.182682.xyz:443?security=tls&sni=9erhh5.bper2026.top&type=ws&host=9erhh5.bper2026.top&path=%2Fimages#%E7%BE%8E%E5%9B%BD%28yudou789.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
@@ -5054,6 +5054,7 @@ vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuazleWbvSh5dWRvdTc4OS50b3Ag546J6LGG5YWN
 vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuazleWbvSh5dWRvdTc4OS50b3Ag546J6LGG5YWN6LS56IqC54K5KSIsDQogICJhZGQiOiAibS5jbm1qaW4ubmV0IiwNCiAgInBvcnQiOiAiMTY2MjIiLA0KICAiaWQiOiAiYzZlMGRiMjItYzk2My00Yzk5LTlmN2QtZWU4YTM5ZjY0YTA3IiwNCiAgImFpZCI6ICIwIiwNCiAgInNjeSI6ICJhdXRvIiwNCiAgIm5ldCI6ICJ3cyIsDQogICJ0eXBlIjogIm5vbmUiLA0KICAiaG9zdCI6ICJmYzA1ZTYyZTllODJiODI2NGZhYWJhNTE3ODY4YjllOC5tb2Jnc2xiLnRiY2FjaGUuY29tIiwNCiAgInBhdGgiOiAiLyIsDQogICJ0bHMiOiAiIiwNCiAgInNuaSI6ICIiLA0KICAiYWxwbiI6ICIiDQp9
 vless://47fcef29-ab4e-4aa6-932b-d95a18f28a4e@cloudflare.seeck.cn:443?type=ws&security=tls&sni=jsjtn.dgy0.bzz.hh.vavava.kdns.fr&path=%2F&host=jsjtn.dgy0.bzz.hh.vavava.kdns.fr&fp=chrome#US%20-%20zhuhai.uk%2003
 vless://f8e56a6d-6e8d-447d-901b-4a511aecf29a@www.true.th:80?type=ws&security=none&path=%2Fjuevpn&host=d1lnzdlpso56a0.cloudfront.net#TH%20-%20zhuhai.uk
+hysteria2://a35c508f-4d5d-4531-842e-6e9d43c762c0@13.143.189.149:4444?security=tls&sni=pl2.nexfile.net#%E7%BE%8E%E5%9B%BD+Xerox
 trojan://7E62D6D5-1880-EAA4-96E9-FFD6E81B9446@oss-shanghai.micron-qwer.com:20043/?type=tcp&security=tls&sni=mpvideo.qpic.cn&allowInsecure=1#US%20-%20zhuhai.uk
 vless://26524cce-d514-4014-a426-365fb266a14d@cf9.danfeng.eu.org:2096?encryption=none&security=tls&sni=emp1twys5ym.danfeng.qzz.io&type=ws&host=emp1twys5ym.danfeng.qzz.io&path=%2Fdanfeng%3Fed%3D2560#%E7%BE%8E%E5%9B%BD%28yudou789.top%20%E7%8E%89%E8%B1%86%E5%85%8D%E8%B4%B9%E8%8A%82%E7%82%B9%29
 vless://65c56e1f-5c41-40bc-b0b5-9346772476ca@cfd.130209.xyz:8443?type=ws&security=tls&sni=turkey.912461.xyz&path=%2Fcdn%2Fpackages%2Fruntime-core.tar.gz&host=turkey.912461.xyz&fp=edge&allowInsecure=1#TR%20-%20zhuhai.uk%2002
@@ -5070,4 +5071,3 @@ vless://92295a0d-b610-4075-85e9-bfab09ec6f3a@time.salphetka.ru:443?security=real
 vless://7b102311-43fd-4e8f-877e-8090623c101d@proxyip.jp.cmliussss.net:443?security=tls&type=ws&path=/&host=vp10.pages.dev&packetEncoding=xudp&sni=vp10.pages.dev&fp=chrome#%E6%97%A5%E6%9C%AC%E4%B8%9C%E4%BA%AC+Oracle+Cloud
 vless://732ec777-bf4a-4fee-835a-25d6a8b58563@usandvipnewpnlsz.mamadhpbot.ir:8080?type=ws&security=none&path=%2Freal&host=www.goo.gl#US%20-%20zhuhai.uk%2003
 vless://e9a8144e-5237-488a-afb1-9ca3d8d54c80@152.175.6.229:31884?encryption=none&security=tls&type=tcp&sni=hk010.zestapp778.com#%E6%99%BA%E5%88%A9+V2CROSS.COM
-hysteria2://f4b80b26-b6d4-49a6-a460-f50efb7a457c@186.246.18.62:443?insecure=1&security=tls&sni=hy.cardlist24.shop#%E5%B7%B4%E8%A5%BF+V2CROSS.COM

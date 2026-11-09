@@ -109,3 +109,5 @@ vless://d21d837b-a69c-4bdb-b777-f285614d5a3f@5.104.74.156:8443?encryption=none&f
 vless://28154652-6597-418d-afe5-9f6122d75238@166.0.22.115:26443?type=tcp&security=reality&sni=hk.litehengrui.top&flow=xtls-rprx-vision&pbk=6Ex49pPetMpk_RloKq4d67dMfZxL4bpTSwCqShfHG1E&sid=d64c31573e876084&fp=chrome#JP%20-%20zhuhai.uk
 vless://3f5e89d5-591f-4ac9-b071-b05680b573c3@fi-edge.gacvpn.site:443?security=reality&type=tcp&sni=fi3-edge.gacvpn.site&fp=firefox&flow=xtls-rprx-vision&sid=c59bb8af70d9db1e&pbk=QjYksCdraKvxMG024774_EOZjxtIB7xHm3GYGx3oN1Y#FI%20-%20zhuhai.uk%2001
 vless://ed2e4dd1-d19f-48dd-b613-3f855b1d0765@188.130.154.204:443?security=tls&type=ws&path=%2Fapi%2Fv3%2Fpulse&host=cdn2.zovip2.ir&alpn=http%2F1.1&sni=cdn2.zovip2.ir&fp=chrome#DE%20-%20zhuhai.uk%2001
+vless://90157e25-cee1-4217-921e-91f300bc1a24@46.19.138.214:443?type=tcp&security=reality&sni=perevodchiki.su&flow=xtls-rprx-vision&pbk=1vSZjvhZO01oAEH3b7eebR1qF5dLU1Dq2E7xu8pwGSs&sid=428ef87fd47a3a32&fp=firefox&allowInsecure=1#CH%20-%20zhuhai.uk
+trojan://d9064589-74af-432a-9390-5d8a9da281bf@Sclass-C1.catcat321.com:20086?type=tcp&sni=hk.catxstar.com&allowInsecure=1#AE%20-%20zhuhai.uk
