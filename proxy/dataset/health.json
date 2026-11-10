@@ -256937,13 +256937,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 551.9,
+    "latency_ms": 539.5,
     "latency_history": [
-      0.2,
       554.6,
       572.9,
       548.4,
-      551.9
+      551.9,
+      539.5
     ],
     "first_seen": "2026-09-22T03:01:28+00:00",
     "dormant": false,
@@ -263491,13 +263491,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 434.5,
+    "latency_ms": 430.3,
     "latency_history": [
-      0.1,
       315.0,
       717.1,
       431.7,
-      434.5
+      434.5,
+      430.3
     ],
     "first_seen": "2026-09-28T21:02:49+00:00",
     "dormant": false,
@@ -264883,13 +264883,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 535.0,
+    "latency_ms": 583.4,
     "latency_history": [
-      0.1,
       461.5,
       573.7,
       690.1,
-      535.0
+      535.0,
+      583.4
     ],
     "first_seen": "2026-09-30T00:02:46+00:00",
     "dormant": false,
@@ -288059,13 +288059,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 915.5,
+    "latency_ms": 901.5,
     "latency_history": [
-      0.2,
       496.0,
       391.1,
       467.7,
-      915.5
+      915.5,
+      901.5
     ],
     "first_seen": "2026-11-03T13:31:02+00:00",
     "dormant": false,
@@ -288162,13 +288162,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 793.8,
+    "latency_ms": 1017.7,
     "latency_history": [
-      0.1,
       534.5,
       399.5,
       1118.9,
-      793.8
+      793.8,
+      1017.7
     ],
     "first_seen": "2026-11-03T20:48:29+00:00",
     "dormant": false,
@@ -288333,13 +288333,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 1856.7,
+    "latency_ms": 1018.2,
     "latency_history": [
-      0.1,
       527.5,
       377.3,
       986.7,
-      1856.7
+      1856.7,
+      1018.2
     ],
     "first_seen": "2026-11-04T10:21:57+00:00",
     "dormant": false,
@@ -288802,13 +288802,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 5530.8,
+    "latency_ms": 433.2,
     "latency_history": [
-      0.2,
       5759.8,
       5488.1,
       693.7,
-      5530.8
+      5530.8,
+      433.2
     ],
     "first_seen": "2026-11-06T18:48:30+00:00",
     "dormant": false,
@@ -289589,6 +289589,23 @@
     "latency_ms": 0.0,
     "latency_history": [],
     "first_seen": "2026-11-09T21:52:54+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "9622b33bcd824846cf6edf65cb2af02a3685dc99c9ddabb0ea2e06a14649697d": {
+    "link": "trojan://a75243d0f5c2e31bd6c8c118b4f6442f81ad@176.122.173.224:443?sni=www.cloudflare.com&allowInsecure=1&type=tcp&fp=chrome#US%20-%20zhuhai.uk%2002",
+    "protocol": "trojan",
+    "host": "176.122.173.224",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-10T14:12:52+00:00",
     "dormant": false,
     "dormant_since": ""
   }
