@@ -112,3 +112,5 @@ vless://ed2e4dd1-d19f-48dd-b613-3f855b1d0765@188.130.154.204:443?security=tls&ty
 vless://90157e25-cee1-4217-921e-91f300bc1a24@46.19.138.214:443?type=tcp&security=reality&sni=perevodchiki.su&flow=xtls-rprx-vision&pbk=1vSZjvhZO01oAEH3b7eebR1qF5dLU1Dq2E7xu8pwGSs&sid=428ef87fd47a3a32&fp=firefox&allowInsecure=1#CH%20-%20zhuhai.uk
 trojan://d9064589-74af-432a-9390-5d8a9da281bf@Sclass-C1.catcat321.com:20086?type=tcp&sni=hk.catxstar.com&allowInsecure=1#AE%20-%20zhuhai.uk
 trojan://a75243d0f5c2e31bd6c8c118b4f6442f81ad@176.122.173.224:443?sni=www.cloudflare.com&allowInsecure=1&type=tcp&fp=chrome#US%20-%20zhuhai.uk%2002
+vless://4dbf1ade-33f1-40dc-9273-e51babd570fe@104.36.69.105:443?security=reality&type=raw&sni=portal.citygrainla.com&fp=chrome&flow=xtls-rprx-vision&sid=051f20c2344a2dfd&pbk=BlSccfT5tvDIOS7v9VaPd0ulUNhUdvlMjGiNzDNDUHE#US%20-%20zhuhai.uk%2001
+vless://d7ddade6-b7a0-4cab-a910-d5d5c378d98a@201.58.189.105:2083?security=reality&type=grpc&mode=gun&serviceName=google.storage.v2.Storage&sni=dl.google.com&fp=chrome&sid=8bd80253&pbk=B7x5bYp-YhtLeH31zYcilpKFCkGTMe3jtSECSw-bMC4&encryption=none#PL%20-%20zhuhai.uk%2001
