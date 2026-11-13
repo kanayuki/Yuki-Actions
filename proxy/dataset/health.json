@@ -256937,13 +256937,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 505.2,
+    "latency_ms": 555.2,
     "latency_history": [
-      503.5,
       499.5,
       521.4,
       497.9,
-      505.2
+      505.2,
+      555.2
     ],
     "first_seen": "2026-09-22T03:01:28+00:00",
     "dormant": false,
@@ -263491,13 +263491,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 308.9,
+    "latency_ms": 923.8,
     "latency_history": [
-      375.8,
       415.3,
       507.5,
       432.5,
-      308.9
+      308.9,
+      923.8
     ],
     "first_seen": "2026-09-28T21:02:49+00:00",
     "dormant": false,
@@ -264883,13 +264883,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 437.0,
+    "latency_ms": 647.2,
     "latency_history": [
-      468.1,
       472.6,
       465.3,
       589.3,
-      437.0
+      437.0,
+      647.2
     ],
     "first_seen": "2026-09-30T00:02:46+00:00",
     "dormant": false,
@@ -290184,6 +290184,57 @@
     "latency_ms": 0.0,
     "latency_history": [],
     "first_seen": "2026-11-13T13:50:11+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "257add87211ddbb9636212c17bccaf114b6c9c61070b1402c458cac2e976606f": {
+    "link": "vless://57beeeb0-03fc-4fc9-94da-7604488a7134@zfapi.zalolink.com:46957?security=reality&type=tcp&packetEncoding=none&sni=psstatic.cdn.bcebos.com&fp=safari&flow=xtls-rprx-vision&sid=8f6683a234d3&pbk=1SefqLQXrqkiUdf7cTMF53hrMZyo684_uneRC8-qTxI#%E6%97%A5%E6%9C%AC+%E4%B8%9C%E4%BA%ACAmazon%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83",
+    "protocol": "vless",
+    "host": "zfapi.zalolink.com",
+    "port": 46957,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-13T21:09:03+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "8738496b2b53a552b50744dccb4ffc15d7e06c93d088e49c75715f301a202520": {
+    "link": "trojan://d7563108-615c-4338-a7bd-77f359869a4a@sclass-b1.catcat321.com:20027?allowInsecure=1&security=tls&sni=hk.catxstar.com&type=tcp#%E9%A6%99%E6%B8%AF+%E8%91%B5%E5%85%B4%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83",
+    "protocol": "trojan",
+    "host": "sclass-b1.catcat321.com",
+    "port": 20027,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-13T21:09:03+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "3032692c846ed464576834bac63a8ff50d014d37e860f92791c6766b407e1c8c": {
+    "link": "vless://52b1c3ab-4d35-473b-9bcf-0415c99a7e0f@213.152.165.199:2092?type=tcp&security=reality&sni=www.apple.com&flow=xtls-rprx-vision&pbk=zeyIqmHylDrPbbtdG9BleBt0-fqKCHpZ0OZ9OY2_WUI&sid=716b7eba38125f3a&fp=chrome#FR%20-%20zhuhai.uk",
+    "protocol": "vless",
+    "host": "213.152.165.199",
+    "port": 2092,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-13T21:09:03+00:00",
     "dormant": false,
     "dormant_since": ""
   }
