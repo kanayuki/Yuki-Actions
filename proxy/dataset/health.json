@@ -256937,13 +256937,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 555.2,
+    "latency_ms": 561.4,
     "latency_history": [
-      499.5,
       521.4,
       497.9,
       505.2,
-      555.2
+      555.2,
+      561.4
     ],
     "first_seen": "2026-09-22T03:01:28+00:00",
     "dormant": false,
@@ -263491,13 +263491,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 923.8,
+    "latency_ms": 721.7,
     "latency_history": [
-      415.3,
       507.5,
       432.5,
       308.9,
-      923.8
+      923.8,
+      721.7
     ],
     "first_seen": "2026-09-28T21:02:49+00:00",
     "dormant": false,
@@ -264883,13 +264883,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-09T00:27:49+00:00",
     "last_ok": "2026-11-09T00:27:49+00:00",
-    "latency_ms": 647.2,
+    "latency_ms": 550.0,
     "latency_history": [
-      472.6,
       465.3,
       589.3,
       437.0,
-      647.2
+      647.2,
+      550.0
     ],
     "first_seen": "2026-09-30T00:02:46+00:00",
     "dormant": false,
@@ -290235,6 +290235,57 @@
     "latency_ms": 0.0,
     "latency_history": [],
     "first_seen": "2026-11-13T21:09:03+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "343b709d79e88841686b950455ce364a717b8f201a03ac75c7dfa1eebd87d033": {
+    "link": "vless://57beeeb0-03fc-4fc9-94da-7604488a7134@zfapi.zalolink.com:54528?security=reality&type=raw&packetEncoding=xudp&sni=www.apple.com&fp=ios&flow=xtls-rprx-vision&sid=54cca3c1c1c7&pbk=7GvJVbR6BRhtrc8-rcZvB8qTFUF1LPeM_MmoZ04mBxo#%E6%97%A5%E6%9C%AC+%E4%B8%9C%E4%BA%AC%E9%83%BD%E4%BA%9A%E9%A9%AC%E9%80%8A%28Amazon%29%E5%85%AC%E5%8F%B8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83",
+    "protocol": "vless",
+    "host": "zfapi.zalolink.com",
+    "port": 54528,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-14T04:41:59+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "e32992e534dbfb91e3ec58b9415880d25a7a3ffde2ae82b2f6c39036bd7f4c94": {
+    "link": "hysteria2://a35c508f-4d5d-4531-842e-6e9d43c762c0@48.102.214.167:4444?security=tls&sni=fl5.edgeport.cloud#%E7%BE%8E%E5%9B%BD+%E7%BA%BD%E7%BA%A6%28Prudential%29",
+    "protocol": "hysteria2",
+    "host": "48.102.214.167",
+    "port": 4444,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-14T04:41:59+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "433fd9f9492de38d918eae93d6ed83628f8946f5a8d55d389e5b4040f6c6eaf6": {
+    "link": "vless://67cd3349-f789-4cbb-8b91-4b6b1654ce7c@3.168.218.6:443?security=tls&type=ws&path=%2F&host=d2ex4nxd2e01ub.cloudfront.net&packetEncoding=xudp&alpn=http%2F1.1&sni=d2ex4nxd2e01ub.cloudfront.net&fp=chrome&encryption=none#%E7%BE%8E%E5%9B%BD+Amazon+EC2%E6%9C%8D%E5%8A%A1%E5%99%A8",
+    "protocol": "vless",
+    "host": "3.168.218.6",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-14T04:41:59+00:00",
     "dormant": false,
     "dormant_since": ""
   }
