@@ -256937,13 +256937,13 @@
     "fail_count": 0,
     "last_verified": "2026-11-14T12:54:28+00:00",
     "last_ok": "2026-11-14T12:54:28+00:00",
-    "latency_ms": 636.2,
+    "latency_ms": 640.5,
     "latency_history": [
-      505.2,
       555.2,
       561.4,
       4.3,
-      636.2
+      636.2,
+      640.5
     ],
     "first_seen": "2026-09-22T03:01:28+00:00",
     "dormant": false,
@@ -290506,6 +290506,40 @@
       102.7
     ],
     "first_seen": "2026-11-14T12:54:02+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "951a23416a4f6068d7509eef6510c3b10f1acfdcdcc32e8ea8a2dcb2601cc699": {
+    "link": "vless://98a24806-141a-43d3-b094-bd66c4eb93b8@198.16.113.218:8443?security=reality&type=tcp&packetEncoding=xudp&sni=www.apple.com&fp=chrome&flow=xtls-rprx-vision&sid=69984b9e02545831&pbk=8NkTRxC5Q7bptx-8ADobkuhPK-ZN0kEEbzv6tCFGMzE&encryption=none#%E7%BE%8E%E5%9B%BD+FDCServers%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83",
+    "protocol": "vless",
+    "host": "198.16.113.218",
+    "port": 8443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-14T19:40:29+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "a98183add60a18806939f98742ae53ba09dfe3efa602be4847ec52cbceba8888": {
+    "link": "vless://57beeeb0-03fc-4fc9-94da-7604488a7134@zfapi.zalolink.com:30322?&security=reality&flow=xtls-rprx-vision&pbk=5gncThwqPFzLu23WO3mPTEhG7-KgVYlGVvveHjM2SUo&sid=6a60e7e382d6&fp=ios&sni=psstatic.cdn.bcebos.com&type=tcp&headerType=none&host=psstatic.cdn.bcebos.com&path=%2F#%E6%97%A5%E6%9C%AC+%E4%B8%9C%E4%BA%ACAmazon%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83",
+    "protocol": "vless",
+    "host": "zfapi.zalolink.com",
+    "port": 30322,
+    "country": "XX",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-14T19:40:29+00:00",
     "dormant": false,
     "dormant_since": ""
   }
