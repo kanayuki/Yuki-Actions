@@ -1,8 +1,8 @@
 {
   "Barabama/FreeNodes": {
     "source": "user",
-    "stars": 3425,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "stars": 3428,
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -11,18 +11,20 @@
   },
   "Pawdroid/Free-servers": {
     "source": "user",
-    "stars": 19928,
-    "last_seen": "2026-11-14T19:40:22+00:00",
-    "valid_ratio_history": [],
+    "stars": 19930,
+    "last_seen": "2026-11-15T00:40:37+00:00",
+    "valid_ratio_history": [
+      0.615
+    ],
     "low_quality_streak": 0,
     "blacklisted": false,
-    "total_links_contributed": 0,
-    "total_valid_contributed": 0
+    "total_links_contributed": 3832,
+    "total_valid_contributed": 2355
   },
   "zengfr/free-vpn-subscribe": {
     "source": "search",
     "stars": 31,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -32,7 +34,7 @@
   "wenxig/free-nodes-sub": {
     "source": "search",
     "stars": 106,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -42,7 +44,7 @@
   "crossxx-labs/free-proxy": {
     "source": "search",
     "stars": 1869,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -52,7 +54,7 @@
   "mermeroo/V2RAY-CLASH-BASE64-Subscription.Links": {
     "source": "search",
     "stars": 528,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -62,7 +64,7 @@
   "F0rc3Run/F0rc3Run": {
     "source": "search",
     "stars": 323,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -72,7 +74,7 @@
   "Surfboardv2ray/v2ray-worker-sub": {
     "source": "search",
     "stars": 143,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -82,7 +84,7 @@
   "Everyday-VPN/Everyday-VPN": {
     "source": "search",
     "stars": 153,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -92,7 +94,7 @@
   "awesome-vpn/awesome-vpn": {
     "source": "search",
     "stars": 6937,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -102,7 +104,7 @@
   "snakem982/proxypool": {
     "source": "search",
     "stars": 2276,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -113,11 +115,13 @@
     "source": "search",
     "stars": 914,
     "last_seen": "2026-08-30T23:06:02+00:00",
-    "valid_ratio_history": [],
+    "valid_ratio_history": [
+      0.176
+    ],
     "low_quality_streak": 0,
     "blacklisted": false,
-    "total_links_contributed": 0,
-    "total_valid_contributed": 0
+    "total_links_contributed": 3473,
+    "total_valid_contributed": 611
   },
   "xyfqzy/free-nodes": {
     "source": "search",
@@ -182,7 +186,7 @@
   "Au1rxx/free-vpn-subscriptions": {
     "source": "search",
     "stars": 1125,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -192,7 +196,7 @@
   "vorz1k/v2box": {
     "source": "search",
     "stars": 103,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -202,7 +206,7 @@
   "MahanKenway/Freedom-V2Ray": {
     "source": "search",
     "stars": 123,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -212,7 +216,7 @@
   "Romaxa55/MegaV_Public": {
     "source": "search",
     "stars": 107,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -222,7 +226,7 @@
   "asgharkapk/Sub-Config-Extractor": {
     "source": "search",
     "stars": 62,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -231,18 +235,20 @@
   },
   "zhuhaiuk/free-nodes": {
     "source": "search",
-    "stars": 435,
-    "last_seen": "2026-11-14T19:40:22+00:00",
-    "valid_ratio_history": [],
+    "stars": 436,
+    "last_seen": "2026-11-15T00:40:37+00:00",
+    "valid_ratio_history": [
+      0.333
+    ],
     "low_quality_streak": 0,
     "blacklisted": false,
-    "total_links_contributed": 0,
-    "total_valid_contributed": 0
+    "total_links_contributed": 3915,
+    "total_valid_contributed": 1304
   },
   "mehdirzfx/v2ray-sub": {
     "source": "search",
     "stars": 86,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -251,8 +257,8 @@
   },
   "0xRadikal/Free-v2ray-Configs": {
     "source": "search",
-    "stars": 873,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "stars": 877,
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -262,7 +268,7 @@
   "F0rc3Run/F0rc3Run-panel": {
     "source": "search",
     "stars": 70,
-    "last_seen": "2026-11-14T19:40:22+00:00",
+    "last_seen": "2026-11-15T00:40:37+00:00",
     "valid_ratio_history": [],
     "low_quality_streak": 0,
     "blacklisted": false,
@@ -273,10 +279,12 @@
     "source": "search",
     "stars": 915,
     "last_seen": "2026-09-01T00:20:30+00:00",
-    "valid_ratio_history": [],
+    "valid_ratio_history": [
+      0.205
+    ],
     "low_quality_streak": 0,
     "blacklisted": false,
-    "total_links_contributed": 0,
-    "total_valid_contributed": 0
+    "total_links_contributed": 512,
+    "total_valid_contributed": 105
   }
 }
