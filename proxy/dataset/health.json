@@ -291771,5 +291771,39 @@
     "first_seen": "2026-11-16T00:40:15+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "f6d4d2da6a3de349fc3bce4dffbb741c2f3ce6909f153a8c807ede02cae720fa": {
+    "link": "vless://5c5f4a6d-decf-466b-8358-2a0fc2d7a734@jiang.jiangniao.de:443?type=tcp&security=reality&sni=www.amazon.com&flow=xtls-rprx-vision&pbk=ReJYDmhM_L7Y-MzRirsSfUF5ohG-uY9qXGvp6T-ySHs&sid=82bea5d7&fp=chrome#MX%20-%20zhuhai.uk",
+    "protocol": "vless",
+    "host": "jiang.jiangniao.de",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-16T10:34:04+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "8a8c12998b733728a403fbb3325c7f20a7809bca42916056ce217d6976d4105a": {
+    "link": "vless://dbf3f074-3b18-43f3-b82a-debd8c879c69@66.163.118.113:443?security=reality&type=tcp&packetEncoding=xudp&sni=www.apple.com&fp=chrome&flow=xtls-rprx-vision&sid=32209e627ee109c7&pbk=PwN5VWqwWKVfrqqrbLE4kzVu9vIXSENAUiAPjMWIrVY&encryption=none#%E7%BE%8E%E5%9B%BD+V2CROSS.COM",
+    "protocol": "vless",
+    "host": "66.163.118.113",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-16T10:34:04+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
