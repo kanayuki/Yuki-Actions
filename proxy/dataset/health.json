@@ -291805,5 +291805,39 @@
     "first_seen": "2026-11-16T10:34:04+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "5f0bcfdd4faf83c14f0f435b4382db02bc29bc02cbea46082f9e524f34cb77bc": {
+    "link": "vless://010431f3-04f6-4404-a801-b93bf2e3c2b2@172.104.86.181:443?type=ws&security=reality&sni=itunes.apple.com&path=%2Fws&host=itunes.apple.com&pbk=ujYDprigWFLxcj4BtitDNa-hoPjIbpSzrnEcqp3cgjk&sid=c8559ca1&fp=chrome#JP%20-%20zhuhai.uk%2003",
+    "protocol": "vless",
+    "host": "172.104.86.181",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-16T21:34:10+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "c5c94e8e35bc2328bb1287743524a719d85abf414fbd6e72e5b73061dac9e03a": {
+    "link": "vless://cda0862a-0f87-4be9-8ed8-1d0c9e382839@196.245.52.187:443?security=reality&type=tcp&packetEncoding=none&sni=04535dt.us8.h1clayd.click&fp=firefox&sid=ba2a3dce62b99092&pbk=UoS8qZ74hP_ECcncCz55lzvlcVss3R7VA0WYZE0YQCY#%E8%A5%BF%E7%8F%AD%E7%89%99+V2CROSS.COM",
+    "protocol": "vless",
+    "host": "196.245.52.187",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-16T21:34:10+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
