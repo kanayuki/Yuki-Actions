@@ -69,7 +69,7 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
-- name: US_20261118_hysteria1_6
+- name: US_20261118_hysteria1_7
   type: hysteria
   server: 38.6.222.130
   port: 11008
@@ -113,6 +113,18 @@ proxies:
   skip-cert-verify: true
   alpn:
   - h3
+  name: US_20261118_hysteria1_3
+- type: hysteria
+  server: 137.175.82.42
+  port: 20022
+  auth-str: dongtaiwang.com
+  protocol: udp
+  up: 20
+  down: 20
+  sni: bing.com
+  skip-cert-verify: true
+  alpn:
+  - h3
   name: US_20261118_hysteria1_2
 - name: FR_20261118_hysteria2
   type: hysteria2
@@ -132,7 +144,7 @@ proxies:
   skip-cert-verify: true
   alpn:
   - h3
-  name: US_20261118_hysteria1_3
+  name: US_20261118_hysteria1_4
 - type: hysteria
   server: 137.175.82.44
   port: 443
@@ -144,19 +156,7 @@ proxies:
   skip-cert-verify: true
   alpn:
   - h3
-  name: US_20261118_hysteria1_4
-- type: hysteria
-  server: 107.149.207.185
-  port: 443
-  auth-str: dongtaiwang.com
-  protocol: udp
-  up: 11
-  down: 55
-  sni: www.bing.com
-  skip-cert-verify: true
-  alpn:
-  - h3
-  name: US_20261118_hysteria1
+  name: US_20261118_hysteria1_5
 - type: mieru
   server: 198.200.57.152
   username: Alvin9999-newpac
@@ -175,7 +175,7 @@ proxies:
   alpn:
   - h3
   zero-rtt: true
-  name: US_20261118_shadowquic_2
+  name: US_20261118_shadowquic_3
 - type: shadowquic
   server: 142.249.37.83
   port: 1443
@@ -187,7 +187,18 @@ proxies:
   - h3
   zero-rtt: true
   name: US_20261118_shadowquic
-- name: US_20261118_hysteria1_5
+- type: shadowquic
+  server: 142.249.37.83
+  port: 52889
+  username: dongtaiwang.com
+  password: dongtaiwang.com
+  congestion-controller: bbr
+  sni: www.yahoo.com
+  alpn:
+  - h3
+  zero-rtt: true
+  name: US_20261118_shadowquic_2
+- name: US_20261118_hysteria1_6
   type: hysteria
   server: 198.200.57.142
   port: 22335
@@ -199,6 +210,18 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
+- type: hysteria
+  server: 107.149.207.185
+  port: 443
+  auth-str: dongtaiwang.com
+  protocol: udp
+  up: 11
+  down: 55
+  sni: www.bing.com
+  skip-cert-verify: true
+  alpn:
+  - h3
+  name: US_20261118_hysteria1
 - name: FR_20261118_hysteria1
   type: hysteria
   server: 163.172.117.163
@@ -235,18 +258,20 @@ proxy-groups:
   - FR_20261118_hysteria1_2
   - FR_20261118_hysteria1_4
   - DE_20261118_hysteria1
-  - US_20261118_hysteria1_6
+  - US_20261118_hysteria1_7
   - US_20261118_mieru_2
   - TW_20261118_hysteria1
+  - US_20261118_hysteria1_3
   - US_20261118_hysteria1_2
   - FR_20261118_hysteria2
-  - US_20261118_hysteria1_3
   - US_20261118_hysteria1_4
-  - US_20261118_hysteria1
-  - US_20261118_mieru
-  - US_20261118_shadowquic_2
-  - US_20261118_shadowquic
   - US_20261118_hysteria1_5
+  - US_20261118_mieru
+  - US_20261118_shadowquic_3
+  - US_20261118_shadowquic
+  - US_20261118_shadowquic_2
+  - US_20261118_hysteria1_6
+  - US_20261118_hysteria1
   - FR_20261118_hysteria1
   - FR_20261118_hysteria1_3
 - name: AUTO
@@ -261,18 +286,20 @@ proxy-groups:
   - FR_20261118_hysteria1_2
   - FR_20261118_hysteria1_4
   - DE_20261118_hysteria1
-  - US_20261118_hysteria1_6
+  - US_20261118_hysteria1_7
   - US_20261118_mieru_2
   - TW_20261118_hysteria1
+  - US_20261118_hysteria1_3
   - US_20261118_hysteria1_2
   - FR_20261118_hysteria2
-  - US_20261118_hysteria1_3
   - US_20261118_hysteria1_4
-  - US_20261118_hysteria1
-  - US_20261118_mieru
-  - US_20261118_shadowquic_2
-  - US_20261118_shadowquic
   - US_20261118_hysteria1_5
+  - US_20261118_mieru
+  - US_20261118_shadowquic_3
+  - US_20261118_shadowquic
+  - US_20261118_shadowquic_2
+  - US_20261118_hysteria1_6
+  - US_20261118_hysteria1
   - FR_20261118_hysteria1
   - FR_20261118_hysteria1_3
 rules:
