@@ -292196,5 +292196,22 @@
     "first_seen": "2026-11-18T11:00:26+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "98e6b2ef4a1d791b85bb53bf3805a94c019ab318f92583ed73cdd8b7314ea909": {
+    "link": "trojan://d9064589-74af-432a-9390-5d8a9da281bf@sclass-00.catcat321.com:20103?allowInsecure=1&insecure=1&security=tls&sni=hk.catxstar.com&type=tcp&headerType=none#%E6%97%A5%E6%9C%AC+V2CROSS.COM",
+    "protocol": "trojan",
+    "host": "sclass-00.catcat321.com",
+    "port": 20103,
+    "country": "XX",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-18T19:53:29+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
