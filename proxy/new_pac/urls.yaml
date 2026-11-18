@@ -1,290 +1,290 @@
 version: 1
 sources:
 - ptype: xray
-  source_dir: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update
+  source_dir: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update
   bat_files:
-  - F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_1.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_2.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_3.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_4.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_1.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_2.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_3.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_4.bat
   groups:
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_1.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/xray/1/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_1.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_1.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/xray/1/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_1.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_2.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/xray/2/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_2.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/xray/2/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_2.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_3.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_2.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_3.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/xray/3/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_3.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_3.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/xray/3/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_3.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_3.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_4.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/xray/4/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_4.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/xray/4/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\Xray\ip_Update\ip_4.bat
 - ptype: clash
-  source_dir: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update
+  source_dir: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update
   bat_files:
-  - F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_1.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_2.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_3.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_4.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_5.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_6.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_1.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_2.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_3.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_4.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_5.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_6.bat
   groups:
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_1.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/clash.meta2/1/config.yaml
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_1.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_1.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/clash.meta2/1/config.yaml
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_1.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_2.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/clash.meta2/2/config.yaml
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_2.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/clash.meta2/2/config.yaml
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_2.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_3.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_2.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_3.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/clash.meta2/3/config.yaml
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_3.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_3.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/clash.meta2/3/config.yaml
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_3.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_3.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_4.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/clash.meta2/4/config.yaml
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_4.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/clash.meta2/4/config.yaml
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_4.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_5.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_4.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_5.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/clash.meta2/5/config.yaml
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_5.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_5.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/clash.meta2/5/config.yaml
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_5.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_6.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_5.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_6.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/clash.meta2/6/config.yaml
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_6.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_6.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/clash.meta2/6/config.yaml
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_6.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\clash.meta\ip_Update\ip_6.bat
 - ptype: singbox
-  source_dir: F:\Download\Chrome153_AllNew_2026.9.12\singbox\ip_Update
+  source_dir: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\singbox\ip_Update
   bat_files:
-  - F:\Download\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_1.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_2.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_1.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_2.bat
   groups:
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_1.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/singbox/1/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_1.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_1.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/singbox/1/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_1.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_2.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/singbox/2/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_2.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ip/singbox/2/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\singbox\ip_Update\ip_2.bat
 - ptype: hysteria2
-  source_dir: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update
+  source_dir: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update
   bat_files:
-  - F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_1.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_2.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_3.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_4.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_1.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_2.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_3.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_4.bat
   groups:
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_1.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/hysteria2/1/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_1.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_1.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/hysteria2/1/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_1.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_2.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/hysteria2/2/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_2.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/hysteria2/2/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_2.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_3.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_2.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_3.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/hysteria2/3/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_3.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_3.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/hysteria2/3/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_3.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_3.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_4.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/hysteria2/4/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_4.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/hysteria2/4/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria2\ip_Update\ip_4.bat
 - ptype: hysteria1
-  source_dir: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update
+  source_dir: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update
   bat_files:
-  - F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_1.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_2.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_3.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_4.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_1.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_2.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_3.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_4.bat
   groups:
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_1.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/hysteria/1/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_1.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_1.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/hysteria/1/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_1.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_2.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/hysteria/2/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_2.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/hysteria/2/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_2.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_3.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_2.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_3.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/hysteria/3/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_3.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_3.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/hysteria/3/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_3.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_3.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_4.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/hysteria/4/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_4.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/hysteria/4/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_4.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\hysteria\ip_Update\ip_4.bat
 - ptype: mieru
-  source_dir: F:\Download\Chrome153_AllNew_2026.9.12\mieru\ip_Update
+  source_dir: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\mieru\ip_Update
   bat_files:
-  - F:\Download\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_1.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_2.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_1.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_2.bat
   groups:
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_1.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/mieru/1/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_1.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_1.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/mieru/1/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_1.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_2.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/mieru/2/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_2.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/mieru/2/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\mieru\ip_Update\ip_2.bat
 - ptype: juicity
-  source_dir: F:\Download\Chrome153_AllNew_2026.9.12\juicity\ip_Update
+  source_dir: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\juicity\ip_Update
   bat_files:
-  - F:\Download\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_1.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_2.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_1.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_2.bat
   groups:
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_1.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/juicity/1/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_1.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_1.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/juicity/1/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_1.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_2.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/juicity/2/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_2.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/juicity/2/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\juicity\ip_Update\ip_2.bat
 - ptype: naive
-  source_dir: F:\Download\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update
+  source_dir: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update
   bat_files:
-  - F:\Download\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_1.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_2.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_1.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_2.bat
   groups:
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_1.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/naiveproxy/1/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_1.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_1.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/naiveproxy/1/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_1.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_2.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/naiveproxy/2/config.json
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_2.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/naiveproxy/2/config.json
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\naiveproxy\ip_Update\ip_2.bat
 - ptype: shadowquic
-  source_dir: F:\Download\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update
+  source_dir: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update
   bat_files:
-  - F:\Download\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_1.bat
-  - F:\Download\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_2.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_1.bat
+  - D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_2.bat
   groups:
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_1.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/shadowquic/1/client.yaml
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_1.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_1.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/shadowquic/1/client.yaml
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_1.bat
-  - bat_file: F:\Download\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_1.bat
+  - bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_2.bat
     urls:
     - url: https://gitlab.com/free9999/ipupdate/-/raw/master/backup/img/1/2/ipp/shadowquic/2/client.yaml
       role: primary
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_2.bat
     - url: https://www.67867867.xyz/Alvin9999/PAC/refs/heads/master/backup/img/1/2/ipp/shadowquic/2/client.yaml
       role: backup
-      bat_file: F:\Download\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_2.bat
+      bat_file: D:\Code\Python\Yuki-Actions\proxy\new_pac\cache\extracted\Chrome153_AllNew_2026.9.12\shadowquic\ip_Update\ip_2.bat

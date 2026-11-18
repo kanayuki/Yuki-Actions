@@ -9,6 +9,7 @@ dependencies = [
     "pyyaml",
     "rich",
     "pydantic>=2.0",
+    "py7zr",        # new_pac source：解压 alvin9999 高内核版 .7z
 ]
 
 [tool.uv]

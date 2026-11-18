@@ -29,6 +29,7 @@ LOGS_DIR = NEW_PAC_DIR / "logs"
 SUBSCRIBE_DIR = NEW_PAC_DIR / "subscribe"
 OUTPUT_CLASH = SUBSCRIBE_DIR / "clash.yaml"
 LOG_FILE = LOGS_DIR / "new_pac.log"
+CACHE_DIR = NEW_PAC_DIR / "cache"  # web 源压缩包 + bat 解压缓存（git 忽略）
 
 # ── bat 目录 → converter ptype 映射 ───────────────────────
 # 注意：clash.meta → clash，naiveproxy → naive，hysteria → hysteria1
@@ -44,8 +45,6 @@ SOURCE_DIR_MAP: dict[str, str] = {
     "naiveproxy": "naive",
     "shadowquic": "shadowquic",
 }
-
-DEFAULT_SOURCE_ROOT = Path(r"F:\Download\Chrome153_AllNew_2026.9.12")
 
 
 # ── Pydantic 模型 ──────────────────────────────────────────
@@ -91,8 +90,8 @@ __all__ = [
     "SUBSCRIBE_DIR",
     "OUTPUT_CLASH",
     "LOG_FILE",
+    "CACHE_DIR",
     "SOURCE_DIR_MAP",
-    "DEFAULT_SOURCE_ROOT",
     "UrlEntry",
     "BatGroup",
     "SourceGroup",

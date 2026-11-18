@@ -1,16 +1,17 @@
 """new_pac CLI 入口。
 
-子命令：
-    scan        扫描 ip_*.bat → urls.yaml
+子命令（无参数时默认 all）：
+    scan        web 源 → 云盘压缩包 → cache 解压 → urls.yaml（失败沿用现有 urls.yaml）
     fetch       下载 urls.yaml → 规范化 → config_store/
     render      节点池 → clash.yaml（默认拉取；--from-store 从 store 重读）
     all         scan → fetch → render 串联
 
 用法（从 Yuki-Actions 根目录）：
-    python -m proxy.new_pac.main scan
-    python -m proxy.new_pac.main fetch --types xray clash
-    python -m proxy.new_pac.main render --from-store
-    python -m proxy.new_pac.main all --log-level DEBUG
+    uv run python -m proxy.new_pac.main                # 等价于 all
+    uv run python -m proxy.new_pac.main scan
+    uv run python -m proxy.new_pac.main fetch --types xray clash
+    uv run python -m proxy.new_pac.main render --from-store
+    uv run python -m proxy.new_pac.main all --log-level DEBUG
 """
 
 from __future__ import annotations
@@ -31,7 +32,7 @@ from converter.models import Node  # noqa: E402
 
 from new_pac.config import (  # noqa: E402
     CONFIG_STORE_DIR,
-    DEFAULT_SOURCE_ROOT,
+    URLS_FILE,
 )
 from new_pac.fetch import fetch_all  # noqa: E402
 from new_pac.logger import get_logger, setup_logger  # noqa: E402
@@ -39,11 +40,19 @@ from new_pac.normalize import normalize  # noqa: E402
 from new_pac.pool import NodePool  # noqa: E402
 from new_pac.render import print_stats, render  # noqa: E402
 from new_pac.scan import run as run_scan  # noqa: E402
+from new_pac.source import prepare as prepare_source  # noqa: E402
 
 
 def _cmd_scan(args: argparse.Namespace) -> None:
     get_logger().info(Rule("[bold cyan]Scan ip_*.bat[/bold cyan]"))
-    root = Path(args.source_root) if args.source_root else DEFAULT_SOURCE_ROOT
+    # --source-root 手动指定本地目录（调试用）；否则走 web 源
+    root = Path(args.source_root) if args.source_root else prepare_source()
+    if root is None:
+        # 稳定优先：源获取失败不致命，沿用现有 urls.yaml 继续跑 fetch
+        if URLS_FILE.exists():
+            get_logger().error("源获取失败，沿用现有 urls.yaml")
+            return
+        raise SystemExit(1)
     run_scan(root, write=True)
 
 
@@ -129,7 +138,7 @@ def build_parser() -> argparse.ArgumentParser:
         help="日志级别",
     )
 
-    sub = parser.add_subparsers(dest="command", required=True)
+    sub = parser.add_subparsers(dest="command")  # 无子命令时默认 all
     scan_parser = sub.add_parser("scan", help="扫描 bat → urls.yaml")
     scan_parser.add_argument(
         "--source-root",
@@ -176,6 +185,13 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> None:
     parser = build_parser()
     args = parser.parse_args(argv)
+
+    # 默认行为 = all（补齐 all 子命令所需的属性）
+    if args.command is None:
+        args.command = "all"
+        args.source_root = None
+        args.types = None
+        args.from_store = False
 
     setup_logger(level=getattr(logging, args.log_level))
     log = get_logger()

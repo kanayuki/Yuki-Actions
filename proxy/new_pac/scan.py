@@ -1,7 +1,7 @@
 """扫描 ip_*.bat（GBK 编码）→ urls.yaml（含 bat 路径 + 主备标记）。
 
 数据流：
-    F:\\Download\\Chrome153_AllNew_2026.9.12\\{Xray|clash.meta|...}\\ip_Update\\ip_*.bat
+    source.prepare() 解压出的 <root>/{Xray|clash.meta|...}/ip_Update/ip_*.bat
       ↓ regex 抽 HTTPS URL（按出现顺序）
     UrlsFile (Pydantic)
       ↓ yaml.safe_dump
@@ -18,7 +18,6 @@ from pathlib import Path
 from rich.table import Table
 
 from .config import (
-    DEFAULT_SOURCE_ROOT,
     SOURCE_DIR_MAP,
     URLS_FILE,
     BatGroup,
@@ -68,7 +67,7 @@ def scan_source(source_root: Path, dir_name: str, ptype: str) -> SourceGroup:
     return cfg
 
 
-def scan_all(source_root: Path = DEFAULT_SOURCE_ROOT) -> UrlsFile:
+def scan_all(source_root: Path) -> UrlsFile:
     """扫描全部 9 个协议类型，返回 UrlsFile。"""
     log = get_logger()
     if not source_root.is_dir():
@@ -127,7 +126,7 @@ def render_summary(file: UrlsFile) -> None:
     console.print(table)
 
 
-def run(source_root: Path = DEFAULT_SOURCE_ROOT, write: bool = True) -> UrlsFile:
+def run(source_root: Path, write: bool = True) -> UrlsFile:
     """CLI `scan` 子命令入口：扫描 → 汇总 → 可选写盘。"""
     file = scan_all(source_root)
     render_summary(file)
