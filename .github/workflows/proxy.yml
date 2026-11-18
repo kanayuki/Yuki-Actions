@@ -56,42 +56,45 @@ jobs:
       with:
         python-version: '3.13'
 
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: uv sync --frozen
 
     - name: 'Update binaries'
       continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: cd proxy && python core/binary.py --update
+      run: cd proxy && uv run python core/binary.py --update
 
     - name: 'Collect: all sources'
       continue-on-error: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: python -m proxy collect
+      run: uv run python -m proxy collect
 
     - name: 'Verify: alive (every 12h)'
       continue-on-error: true
       run: |
         HOUR=$(date -u +%H)
         if [ "$HOUR" = "00" ] || [ "$HOUR" = "12" ]; then
-          python -m proxy verify alive
+          uv run python -m proxy verify alive
         else
           echo "Skipped (not 00/12 UTC)"
         fi
 
     - name: 'Verify: best-remote'
       continue-on-error: true
-      run: python -m proxy verify best-remote
+      run: uv run python -m proxy verify best-remote
 
     - name: 'Output: country'
       continue-on-error: true
-      run: python -m proxy output country
+      run: uv run python -m proxy output country
 
     - name: 'Output: merge'
       continue-on-error: true
-      run: python -m proxy output merge
+      run: uv run python -m proxy output merge
 
     - name: 'Maintenance (weekly Sunday)'
       continue-on-error: true
@@ -99,7 +102,7 @@ jobs:
         HOUR=$(date -u +%H)
         DAY=$(date -u +%u)
         if [ "$HOUR" = "00" ] && [ "$DAY" = "7" ]; then
-          python -m proxy maintain
+          uv run python -m proxy maintain
         else
           echo "Skipped (not Sunday 00 UTC)"
         fi
@@ -179,12 +182,15 @@ jobs:
       with:
         python-version: '3.13'
 
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
+
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: uv sync --frozen
 
     - name: 'PAC: generate share links'
       continue-on-error: true
-      run: python -m proxy pac
+      run: uv run python -m proxy pac
 
     - name: Stage PAC outputs
       if: always()

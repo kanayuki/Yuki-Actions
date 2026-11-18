@@ -16,9 +16,9 @@ from pathlib import Path
 
 import requests
 
-from pac.util import console
+from geo.resolver import console
 
-CACHE_FILE = Path(__file__).parent.parent / "geo_cache.json"
+CACHE_FILE = Path(__file__).parent / "geo_cache.json"
 
 _BATCH_URL = "http://ip-api.com/batch?fields=status,countryCode,query"
 _BATCH_SIZE = 100
@@ -31,20 +31,17 @@ def load_cache() -> dict[str, str]:
         except (json.JSONDecodeError, OSError) as e:
             console.print(f"  [yellow]⚠ geo 缓存损坏，重建: {e}[/yellow]")
             return {}
-        # 丢弃历史失败的 XX 条目，本轮重试（失败很少，代价可忽略）
         return {h: c for h, c in cache.items() if c != "XX"}
     return {}
 
 
 def save_cache(cache: dict[str, str]) -> None:
-    """原子写入缓存文件。"""
     tmp = CACHE_FILE.with_suffix(".json.tmp")
     tmp.write_text(json.dumps(cache, ensure_ascii=False, indent=2), encoding="utf-8")
     tmp.replace(CACHE_FILE)
 
 
 def _resolve_to_ip(host: str) -> str:
-    """host → 可查询的 IP：去括号的 IPv6 直接用，域名做 DNS 解析。失败返回空串。"""
     h = host.strip()
     if h.startswith("[") and h.endswith("]"):
         h = h[1:-1]
@@ -61,12 +58,10 @@ def _resolve_to_ip(host: str) -> str:
 
 
 def resolve(hosts: list[str]) -> dict[str, str]:
-    """批量解析 host → 国家码（两字码，失败为 XX）。命中缓存的不再请求。"""
     cache = load_cache()
     unknown = sorted({h for h in hosts if h and h not in cache})
 
     if unknown:
-        # host → IP（域名 DNS 解析 / 括号 IPv6 归一化）
         ip_of = {h: _resolve_to_ip(h) for h in unknown}
         ips = sorted({ip for ip in ip_of.values() if ip})
 

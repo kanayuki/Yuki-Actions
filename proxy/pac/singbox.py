@@ -5,18 +5,63 @@ if __name__ == "__main__" and str(Path(__file__).resolve().parent.parent) not in
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import json
-import re
 
 from pac.nodes import Node, normalize_protocol
 from pac.util import console
 
 
-def _fix_duplicated_json(text: str) -> str:
-    """处理上游配置意外拼接两份 JSON 的情况（取第一份）。"""
-    if re.search(r"}\s+{", text):
-        console.print("  [yellow]⚠[/yellow] 配置重复，取第一份")
-        first = re.split(r"}\s+{", text)[0]
-        return first + "}"
+def _find_json_seams(text: str) -> list[tuple[int, int]]:
+    """定位可能的多文档接缝（字符串字面量免疫）。"""
+    seams: list[tuple[int, int]] = []
+    in_str = False
+    esc = False
+    i = 0
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            i += 1
+            continue
+        if ch == '"':
+            in_str = True
+            i += 1
+            continue
+        if ch in "}]":
+            j = i + 1
+            while j < n and text[j] in " \t\r\n":
+                j += 1
+            if j < n and text[j] in "{[":
+                seams.append((i, j))
+        i += 1
+    return seams
+
+
+def _extract_first_json(text: str) -> str:
+    """文本意外拼接了多份 JSON（或尾随垃圾）时，截取第一份完整文档。"""
+    text = text.strip().lstrip("\ufeff")
+    decoder = json.JSONDecoder()
+    try:
+        end = decoder.raw_decode(text)[1]
+    except json.JSONDecodeError:
+        pass
+    else:
+        if end < len(text):
+            return text[:end].rstrip()
+        return text
+    for _close_idx, open_idx in _find_json_seams(text):
+        prefix = text[:open_idx].rstrip()
+        for candidate in (prefix, prefix + "}", prefix + "]"):
+            try:
+                json.loads(candidate)
+            except json.JSONDecodeError:
+                continue
+            return candidate
     return text
 
 
@@ -66,8 +111,8 @@ def _hysteria1_clash_proxy(proxy: dict) -> dict:
         "port": int(proxy["server_port"]),
         "auth-str": proxy.get("auth_str", ""),
         "protocol": proxy.get("network", "udp"),
-        "up": proxy.get("up_mbps", 30),
-        "down": proxy.get("down_mbps", 30),
+        "up": proxy.get("up_mbps", "30"),
+        "down": proxy.get("down_mbps", "30"),
         "sni": tls.get("server_name", ""),
         "skip-cert-verify": tls.get("insecure", False),
         "alpn": tls.get("alpn", ["h3"]),
@@ -76,8 +121,11 @@ def _hysteria1_clash_proxy(proxy: dict) -> dict:
 
 def parse_config(text: str, source: str = "") -> list[Node]:
     """解析 singbox 配置文本 → 节点列表（提取全部代理 outbound）。"""
+    fixed = _extract_first_json(text)
+    if fixed != text:
+        console.print("  [yellow]⚠[/yellow] 配置重复/尾随垃圾，取第一份")
     try:
-        config = json.loads(_fix_duplicated_json(text))
+        config = json.loads(fixed)
     except json.JSONDecodeError as e:
         console.print(f"  [red]✗ singbox JSON 解析失败: {e}[/red]")
         return []

@@ -24,8 +24,8 @@ def _mihomo_proxy(config: dict) -> dict:
         "port": int(address[index + 1 :]),
         "auth-str": config.get("auth_str", ""),
         "protocol": config.get("protocol", "udp"),
-        "up": config.get("up_mbps", 30),
-        "down": config.get("down_mbps", 30),
+        "up": config.get("up_mbps", "30"),
+        "down": config.get("down_mbps", "30"),
     }
     if config.get("server_name"):
         proxy["sni"] = config["server_name"]

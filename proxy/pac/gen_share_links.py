@@ -4,7 +4,7 @@
 1. fetcher.fetch_all()   统一下载全部 *_config_links.txt，URL/内容哈希双重去重；
                          成功获取即写入 config store，并合并近窗口存量配置（见 pac/store.py）
 2. 各协议 parser.parse_config() → Node → NodePool（身份键跨源去重）
-3. geo_cache 批量解析国家码 → NodePool.finalize() 命名节点
+3. geo 批量解析国家码 → NodePool.finalize() 命名节点
 4. render_v2rayn / render_clash 生成订阅产物（proxy/subscribe/）
 5. save_links() 兼容旧的 share_links.txt 输出
 
@@ -23,7 +23,7 @@ from rich.table import Table
 from pac import clash, hysteria, hysteria1, juicity, mieru, naive, shadowquic, singbox, xray
 from pac import render_clash, render_v2rayn
 from pac.fetcher import fetch_all
-from pac.geo_cache import resolve as resolve_geo
+from geo.cache import resolve as resolve_geo
 from pac.nodes import NodePool
 from pac.util import console, save_links
 
@@ -63,7 +63,7 @@ def build_pool() -> NodePool:
 
 
 def print_stats(pool: NodePool) -> None:
-    table = Table(title="节点池统计", header_style="bold cyan")
+    table = Table(title=f"节点池统计 [[bold]{len(pool)}[/bold]]", header_style="bold cyan")
     table.add_column("协议", style="bold")
     table.add_column("节点数", justify="right")
     for proto, count in pool.stats_by_protocol().items():

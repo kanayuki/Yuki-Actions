@@ -8,6 +8,7 @@ import requests
 import urllib3
 from rich.console import Console
 from rich.table import Table
+from geo.resolver import get_country_code
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -80,19 +81,6 @@ def load_all_config(file: str):
         return wrapper
 
     return decorator
-
-
-@functools.lru_cache(maxsize=128)
-def get_country_code(ip: str = "") -> str:
-    """Query ip-api.com for the country code of an IP/hostname."""
-    url = f"http://ip-api.com/json/{ip}"
-    try:
-        response = requests.get(url, timeout=10)
-        data = response.json()
-        return data.get("countryCode", "")
-    except Exception as e:
-        console.print(f"  [dim]国家码查询失败 {ip}: {e}[/dim]")
-        return "XX"
 
 
 def arrange_links(links: list[str]) -> list[str]:
@@ -189,4 +177,4 @@ def save_links(links: list[str], label: str = "") -> None:
 
 
 if __name__ == "__main__":
-    get_country_code("198.40.52.26")
+    pass
