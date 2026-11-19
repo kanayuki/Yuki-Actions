@@ -292264,5 +292264,22 @@
     "first_seen": "2026-11-19T02:12:38+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "0dbc6f7c35c8c9d5487a4cf24d43eae480fe43db8d08cecf848532fcad1cc147": {
+    "link": "ss://MjAyMi1ibGFrZTMtY2hhY2hhMjAtcG9seTEzMDU6aHpQS2F6Qzh1VVFMckJFQkRHYUZZWDJtOGtFS2YvMDRONk5yQTZFdExnaz0=@129.151.64.238:61312#GB%20-%20zhuhai.uk",
+    "protocol": "ss",
+    "host": "129.151.64.238",
+    "port": 61312,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-19T11:02:57+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
