@@ -292536,5 +292536,22 @@
     "first_seen": "2026-11-20T10:51:30+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "774ce44103f3b90a40379765186a5b372335c0269d94ce9549a8f3ac1e59f56c": {
+    "link": "vmess://eyJhZGQiOiAiMTc5LjQzLjE0MC4yNCIsICJhaWQiOiAiMCIsICJhbHBuIjogIiIsICJmcCI6ICIiLCAiaG9zdCI6ICJkb3duLWNkbi5kaW5ndGFsay5jb20iLCAiaWQiOiAiYTkyNWE5OGMtYWQ3YS00MGM2LTlmZGYtMTMwYTFkZTY5NDE2IiwgImluc2VjdXJlIjogIjAiLCAibmV0IjogInRjcCIsICJwYXRoIjogIi8zeCIsICJwY3MiOiAiIiwgInBvcnQiOiAiNDI4MzEiLCAicHMiOiAiXHU3NDVlXHU1OGViIFYyQ1JPU1MuQ09NIiwgInNjeSI6ICJhdXRvIiwgInNlY3VyaXR5IjogImF1dG8iLCAic25pIjogIiIsICJ0bHMiOiAiIiwgInR5cGUiOiAiaHR0cCIsICJ2IjogIjIiLCAidmNuIjogIiJ9",
+    "protocol": "vmess",
+    "host": "179.43.140.24",
+    "port": 42831,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-20T19:33:28+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
