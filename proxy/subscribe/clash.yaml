@@ -225,17 +225,6 @@ proxies:
   name: US_20261120_shadowquic_3
 - type: shadowquic
   server: 142.249.37.83
-  port: 1443
-  username: dongtaiwang.com
-  password: dongtaiwang.com
-  congestion-controller: bbr
-  sni: www.yahoo.com
-  alpn:
-  - h3
-  zero-rtt: true
-  name: US_20261120_shadowquic
-- type: shadowquic
-  server: 142.249.37.83
   port: 52889
   username: dongtaiwang.com
   password: dongtaiwang.com
@@ -245,6 +234,17 @@ proxies:
   - h3
   zero-rtt: true
   name: US_20261120_shadowquic_2
+- type: shadowquic
+  server: 142.249.37.83
+  port: 1443
+  username: dongtaiwang.com
+  password: dongtaiwang.com
+  congestion-controller: bbr
+  sni: www.yahoo.com
+  alpn:
+  - h3
+  zero-rtt: true
+  name: US_20261120_shadowquic
 - name: US_20261120_hysteria1_7
   type: hysteria
   server: 198.200.57.142
@@ -345,8 +345,8 @@ proxy-groups:
   - US_20261120_hysteria1_6
   - US_20261120_mieru
   - US_20261120_shadowquic_3
-  - US_20261120_shadowquic
   - US_20261120_shadowquic_2
+  - US_20261120_shadowquic
   - US_20261120_hysteria1_7
   - US_20261120_hysteria1_8
   - US_20261120_hysteria1_5
@@ -381,8 +381,8 @@ proxy-groups:
   - US_20261120_hysteria1_6
   - US_20261120_mieru
   - US_20261120_shadowquic_3
-  - US_20261120_shadowquic
   - US_20261120_shadowquic_2
+  - US_20261120_shadowquic
   - US_20261120_hysteria1_7
   - US_20261120_hysteria1_8
   - US_20261120_hysteria1_5
