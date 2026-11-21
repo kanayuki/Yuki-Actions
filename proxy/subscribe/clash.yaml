@@ -249,16 +249,16 @@ proxies:
   port: 33556
   name: US_20261121_mieru
 - type: shadowquic
-  server: 198.2.214.27
-  port: 22448
+  server: 198.247.0.165
+  port: 25443
   username: dongtaiwang.com
   password: dongtaiwang.com
   congestion-controller: bbr
-  sni: www.bing.com
+  sni: www.yahoo.com
   alpn:
   - h3
   zero-rtt: true
-  name: US_20261121_shadowquic_3
+  name: US_20261121_shadowquic_4
 - type: shadowquic
   server: 142.249.37.83
   port: 52889
@@ -353,6 +353,17 @@ proxies:
   protocol: udp
   up: 11 Mbps
   down: 55 Mbps
+- type: shadowquic
+  server: 198.2.214.27
+  port: 22448
+  username: dongtaiwang.com
+  password: dongtaiwang.com
+  congestion-controller: bbr
+  sni: www.bing.com
+  alpn:
+  - h3
+  zero-rtt: true
+  name: US_20261121_shadowquic_3
 proxy-groups:
 - name: PROXY
   type: select
@@ -383,7 +394,7 @@ proxy-groups:
   - FR_20261121_hysteria2_6
   - US_20261121_hysteria1_6
   - US_20261121_mieru
-  - US_20261121_shadowquic_3
+  - US_20261121_shadowquic_4
   - US_20261121_shadowquic_2
   - US_20261121_shadowquic
   - US_20261121_hysteria1_7
@@ -392,6 +403,7 @@ proxy-groups:
   - US_20261121_hysteria1
   - FR_20261121_hysteria1
   - FR_20261121_hysteria1_3
+  - US_20261121_shadowquic_3
 - name: AUTO
   type: url-test
   url: http://www.gstatic.com/generate_204
@@ -422,7 +434,7 @@ proxy-groups:
   - FR_20261121_hysteria2_6
   - US_20261121_hysteria1_6
   - US_20261121_mieru
-  - US_20261121_shadowquic_3
+  - US_20261121_shadowquic_4
   - US_20261121_shadowquic_2
   - US_20261121_shadowquic
   - US_20261121_hysteria1_7
@@ -431,6 +443,7 @@ proxy-groups:
   - US_20261121_hysteria1
   - FR_20261121_hysteria1
   - FR_20261121_hysteria1_3
+  - US_20261121_shadowquic_3
 rules:
 - GEOIP,LAN,DIRECT,no-resolve
 - GEOIP,CN,DIRECT

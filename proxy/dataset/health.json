@@ -292689,5 +292689,22 @@
     "first_seen": "2026-11-21T10:35:47+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "459f89a448769a4a82443be3de7636b15d1511f032993ab0b82c8a2807bdd341": {
+    "link": "vless://8f21c635-ef0a-4b05-8356-f44d463b6e34@198.13.53.39:443?type=ws&security=reality&sni=itunes.apple.com&path=%2Fws&host=itunes.apple.com&pbk=xxPVgbxguyYuVIml6Eh6ZGcDLO1z0OWKZXfDdUGFv1k&sid=7a7cc838&fp=chrome#JP%20-%20zhuhai.uk%2003",
+    "protocol": "vless",
+    "host": "198.13.53.39",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-21T18:38:14+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
