@@ -238,3 +238,8 @@ vless://ef5a57c7-84d5-4f86-b99c-875a16da485f@48.102.173.24:444?&security=tls&fp=
 vless://0e6cd6ca-fba2-4b86-923c-f0a021f7ad15@142.132.140.143:1003?security=none&type=tcp&packetEncoding=xudp&encryption=none#%E5%8A%A0%E6%8B%BF%E5%A4%A7+%E6%B8%A9%E5%B0%BC%E4%BC%AF%E5%A4%A7%E5%AD%A6
 vless://eb88bb1a-7bf0-0001-b9cd-4f97c89f0e9b@168.113.253.178:443?sni=uzndiuvzvqqljdyhzs.fcloudservices.site&fp=chrome&security=tls#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
 ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNTpqY1oxV1IwM29rbm9FSllB@jp01-ipv6.linkms001.com:22222#JP%20-%20zhuhai.uk%2002
+vmess://eyJhZGQiOiAiYWZ6dXYueGlhb3lhbi5pbyIsICJhaWQiOiAwLCAiYWxwbiI6ICIiLCAiZnAiOiAiIiwgImhvc3QiOiAiZjkzMDljYzg4NjM3YzI2ZjU1MmExYTY0ZmIzMTFjYWUubW9iZ3NsYi50YmNhY2hlLmNvbSIsICJpZCI6ICI5MDRmMDU2OS04Njk1LTQ2NmYtOTdjZi0wZGUyZmFjZTFiNDYiLCAibmV0IjogIndzIiwgInBhdGgiOiAiLyIsICJwb3J0IjogMTY2MTcsICJwcyI6ICJcdTdmOGVcdTU2ZmQgXHU2NWIwXHU2Y2ZkXHU4OTdmXHU1ZGRlKE1lcmNrXHU1MTZjXHU1M2Y4KSIsICJzY3kiOiAiYXV0byIsICJzZWN1cml0eSI6ICJhdXRvIiwgInNraXAtY2VydC12ZXJpZnkiOiB0cnVlLCAic25pIjogIiIsICJ0bHMiOiAiIiwgInR5cGUiOiAibm9uZSIsICJ2IjogIjIifQ==
+vless://666821a2-5c3d-0001-a56f-5a3a562d7324@136.148.83.69:443?sni=szqbx-ru-77dc.my-fade.cloud&fp=qq&security=tls#%E8%8B%B1%E5%9B%BD+%E4%BC%A6%E6%95%A6%E5%8D%97%E5%B2%B8%E5%A4%A7%E5%AD%A6
+hysteria2://713142c9-ad09-4894-b35c-645423f3f6c9@media.embrofree.org:443?insecure=1&security=tls&sni=media.embrofree.org#%E5%B7%B4%E8%A5%BF+V2CROSS.COM
+vless://aa1a9052-720f-4bb0-92be-21b6baf9f386@149.28.29.156:443?type=ws&security=reality&sni=itunes.apple.com&path=%2Fws&host=itunes.apple.com&pbk=qgCGmxD1lyAEIGZVEk4buAMGcvGvHLl9wGxPQlHCYX0&sid=e535df57&fp=chrome#JP%20-%20zhuhai.uk
+anytls://44b7e257-d326-4df1-8510-002acac96d93@signal.lovehk.xyz:443/?sni=signal.lovehk.xyz&udp=1#US%20-%20zhuhai.uk%2005
