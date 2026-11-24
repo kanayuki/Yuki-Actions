@@ -293656,5 +293656,39 @@
     "first_seen": "2026-11-24T08:05:19+00:00",
     "dormant": false,
     "dormant_since": ""
+  },
+  "e98dd37f86925e79dd0299e6414e999ff07bd3fc1989adf640a25390ad5e425b": {
+    "link": "anytls://26ba2310-31aa-4fe6-86b1-47fcd14cabb2@im.lovehk.xyz:443/?sni=im.lovehk.xyz&udp=1#CA%20-%20zhuhai.uk",
+    "protocol": "anytls",
+    "host": "im.lovehk.xyz",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:zhuhaiuk/free-nodes",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-24T19:53:47+00:00",
+    "dormant": false,
+    "dormant_since": ""
+  },
+  "45be3f3e6f74a2c24efc5f8603c75d5b655471bf76fb819b178f427358bd9dd6": {
+    "link": "vless://4201786b-d99b-4147-a5f0-20d47acddb81@196.196.148.177:443?&security=reality&flow=xtls-rprx-vision&pbk=MzgB17ZFbKqs8pbC3EscTzHid_ENc-k_Cp6nXl-2knw&sid=6976d670818644cc&fp=firefox&sni=4935e4t.de25.h1clayd.click&type=tcp&headerType=none&host=4935e4t.de25.h1clayd.click&path=%2F#%E7%88%B1%E6%B2%99%E5%B0%BC%E4%BA%9A+V2CROSS.COM",
+    "protocol": "vless",
+    "host": "196.196.148.177",
+    "port": 443,
+    "country": "",
+    "source_repo": "",
+    "source_tag": "github:Pawdroid/Free-servers",
+    "fail_count": 0,
+    "last_verified": "",
+    "last_ok": "",
+    "latency_ms": 0.0,
+    "latency_history": [],
+    "first_seen": "2026-11-24T19:53:47+00:00",
+    "dormant": false,
+    "dormant_since": ""
   }
 }
