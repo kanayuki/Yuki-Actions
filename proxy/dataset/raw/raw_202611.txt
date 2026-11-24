@@ -252,3 +252,11 @@ anytls://2902c46c8493@ibsdsf.df6h451rh.xin:443/?sni=docs.microsoft.com&insecure=
 anytls://87f368b4-2025-46f0-8492-8f749bb97a8b@theme.lovehk.xyz:443/?sni=theme.lovehk.xyz#TW%20-%20zhuhai.uk
 ss://MjAyMi1ibGFrZTMtY2hhY2hhMjAtcG9seTEzMDU6OHlPM0FOV2VmdXVHczFsUktYRUNRQTFGRWh4bFdGVjJwcFFNY0JhWm81WT0=@47.254.128.109:443#%E5%BE%B7%E5%9B%BD+%E9%98%BF%E9%87%8C%E4%BA%91
 vless://40992c2a-513e-4837-9594-23411fd42afd@64.227.41.219:443?security=none&type=tcp&headerType=http&path=%2F&host=fast.com&packetEncoding=xudp&encryption=none#%E7%BE%8E%E5%9B%BD+Interland
+trojan://57beeeb0-03fc-4fc9-94da-7604488a7134@bgsg1.hikigo.com:443?allowInsecure=1&security=tls&sni=bgsg1.hikigo.com#%E8%8D%B7%E5%85%B0+V2CROSS.COM
+vless://00000000-0000-0001-0000-000000000000@136.148.83.71:443?&security=tls&fp=qq&sni=wccfu-ru-79dc.my-fade.cloud&type=tcp&headerType=none&path=%2F#%E8%8B%B1%E5%9B%BD+%E4%BC%A6%E6%95%A6%E5%8D%97%E5%B2%B8%E5%A4%A7%E5%AD%A6
+vless://a8e5585a-6020-4649-a364-c1ebf3a40548@193.111.248.54:443?&security=reality&flow=xtls-rprx-vision&pbk=0KDql59THS-DXg30wMR0QGgFB6rXARDhr8WoWyfVA2M&sid=6f0091ebe3029ebb&fp=firefox&sni=tagderdeutscheneinheit.de&type=tcp&headerType=none&host=tagderdeutscheneinheit.de&path=%2F#%E4%BF%84%E7%BD%97%E6%96%AF+V2CROSS.COM
+ss://MjAyMi1ibGFrZTMtY2hhY2hhMjAtcG9seTEzMDU6M05Cc25CTGFuUGZHNmkzUzJHVEhpbmVzd3I2RWVTSlBiMFBDZU1Rb0dvQT0@47.85.227.36:443#%E9%A6%99%E6%B8%AF+%E9%98%BF%E9%87%8C%E4%BA%91
+anytls://0324fbc29561@5641sdds.df6h451rh.xin:443/?sni=images.ctfassets.net&insecure=1&udp=1#HK%20-%20zhuhai.uk%2002
+vless://7bd7c4aa-52c4-482c-bdcc-e7380fa6b5fe@193.233.89.130:8443?security=reality&type=grpc&mode=gun&serviceName=grpc&sni=g.play2go.gay&fp=chrome&pbk=xx8KWdR4HbVmvqPb0wRPAstBHGN2Uk99m7AF794_E3c&encryption=none#CH%20-%20zhuhai.uk%2001
+vless://38308ff1-5aa9-494f-a25a-0f2870d56b3e@leviko-ru4448.shopingggg.ir:443?security=tls&type=grpc&mode=gun&serviceName=mobile.api.Event&alpn=h2&sni=vps3.nemnogogo.com&fp=chrome&encryption=none#RU%20-%20zhuhai.uk%2003
+vless://1697852e-cd5c-472d-b377-0def0f301d98@88.151.197.87:2025?security=none&type=ws&path=%2F&encryption=none#FR%20-%20zhuhai.uk%2001
